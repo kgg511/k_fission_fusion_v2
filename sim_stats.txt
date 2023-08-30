@@ -1,0 +1,1102 @@
+Starting Hunger: 72.12
+
+Iter 0
+Site resources:
+200
+200
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 34, 'REST': 4, 'FLEE': 12}
+Agent 0 theta: -1.9748792993632938 heading: [-0.39317575 -0.91946334]
+
+Iter 1
+Site resources:
+199
+197
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 32, 'REST': 4, 'FLEE': 14}
+Agent 0 theta: -1.9688116013161452 heading: [-0.38758952 -0.92183207]
+
+Iter 2
+Site resources:
+198
+194
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 30, 'REST': 4, 'FLEE': 16}
+Agent 0 theta: -1.962943936258743 heading: [-0.38217388 -0.92409043]
+
+Iter 3
+Site resources:
+197
+191
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 29, 'REST': 4, 'FLEE': 17}
+Agent 0 theta: -1.956931074401514 heading: [-0.37661058 -0.92637167]
+
+Iter 4
+Site resources:
+196
+188
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 29, 'REST': 4, 'FLEE': 17}
+Agent 0 theta: -1.9504654528458958 heading: [-0.37061318 -0.92878731]
+
+Iter 5
+Site resources:
+195
+185
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 28, 'REST': 4, 'FLEE': 18}
+Agent 0 theta: -1.9440348445649291 heading: [-0.36463289 -0.93115136]
+
+Iter 6
+Site resources:
+194
+182
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 28, 'REST': 4, 'FLEE': 18}
+Agent 0 theta: -1.9376478488375644 heading: [-0.35867823 -0.93346126]
+
+Iter 7
+Site resources:
+193
+179
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 28, 'REST': 4, 'FLEE': 18}
+Agent 0 theta: -1.9309733513690637 heading: [-0.3524399  -0.93583445]
+
+Iter 8
+Site resources:
+192
+176
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 26, 'REST': 4, 'FLEE': 20}
+Agent 0 theta: -1.924355961236891 heading: [-0.34623945 -0.93814617]
+
+Iter 9
+Site resources:
+191
+173
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 25, 'REST': 4, 'FLEE': 21}
+Agent 0 theta: -1.9173393167342039 heading: [-0.33964834 -0.9405525 ]
+
+Iter 10
+Site resources:
+190
+170
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 24, 'REST': 4, 'FLEE': 22}
+Agent 0 theta: -1.910398793081582 heading: [-0.33311229 -0.94288716]
+
+Iter 11
+Site resources:
+189
+167
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 22, 'REST': 5, 'FLEE': 23}
+Agent 0 theta: -1.903530904118801 heading: [-0.32662884 -0.94515269]
+
+Iter 12
+Site resources:
+188
+163
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 21, 'REST': 5, 'FLEE': 24}
+Agent 0 theta: -1.8967285382656798 heading: [-0.32019206 -0.94735265]
+
+Iter 13
+Site resources:
+187
+159
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 20, 'REST': 6, 'FLEE': 24}
+Agent 0 theta: -1.8899851978022375 heading: [-0.3137965  -0.94949026]
+
+Iter 14
+Site resources:
+185
+155
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 21, 'REST': 6, 'FLEE': 23}
+Agent 0 theta: -1.8832957350547221 heading: [-0.30743795 -0.95156813]
+
+Iter 15
+Site resources:
+183
+151
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 19, 'REST': 6, 'FLEE': 25}
+Agent 0 theta: -1.8762131082458446 heading: [-0.30069069 -0.95372171]
+
+Iter 16
+Site resources:
+181
+147
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 18, 'REST': 6, 'FLEE': 26}
+Agent 0 theta: -1.8691915639614434 heading: [-0.29398674 -0.9558095 ]
+
+Iter 17
+Site resources:
+179
+143
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 17, 'REST': 6, 'FLEE': 27}
+Agent 0 theta: -1.8622255875992098 heading: [-0.28732151 -0.9578342 ]
+
+Iter 18
+Site resources:
+177
+139
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 15, 'REST': 6, 'FLEE': 29}
+Agent 0 theta: -1.8553101406337196 heading: [-0.28069084 -0.95979823]
+
+Iter 19
+Site resources:
+175
+135
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 15, 'REST': 6, 'FLEE': 29}
+Agent 0 theta: -1.8484401908142163 heading: [-0.27409051 -0.9617039 ]
+
+Iter 20
+Site resources:
+173
+131
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 14, 'REST': 6, 'FLEE': 30}
+Agent 0 theta: -1.8416113736391058 heading: [-0.26751687 -0.96355318]
+
+Iter 21
+Site resources:
+171
+127
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 14, 'REST': 6, 'FLEE': 30}
+Agent 0 theta: -1.8348792299939614 heading: [-0.26102407 -0.96533229]
+
+Iter 22
+Site resources:
+169
+124
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 14, 'REST': 5, 'FLEE': 31}
+Agent 0 theta: -1.8281810307778787 heading: [-0.25455228 -0.96705901]
+
+Iter 23
+Site resources:
+167
+121
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 14, 'REST': 5, 'FLEE': 31}
+Agent 0 theta: -1.8215062157649786 heading: [-0.24809172 -0.96873655]
+
+Iter 24
+Site resources:
+165
+119
+200
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 14, 'REST': 5, 'FLEE': 31}
+Agent 0 theta: -1.8146735707478736 heading: [-0.24146694 -0.97040905]
+
+Iter 25
+Site resources:
+163
+117
+199
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 13, 'REST': 5, 'FLEE': 32}
+Agent 0 theta: -1.8077653497216635 heading: [-0.23475744 -0.97205398]
+
+Iter 26
+Site resources:
+161
+117
+199
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 13, 'REST': 3, 'FLEE': 34}
+Agent 0 theta: -1.8008889221985842 heading: [-0.22806768 -0.97364528]
+
+Iter 27
+Site resources:
+159
+117
+198
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 13, 'REST': 2, 'FLEE': 35}
+Agent 0 theta: -1.7938778730562668 heading: [-0.22123586 -0.97522033]
+
+Iter 28
+Site resources:
+157
+117
+198
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 12, 'REST': 3, 'FLEE': 35}
+Agent 0 theta: -1.7869494834908994 heading: [-0.21447389 -0.97672972]
+
+Iter 29
+Site resources:
+155
+117
+197
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 11, 'REST': 3, 'FLEE': 36}
+Agent 0 theta: -1.7800960396573646 heading: [-0.20777495 -0.97817666]
+
+Iter 30
+Site resources:
+152
+117
+197
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 11, 'REST': 4, 'FLEE': 35}
+Agent 0 theta: -1.7732379063814865 heading: [-0.20106165 -0.97957859]
+
+Iter 31
+Site resources:
+149
+117
+196
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 10, 'REST': 3, 'FLEE': 37}
+Agent 0 theta: -1.766453801602591 heading: [-0.19441151 -0.98092006]
+
+Iter 32
+Site resources:
+146
+117
+196
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 9, 'REST': 5, 'FLEE': 36}
+Agent 0 theta: -1.7597588368040051 heading: [-0.18783997 -0.98219965]
+
+Iter 33
+Site resources:
+143
+117
+194
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 9, 'REST': 4, 'FLEE': 37}
+Agent 0 theta: -1.7526980223940252 heading: [-0.18090022 -0.98350145]
+
+Iter 34
+Site resources:
+141
+117
+193
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 9, 'REST': 3, 'FLEE': 38}
+Agent 0 theta: -1.7457333506311168 heading: [-0.17404612 -0.9847375 ]
+
+Iter 35
+Site resources:
+139
+117
+192
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 8, 'REST': 4, 'FLEE': 38}
+Agent 0 theta: -1.7388722653368305 heading: [-0.16728571 -0.98590846]
+
+Iter 36
+Site resources:
+137
+117
+190
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 8, 'REST': 3, 'FLEE': 39}
+Agent 0 theta: -1.731960494673879 heading: [-0.1604674  -0.98704114]
+
+Iter 37
+Site resources:
+135
+117
+189
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 6, 'REST': 3, 'FLEE': 41}
+Agent 0 theta: -1.7246517647644442 heading: [-0.15324916 -0.98818758]
+
+Iter 38
+Site resources:
+134
+117
+188
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 6, 'REST': 3, 'FLEE': 41}
+Agent 0 theta: -1.717192806800324 heading: [-0.14587411 -0.98930316]
+
+Iter 39
+Site resources:
+133
+117
+186
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 5, 'REST': 2, 'FLEE': 43}
+Agent 0 theta: -1.709831168655198 heading: [-0.13858733 -0.99035022]
+
+Iter 40
+Site resources:
+132
+117
+185
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 5, 'REST': 2, 'FLEE': 43}
+Agent 0 theta: -1.7025803537455624 heading: [-0.13140291 -0.99132905]
+
+Iter 41
+Site resources:
+132
+117
+184
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 5, 'REST': 2, 'FLEE': 43}
+Agent 0 theta: -1.6954537866375952 heading: [-0.12433486 -0.99224032]
+
+Iter 42
+Site resources:
+132
+117
+182
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 4, 'REST': 1, 'FLEE': 45}
+Agent 0 theta: -1.688143774182943 heading: [-0.11707831 -0.99312269]
+
+Iter 43
+Site resources:
+132
+117
+181
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 1, 'FLEE': 46}
+Agent 0 theta: -1.6809403787522745 heading: [-0.10992148 -0.99394027]
+
+Iter 44
+Site resources:
+132
+117
+180
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 2, 'FLEE': 45}
+Agent 0 theta: -1.6729560370678813 heading: [-0.1019821  -0.99478623]
+
+Iter 45
+Site resources:
+132
+117
+178
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 2, 'FLEE': 45}
+Agent 0 theta: -1.665058889439318 heading: [-0.09412303 -0.99556057]
+
+Iter 46
+Site resources:
+132
+117
+176
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 2, 'FLEE': 45}
+Agent 0 theta: -1.6572683592622761 heading: [-0.08636431 -0.99626362]
+
+Iter 47
+Site resources:
+132
+117
+174
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 3, 'FLEE': 44}
+Agent 0 theta: -1.6493194676320169 heading: [-0.07844247 -0.99691864]
+
+Iter 48
+Site resources:
+132
+117
+171
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 3, 'FLEE': 44}
+Agent 0 theta: -1.6415026264810948 heading: [-0.0706474  -0.99750135]
+
+Iter 49
+Site resources:
+132
+117
+168
+Predator target: <agent.Agent object at 0x000001A5CABD3820>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
+Agent 0 theta: -1.6338275469432015 heading: [-0.06298949 -0.99801419]
+
+Iter 50
+Site resources:
+132
+117
+164
+Predator target: None
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
+Agent 0 theta: -1.6258233966410798 heading: [-0.0549993  -0.99848639]
+
+Iter 51
+Site resources:
+132
+117
+160
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
+Agent 0 theta: -1.617996829673742 heading: [-0.04718298 -0.99888626]
+
+Iter 52
+Site resources:
+132
+117
+156
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
+Agent 0 theta: -1.6103603117299077 heading: [-0.03955366 -0.99921745]
+
+Iter 53
+Site resources:
+132
+117
+152
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
+Agent 0 theta: -1.6025825974578976 heading: [-0.03178092 -0.99949486]
+
+Iter 54
+Site resources:
+132
+117
+148
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
+Agent 0 theta: -1.5949975987243392 heading: [-0.02419891 -0.99970716]
+
+Iter 55
+Site resources:
+132
+117
+144
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
+Agent 0 theta: -1.5876006449374023 heading: [-0.01680353 -0.99985881]
+
+Iter 56
+Site resources:
+132
+117
+140
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
+Agent 0 theta: -1.580381782041359 heading: [-0.00958531 -0.99995406]
+
+Iter 57
+Site resources:
+132
+117
+136
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 5, 'FLEE': 42}
+Agent 0 theta: -1.5733272965925977 heading: [-0.00253097 -0.9999968 ]
+
+Iter 58
+Site resources:
+132
+117
+131
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 5, 'FLEE': 42}
+Agent 0 theta: -1.5665047105656018 heading: [ 0.0042916  -0.99999079]
+
+Iter 59
+Site resources:
+132
+117
+126
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 5, 'FLEE': 42}
+Agent 0 theta: -1.5598145647727266 heading: [ 0.01098154 -0.9999397 ]
+
+Iter 60
+Site resources:
+132
+117
+121
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 6, 'FLEE': 41}
+Agent 0 theta: -1.5532313821444574 heading: [ 0.01756404 -0.99984574]
+
+Iter 61
+Site resources:
+131
+117
+116
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 6, 'FLEE': 41}
+Agent 0 theta: -1.5467344426103031 heading: [ 0.02405956 -0.99971053]
+
+Iter 62
+Site resources:
+130
+117
+111
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
+Agent 0 theta: -1.5402930121042864 heading: [ 0.03049858 -0.99953481]
+
+Iter 63
+Site resources:
+129
+117
+105
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
+Agent 0 theta: -1.5337563283065052 heading: [ 0.03703153 -0.9993141 ]
+
+Iter 64
+Site resources:
+128
+117
+99
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
+Agent 0 theta: -1.5271984234051301 heading: [ 0.04358409 -0.99904976]
+
+Iter 65
+Site resources:
+127
+117
+93
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
+Agent 0 theta: -1.5203410940176045 heading: [ 0.05043383 -0.9987274 ]
+
+Iter 66
+Site resources:
+126
+117
+87
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 9, 'FLEE': 38}
+Agent 0 theta: -1.5132675289614677 heading: [ 0.05749707 -0.99834568]
+
+Iter 67
+Site resources:
+123
+117
+81
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 10, 'FLEE': 37}
+Agent 0 theta: -1.5058410815103869 heading: [ 0.06490958 -0.99789115]
+
+Iter 68
+Site resources:
+120
+116
+75
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 10, 'FLEE': 37}
+Agent 0 theta: -1.4984672128313623 heading: [ 0.07226607 -0.99738539]
+
+Iter 69
+Site resources:
+117
+116
+69
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 9, 'FLEE': 38}
+Agent 0 theta: -1.4965056290735024 heading: [ 0.07422238 -0.99724172]
+
+Iter 70
+Site resources:
+115
+116
+63
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 8, 'FLEE': 39}
+Agent 0 theta: -1.495528559318838 heading: [ 0.07519672 -0.99716872]
+
+Iter 71
+Site resources:
+113
+116
+57
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 8, 'FLEE': 39}
+Agent 0 theta: -1.4938124481594082 heading: [ 0.07690786 -0.9970382 ]
+
+Iter 72
+Site resources:
+111
+116
+51
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 8, 'FLEE': 39}
+Agent 0 theta: -1.49160703914583 heading: [ 0.07910655 -0.99686617]
+
+Iter 73
+Site resources:
+109
+116
+45
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 8, 'FLEE': 39}
+Agent 0 theta: -1.4891542070849928 heading: [ 0.08155145 -0.99666913]
+
+Iter 74
+Site resources:
+108
+116
+39
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
+Agent 0 theta: -1.4866097903564401 heading: [ 0.08408713 -0.99645841]
+
+Iter 75
+Site resources:
+107
+116
+33
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
+Agent 0 theta: -1.4840757574090713 heading: [ 0.08661191 -0.99624213]
+
+Iter 76
+Site resources:
+106
+116
+27
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
+Agent 0 theta: -1.4819463303142606 heading: [ 0.08873314 -0.99605544]
+
+Iter 77
+Site resources:
+106
+116
+21
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 6, 'FLEE': 41}
+Agent 0 theta: -1.4799271530498408 heading: [ 0.09074417 -0.99587424]
+
+Iter 78
+Site resources:
+106
+116
+15
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 3, 'REST': 6, 'FLEE': 41}
+Agent 0 theta: -1.4780489297588977 heading: [ 0.09261448 -0.99570204]
+
+Iter 79
+Site resources:
+106
+116
+9
+Predator target: None
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 2, 'REST': 6, 'FLEE': 42}
+Agent 0 theta: -1.4770882367604936 heading: [ 0.09357101 -0.99561261]
+
+Iter 80
+Site resources:
+106
+116
+3
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 2, 'REST': 7, 'FLEE': 41}
+Agent 0 theta: -1.4762623179271535 heading: [ 0.09439327 -0.99553499]
+
+Iter 81
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 16, 'REST': 3, 'FLEE': 31}
+Agent 0 theta: -1.476436704963951 heading: [ 0.09421966 -0.99555143]
+
+Iter 82
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
+Agent 0 theta: -1.477336644293687 heading: [ 0.09332368 -0.99563582]
+
+Iter 83
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
+Agent 0 theta: -1.4782599760357642 heading: [ 0.09240434 -0.99572157]
+
+Iter 84
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
+Agent 0 theta: -1.479181215775679 heading: [ 0.09148701 -0.99580627]
+
+Iter 85
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
+Agent 0 theta: -1.4800790949519393 heading: [ 0.09059286 -0.99588801]
+
+Iter 86
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
+Agent 0 theta: -1.4809265791501562 heading: [ 0.08974882 -0.99596443]
+
+Iter 87
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
+Agent 0 theta: -1.4817031601666064 heading: [ 0.08897535 -0.99603383]
+
+Iter 88
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
+Agent 0 theta: -1.4823881006604536 heading: [ 0.0882931  -0.99609454]
+
+Iter 89
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 20, 'REST': 0, 'FLEE': 30}
+Agent 0 theta: -1.4829616237012946 heading: [ 0.08772181 -0.99614501]
+
+Iter 90
+Site resources:
+106
+116
+0
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 20, 'REST': 0, 'FLEE': 30}
+Agent 0 theta: -1.482919215913131 heading: [ 0.08776405 -0.99614129]
+
+Iter 91
+Site resources:
+106
+116
+200
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 20, 'REST': 0, 'FLEE': 30}
+Agent 0 theta: -1.4828172558607435 heading: [ 0.08786562 -0.99613234]
+
+Iter 92
+Site resources:
+106
+116
+200
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 13, 'REST': 7, 'FLEE': 30}
+Agent 0 theta: -1.4831803292641759 heading: [ 0.08750394 -0.99616417]
+
+Iter 93
+Site resources:
+106
+116
+193
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 12, 'REST': 5, 'FLEE': 33}
+Agent 0 theta: -1.4838159244941216 heading: [ 0.08687077 -0.99621959]
+
+Iter 94
+Site resources:
+106
+116
+188
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
+Agent 0 theta: -1.4844994265791922 heading: [ 0.08618983 -0.99627873]
+
+Iter 95
+Site resources:
+106
+116
+181
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
+Agent 0 theta: -1.485053800186064 heading: [ 0.08563751 -0.99632636]
+
+Iter 96
+Site resources:
+106
+116
+174
+Predator target: <agent.Agent object at 0x000001A5CABD2260>
+Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Agent states:
+{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
+Agent 0 theta: -1.4857326275788216 heading: [ 0.08496115 -0.99638426]
+
+Iter 97
+Site resources:
+106
+116
+167
+Predator target: None
+Predator target: None
+Agent states:
+{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
+Agent 0 theta: -1.4866581141710908 heading: [ 0.08403898 -0.99646247]
+
+Iter 98
+Site resources:
+106
+116
+160
+Predator target: <agent.Agent object at 0x000001A5CABD3430>
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Agent states:
+{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
+Agent 0 theta: -1.4875113123899606 heading: [ 0.08318876 -0.99653381]
+
+Iter 99
+Site resources:
+106
+116
+153
+Predator target: <agent.Agent object at 0x000001A5CABD3430>
+Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+Agent states:
+{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
+Agent 0 theta: -1.4883107478557784 heading: [ 0.08239207 -0.99659999]
+Ending Hunger: 9.32
