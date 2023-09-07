@@ -88,42 +88,14 @@ class ExploreState(State): # maybe consider two different
                 # if np.random.default_rng().exponential(scale=MAX_HUNGER/4) < self.agent.hunger:
                 self.agent.state = RestState(self.agent)
 
-    # TODO: move code to super class method, inject with attraction and repulsion factors as function parameters
     def move(self, neighbors, predators):
-        # calculate repulsion + attraction + orientation towards neighbors
-        # calculate speed as an observable stat rather than a settable property of the agent?
-        # add random perturbations to distance calculation?
-        # FIXME: fix world border handling
-        # maybe using a repelling force based on distance to world border similar to how repulsion is calculated for neighbors?
-        attraction = -len(neighbors) * self.agent.pos
-        repulsion = np.zeros(2)
-        new_speed = self.agent.speed
-
-        for neighbor in neighbors:
-            attraction += (self.agent.pos - self.agent.sim.get_agent_pos(neighbor))
-            new_speed += self.agent.sim.get_agent_speed(neighbor)
-            c = self.agent.sim.get_agent_pos(neighbor) - self.agent.pos
-            scaling_factor = c @ c
-            if scaling_factor == 0:
-                repulsion += c
-            else:
-                repulsion += c / scaling_factor
-                    
-        if self.agent.site != None:
-            attraction += self.agent.site.pos
-
-        attraction *= self.agent.attr_factor
-        repulsion *= self.agent.repulse_factor
-        dx = attraction - repulsion # check math here to see what this does if there are no neighbors
-        self.agent.pos = self.agent.pos + dx * DT
-
-        new_speed = new_speed / (len(neighbors) + 1)
-        if new_speed > MAX_SPEED:
-            new_speed = MAX_SPEED
-        elif math.isclose(new_speed, 0.0):
-            new_speed = 1.0
-        self.agent.speed = new_speed
-
+        if neighbors:
+            # repulsion factor has to be pumped up super big in order to actually affect movement, and even then, it doesn't do it that well...
+            # attraction still is too powerful
+            # repulsion just affects how far away the agents try to stay away from each other
+            self.agent.move(neighbors, predators, 1.0, 1.0) 
+        else:
+            self.agent.random_walk()
         super().move(neighbors=None, predators=None)
 
 class LowDensityExplore(State):
@@ -133,10 +105,43 @@ class LowDensityExplore(State):
         self.agent.speed = agent.speed = np.random.uniform(1.0, MAX_SPEED)
 
     def update(self, neighbors, sites, predators):
-        # transition to High Density with a threshold
+        super().update(neighbors, sites, predators)
+        if self.agent.hunger > 0:
+            self.agent.hunger -= 1
+        if sites and self.agent.site == None:
+            self.agent.site = sites[np.random.randint(0, len(sites))]
+        
+        # transition to Flee
+        if predators:
+            self.agent.state = FleeingState(self.agent)
+
+        # transition to Rest
+        elif self.agent.site != None:
+            if math.dist(self.agent.site.pos, self.agent.pos) <= self.agent.site.radius:
+                # if np.random.default_rng().exponential(scale=MAX_HUNGER/4) < self.agent.hunger:
+                self.agent.state = RestState(self.agent)
+
+        # transition to High Density
+        if neighbors:
+            if len(neighbors) > AGENT_NEIGHBOR_THRESHOLD:
+                pass
+
+    def move(self, neighbors, predators):
+        # prioritize moving toward a known site
+        pass
+
+class HighDensityExplor(State):
+    def __init__(self, agent):
+        super().__init__("HIGH_DENSE_EXPLORE", EXPLORE_COLOR, agent)
+        self.agent.site = None
+        self.agent.speed = agent.speed = np.random.uniform(1.0, MAX_SPEED)
+
+    def update(self, neighbors, sites, predators):
+        # transition to Low Density once len(neighbors) is below like... half the constant threshold???
         pass
 
     def move(self, neighbors, predators):
+        # prioritize repulsion from neighbors
         pass
 
 class FleeingState(State):
@@ -195,25 +200,7 @@ class FleeingState(State):
             orientation = orientation / np.linalg.norm(orientation)
 
         attraction *= 2 * self.agent.attr_factor
-        repulsion *= self.agent.repulse_factor
+        repulsion *= self.agent.rpls_factor
         attraction = attraction - repulsion + orientation
         return attraction
 
-# For a potential second explore state...
-# increase repulsion and decrease attraction via constants
-# we want this explore to prioritize being away from the swarm more than being cohesive with it...
-# yet it still stays with the swarm??? idk
-# can be determined by hunger. Should it be higher hunger=higher liklihood to enter this stage?
-# do research on what determines scavenging behaviors in buffalo or sheep? idk
-#   according to research, actual herd of bison will:
-#   1. minimize time spent grazing
-#   2. favor sites they have already visited when population density decreases (keep track of known sites? calculate herd density?)
-#   3. will take into account local availability when resources are scarce (as opposed to global availability)
-#       - they also reduce their search area when resources are scarce
-#   another article more generally says herbivores:
-#   1. will wander farther in unfamiliar environments
-#   2. will be more likely to eat alternative foods after eating a lot of the same food (if visited a ton of known sites already, go away?)
-#       - alternatively, limit the time (internally) that each agent spends at each site
-#   3. other herbivores will ALSO explore more as population density increases
-#   4. social hierarchy plays a part in how they search
-#   5. social motivation vs. hunger motivation is definitely a real battle each animal deals with
