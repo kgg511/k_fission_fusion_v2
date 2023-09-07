@@ -1,8 +1,6 @@
 import numpy as np
 import states
 
-SENSING_RADIUS = 3
-
 # note to self: future planning, factors will be floats from 0.5 to 1.0
 class Agent:
     def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None):

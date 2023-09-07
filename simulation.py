@@ -1,18 +1,10 @@
-import agent as ag
-from states import MAX_HUNGER, SPEED_THRESHOLD
-import feeding_site
-import predator as pred
+from agent import Agent
+from feeding_site import Site
+from predator import Predator
+from config import *
+
 import numpy as np
 import math
-
-# SIMULATION SET UP
-NUM_AGENTS = 50
-WORLD_SIZE = 10
-NUM_ITERS = 100
-NUM_SITES = 3
-NUM_PREDS = 2
-SITE_REGEN_TIME = 10
-SITE_MAX_RESOURCE = 200
 
 class Simulation:
     def __init__(self):
@@ -27,12 +19,12 @@ class Simulation:
         agents = []
         for i in range(NUM_AGENTS):
             pos = np.array([np.random.uniform(0, WORLD_SIZE), np.random.uniform(0, WORLD_SIZE)])
-            speed = np.random.uniform(1.0, SPEED_THRESHOLD)
+            speed = np.random.uniform(1.0, MAX_SPEED)
             theta = np.random.uniform(-np.pi, np.pi)
             hunger = np.random.randint(MAX_HUNGER/2, MAX_HUNGER)
             attraction = np.random.uniform(0.25, 1.0)
             repulsion = np.random.uniform(0.25, 1.0)
-            agents.append(ag.Agent(i, pos, speed, theta, hunger, self, attr_factor=attraction, repulse_factor=repulsion))
+            agents.append(Agent(i, pos, speed, theta, hunger, self, attr_factor=attraction, repulse_factor=repulsion))
             self.prev_state.update({i: [pos, 1.0, np.array([np.cos(theta), np.sin(theta)])]})
             self.avg_hunger += hunger
             # print(f"Agent {i}: attraction = {attraction}, repulsion = {repulsion}, speed = {speed}")
@@ -44,7 +36,7 @@ class Simulation:
             pos = np.array([np.random.uniform(0, WORLD_SIZE), np.random.uniform(0, WORLD_SIZE)])
             radius = np.random.randint(1, WORLD_SIZE * 0.25)
             # resources = np.random.randint(SITE_MAX_RESOURCE//2, SITE_MAX_RESOURCE + 1)
-            sites.append(feeding_site.Site(pos, radius, SITE_REGEN_TIME, SITE_MAX_RESOURCE))
+            sites.append(Site(pos, radius, SITE_REGEN_TIME, SITE_MAX_RESOURCE))
             # print(f"Site {i}: {pos}")
         return sites
 
@@ -53,23 +45,23 @@ class Simulation:
         for i in range(NUM_PREDS):
             pos = np.array([np.random.uniform(0, WORLD_SIZE), np.random.uniform(0, WORLD_SIZE)])
             theta = np.random.uniform(-np.pi, np.pi)
-            predators.append(pred.Predator(pos, theta, self, speed=SPEED_THRESHOLD))
+            predators.append(Predator(pos, theta, self, speed=MAX_SPEED))
             # print(f"Predator {i} starting pos: {pos}")
         return predators
     
     def get_predators(self, agent):
         predators = []
         for predator in self.predators:
-            if math.dist(agent.pos, predator.pos) <= pred.SENSING_RADIUS:
+            if math.dist(agent.pos, predator.pos) <= PREDATOR_SENSING_RADIUS:
                 predator.neighbors.append(agent)
-                if math.dist(agent.pos, predator.pos) <= ag.SENSING_RADIUS:
+                if math.dist(agent.pos, predator.pos) <= AGENT_SENSING_RADIUS:
                     predators.append(predator)
         return predators
 
     def get_neighbor_ids(self, agent):
         neighbors = []
         for neighbor in self.agents:
-            if neighbor.id != agent.id and math.dist(neighbor.pos, agent.pos) < ag.SENSING_RADIUS:
+            if neighbor.id != agent.id and math.dist(neighbor.pos, agent.pos) < AGENT_SENSING_RADIUS:
                 neighbors.append(neighbor.id)
         return neighbors
     
@@ -86,7 +78,7 @@ class Simulation:
         sites = []
         for site in self.sites:
             if site.is_available():
-                if math.dist(site.pos, agent.pos) <= ag.SENSING_RADIUS + site.radius:
+                if math.dist(site.pos, agent.pos) <= AGENT_SENSING_RADIUS + site.radius:
                     sites.append(site)
         return sites
     

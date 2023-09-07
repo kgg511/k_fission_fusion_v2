@@ -40,6 +40,7 @@ def display(fig, ax, agents, predators, sites_x, sites_y, sites_radius):
     plt.scatter(pred_x, pred_y, c="#FF0000")
     ax.set(xlim=(0, sim.WORLD_SIZE), ylim=(0, sim.WORLD_SIZE))
     ax.set_aspect('equal')
+    plt.grid()
     plt.pause(0.1)
 
 # RECORD KEEPING
@@ -75,7 +76,8 @@ def run_simulation():
             simulation.avg_hunger = float(simulation.avg_hunger / sim.NUM_AGENTS)
             display(fig, ax, simulation.agents, simulation.predators, sites_x, sites_y, sites_radius)
             file.write(f"Agent states:\n{agent_states}\n")
-            file.write(f"Agent 0 theta: {simulation.agents[0].theta} heading: {simulation.agents[0].heading()}\n")
+            file.write(f"Agent 0 theta: {simulation.agents[0].theta} heading: {simulation.agents[0].heading()}" +
+                       f" speed: {simulation.agents[0].speed} state: {simulation.agents[0].state}\n")
 
         file.write(f"Ending Hunger: {simulation.avg_hunger}")
     plt.show()

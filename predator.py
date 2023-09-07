@@ -1,9 +1,7 @@
 import numpy as np
 import math
 from states import DT, PADDING
-
-SENSING_RADIUS = 5
-HUNTING_MULTIPLIER = 3
+from config import *
 
 class Predator:
     def __init__(self, pos, theta, sim, speed=1.0, target=None):
@@ -15,14 +13,22 @@ class Predator:
         self.neighbors = []
 
     def update(self):
-        if self.target == None:
-            if self.neighbors:
+        if self.neighbors:
+            # get target
+            if self.target == None:
                 self.target = self.neighbors[np.random.randint(0, len(self.neighbors))]
                 self.speed *= HUNTING_MULTIPLIER
-        else:
-            if math.dist(self.pos, self.target.pos) > SENSING_RADIUS:
-                self.target = None
-                self.speed = self.speed / HUNTING_MULTIPLIER
+            
+            # lose target if too many agents are there
+            # else:
+            #     if len(self.neighbors) > PREDATOR_NEIGHBOR_THRESHOLD:
+            #         dx = self.target.pos - self.pos
+            #         self.theta = -math.atan2(dx[1], dx[0])
+            #         self.target = None
+
+        if math.dist(self.pos, self.target.pos) > PREDATOR_SENSING_RADIUS:
+                    self.target = None
+                    self.speed = self.speed / HUNTING_MULTIPLIER
         self.move()
         self.neighbors = []
 
@@ -30,13 +36,14 @@ class Predator:
         from simulation import WORLD_SIZE
         if self.target:
             # orient towards target
-            self.theta = self.target.theta # find another way to calculate difference in angle
+            dx = self.target.pos - self.pos
+            self.theta = math.atan2(dx[1], dx[0])
         else:
             self.theta += np.random.uniform(-np.pi/6, np.pi/6) # FIXME: predator just running in circles???
         self.theta = self.theta % (2*np.pi)
         # move according to orientation
         new_pos = np.array([self.speed * np.cos(self.theta), self.speed * np.sin(self.theta)])
-        self.pos = self.pos + new_pos * DT
+        self.pos = self.pos + new_pos * DT # FIXME: predators jumping around... moving too fast
 
         # check for world boundaries
         if self.pos[0] <= PADDING:
