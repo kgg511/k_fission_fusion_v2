@@ -2,6 +2,8 @@ REST_COLOR = (255, 255, 255)
 EXPLORE_COLOR = (0, 0, 0)
 FLEE_COLOR = (255, 0, 0)
 EXPLORE_NAME = "EXPLORE"
+LOW_DENSE_NAME = "LOW_DENSE_EXPLORE"
+HIGH_DENSE_NAME = "HIGH_DENSE_EXPLORE"
 REST_NAME = "REST"
 FLEE_NAME = "FLEE"
 
@@ -44,12 +46,15 @@ class RestState(State):
         self.agent.hunger += 1
         if predators:
             self.agent.state = FleeingState(self.agent)
+            # we won't include the pos here to reflect having a negative experience
             return
-        if self.agent.site.resource_count <= 0:
-            self.agent.state = ExploreState(self.agent)
-            return
-        elif self.agent.hunger >= MAX_HUNGER:
-            self.agent.state = ExploreState(self.agent)
+        if self.agent.site.resource_count <= 0 or self.agent.hunger >= MAX_HUNGER:
+            self.agent.last_known_site_pos = self.agent.site.pos
+            if neighbors:
+                if len(neighbors) > AGENT_NEIGHBOR_THRESHOLD:
+                    self.agent.state = HighDensityExplore(self.agent)
+            else:
+                self.agent.state = LowDensityExplore(self.agent)
             return
         else:
             self.agent.site.resource_count -= 1
@@ -93,14 +98,17 @@ class ExploreState(State): # maybe consider two different
             # repulsion factor has to be pumped up super big in order to actually affect movement, and even then, it doesn't do it that well...
             # attraction still is too powerful
             # repulsion just affects how far away the agents try to stay away from each other
-            self.agent.move(neighbors, predators, 1.0, 1.0) 
+            self.agent.move(neighbors, predators) 
         else:
             self.agent.random_walk()
+        
+        if self.agent.site:
+            self.agent.pos += self.agent.site.pos * DT
         super().move(neighbors=None, predators=None)
 
 class LowDensityExplore(State):
     def __init__(self, agent):
-        super().__init__("LOW_DENSE_EXPLORE", EXPLORE_COLOR, agent)
+        super().__init__(LOW_DENSE_NAME, EXPLORE_COLOR, agent)
         self.agent.site = None
         self.agent.speed = agent.speed = np.random.uniform(1.0, MAX_SPEED)
 
@@ -122,27 +130,56 @@ class LowDensityExplore(State):
                 self.agent.state = RestState(self.agent)
 
         # transition to High Density
-        if neighbors:
+        elif neighbors:
             if len(neighbors) > AGENT_NEIGHBOR_THRESHOLD:
-                pass
+                self.agent.state = HighDensityExplore(self.agent)
 
     def move(self, neighbors, predators):
+        if neighbors:
+            self.agent.move(neighbors, predators, attr_factor=3.0)
+        else:
+            self.agent.random_walk(2.0)
         # prioritize moving toward a known site
-        pass
+        if hasattr(self.agent.last_known_site_pos, 'shape'):
+            self.agent.pos += self.agent.last_known_site_pos * DT * 3.0
+        super().move(neighbors, predators)
 
-class HighDensityExplor(State):
+class HighDensityExplore(State):
     def __init__(self, agent):
-        super().__init__("HIGH_DENSE_EXPLORE", EXPLORE_COLOR, agent)
+        super().__init__(HIGH_DENSE_NAME, EXPLORE_COLOR, agent)
         self.agent.site = None
         self.agent.speed = agent.speed = np.random.uniform(1.0, MAX_SPEED)
 
     def update(self, neighbors, sites, predators):
+        super().update(neighbors, sites, predators)
+        if self.agent.hunger > 0:
+            self.agent.hunger -= 1
+        if sites and self.agent.site == None:
+            self.agent.site = sites[np.random.randint(0, len(sites))]
+        
+        # transition to Flee
+        if predators:
+            self.agent.state = FleeingState(self.agent)
+
+        # transition to Rest
+        elif self.agent.site != None:
+            if math.dist(self.agent.site.pos, self.agent.pos) <= self.agent.site.radius:
+                # if np.random.default_rng().exponential(scale=MAX_HUNGER/4) < self.agent.hunger:
+                self.agent.state = RestState(self.agent)
+
         # transition to Low Density once len(neighbors) is below like... half the constant threshold???
-        pass
+        elif neighbors:
+            if len(neighbors) / AGENT_NEIGHBOR_THRESHOLD:
+                self.agent.state = LowDensityExplore(self.agent)
 
     def move(self, neighbors, predators):
         # prioritize repulsion from neighbors
-        pass
+        if neighbors:
+            self.agent.move(neighbors, predators, attr_factor=0.5, rpls_factor=25.0)
+            self.agent.random_walk(3.0)
+        else:
+            self.agent.random_walk()
+        super().move(neighbors, predators)
 
 class FleeingState(State):
     def __init__(self, agent):
@@ -193,7 +230,7 @@ class FleeingState(State):
             if scaling_factor == 0:
                 repulsion += c
             else:
-                repulsion += c / scaling_factor
+                repulsion += c / scaling_factor # essentially normalizing it???
 
         if neighbors:
             attraction = attraction / np.linalg.norm(attraction)

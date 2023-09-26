@@ -8,7 +8,7 @@ class Agent:
     def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None):
         self.id = id
         self.pos = pos
-        self.state = states.ExploreState(self)
+        self.state = states.HighDensityExplore(self)
         self.speed = speed
         self.theta = theta
         self.hunger = hunger
@@ -17,6 +17,10 @@ class Agent:
         self.orient_factor = orient_factor
         self.rpls_factor = repulse_factor
         self.site = site
+        if site != None:
+            self.last_known_site_pos = site.pos
+        else:
+            self.last_known_site_pos = None
 
     def update(self, neighbors, sites, predators):
         # get reading (neighbors, sites)
@@ -33,7 +37,7 @@ class Agent:
     # calculate speed as an observable stat rather than a settable property of the agent?
     # FIXME: fix world border handling
     # maybe using a repelling force based on distance to world border similar to how repulsion is calculated for neighbors?
-    def move(self, neighbors, predators, attr_factor, rpls_factor):
+    def move(self, neighbors, predators, attr_factor=1.0, rpls_factor=1.0):
         attraction = -len(neighbors) * self.pos
         repulsion = np.zeros(2)
         new_speed = self.speed
@@ -47,13 +51,12 @@ class Agent:
                 repulsion += c
             else:
                 repulsion += c / scaling_factor
-                    
-        if self.site != None:
-            attraction += self.site.pos
+
+        attraction = attraction / len(neighbors)
 
         attraction *= self.attr_factor * attr_factor
         repulsion *= self.rpls_factor * rpls_factor
-        self.theta += np.random.uniform(-np.pi/6, np.pi/6) % (2*np.pi) * self.speed
+        self.theta += np.random.uniform(-np.pi/6, np.pi/6) % (2*np.pi)
         dx = attraction - repulsion + np.array([np.cos(self.theta), np.sin(self.theta)])
         self.pos = self.pos + dx * DT
 
@@ -66,9 +69,9 @@ class Agent:
         
 
     # general random walk
-    def random_walk(self):
+    def random_walk(self, potency=1.0):
         self.theta += np.random.uniform(-np.pi/6, np.pi/6) % (2*np.pi)
-        self.pos += np.array([np.cos(self.theta), np.sin(self.theta)]) * DT * 10
+        self.pos += np.array([np.cos(self.theta), np.sin(self.theta)]) * DT * 10 * potency
 
     # def get_task_densities(self, neighbors):
     #     # get however many neighbors are doing which task

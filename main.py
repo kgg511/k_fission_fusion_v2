@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import simulation as sim
-from states import EXPLORE_NAME, REST_NAME, FLEE_NAME
+from states import EXPLORE_NAME, LOW_DENSE_NAME, HIGH_DENSE_NAME, REST_NAME, FLEE_NAME
 
 NUM_TRIALS = 50
 
@@ -54,13 +54,15 @@ def run_simulation():
         for i in range(sim.NUM_ITERS):
             simulation.avg_hunger = 0
             agent_states = {EXPLORE_NAME: 0,
+                        LOW_DENSE_NAME: 0,
+                        HIGH_DENSE_NAME: 0,
                         REST_NAME: 0,
                         FLEE_NAME: 0}
             for agent in simulation.agents:
                 neighbors = simulation.get_neighbor_ids(agent)
                 nearby_predators = simulation.get_predators(agent)
                 sites = simulation.get_sites(agent)
-                agent.update(neighbors, sites, nearby_predators) # replace object with actual site readings later
+                agent.update(neighbors, sites, nearby_predators)
                 agent_states[agent.state.name] = agent_states.get(agent.state.name) + 1
                 simulation.avg_hunger += agent.hunger
 
