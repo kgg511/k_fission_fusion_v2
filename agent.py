@@ -1,14 +1,14 @@
 import numpy as np
 import math
-import states
+from states import *
 from config import *
 
 # note to self: future planning, factors will be floats from 0.5 to 1.0
 class Agent:
-    def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None):
+    def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None, network=None):
         self.id = id
         self.pos = pos
-        self.state = states.HighDensityExplore(self)
+        self.state = RepulsionState("REPULSE", (0, 255, 0), self)
         self.speed = speed
         self.theta = theta
         self.hunger = hunger
@@ -21,6 +21,7 @@ class Agent:
             self.last_known_site_pos = site.pos
         else:
             self.last_known_site_pos = None
+        self.network = network # change to be a binary vector
 
     def update(self, neighbors, sites, predators):
         # get reading (neighbors, sites)

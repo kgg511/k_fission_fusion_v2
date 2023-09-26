@@ -24,7 +24,7 @@ class Simulation:
             hunger = np.random.randint(MAX_HUNGER/2, MAX_HUNGER)
             attraction = np.random.uniform(0.25, 1.0)
             repulsion = np.random.uniform(0.25, 1.0)
-            agents.append(Agent(i, pos, speed, theta, hunger, self, attr_factor=attraction, repulse_factor=repulsion))
+            agents.append(Agent(i, pos, speed, theta, hunger, self, attr_factor=attraction, repulse_factor=repulsion, network=[]))
             self.prev_state.update({i: [pos, 1.0, np.array([np.cos(theta), np.sin(theta)])]})
             self.avg_hunger += hunger
             # print(f"Agent {i}: attraction = {attraction}, repulsion = {repulsion}, speed = {speed}")
@@ -48,6 +48,15 @@ class Simulation:
             predators.append(Predator(pos, theta, self, speed=MAX_SPEED))
             # print(f"Predator {i} starting pos: {pos}")
         return predators
+    
+    def build_neighbor_matrix(self): # randomize neighbors
+        for i in range(0, NUM_AGENTS):
+            for j in range(i, NUM_AGENTS):
+                if i != j:
+                    if len(self.agents[i].network) < MAX_NETWORK_SIZE and len(self.agents[j].network) < MAX_NETWORK_SIZE:
+                        if np.random.choice([0, 1]) == 1:
+                            self.agents[i].network.append(j)
+                            self.agents[j].network.append(i)
     
     def get_predators(self, agent):
         predators = []

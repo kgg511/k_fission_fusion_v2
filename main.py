@@ -8,6 +8,7 @@ NUM_TRIALS = 50
 # SIMULATION SET UP
 def setup_simulation():
     simulation = sim.Simulation()
+    simulation.build_neighbor_matrix()
     sites_x = []
     sites_y = []
     sites_radius = []
@@ -53,35 +54,35 @@ def run_simulation():
         # RUN SIM
         for i in range(sim.NUM_ITERS):
             simulation.avg_hunger = 0
-            agent_states = {EXPLORE_NAME: 0,
-                        LOW_DENSE_NAME: 0,
-                        HIGH_DENSE_NAME: 0,
-                        REST_NAME: 0,
-                        FLEE_NAME: 0}
+            # agent_states = {EXPLORE_NAME: 0,
+            #             LOW_DENSE_NAME: 0,
+            #             HIGH_DENSE_NAME: 0,
+            #             REST_NAME: 0,
+            #             FLEE_NAME: 0}
             for agent in simulation.agents:
                 neighbors = simulation.get_neighbor_ids(agent)
                 nearby_predators = simulation.get_predators(agent)
                 sites = simulation.get_sites(agent)
                 agent.update(neighbors, sites, nearby_predators)
-                agent_states[agent.state.name] = agent_states.get(agent.state.name) + 1
+#                agent_states[agent.state.name] = agent_states.get(agent.state.name) + 1
                 simulation.avg_hunger += agent.hunger
 
-            file.write(f"\nIter {i}\nSite resources:\n")
-            for site in simulation.sites:
-                site.update()
-                file.write(f"{site.resource_count}\n")
+            # file.write(f"\nIter {i}\nSite resources:\n")
+            # for site in simulation.sites:
+            #     site.update()
+            #     file.write(f"{site.resource_count}\n")
 
-            for predator in simulation.predators:
-                predator.update()
-                file.write(f"Predator target: {predator.target}\n")
+            # for predator in simulation.predators:
+            #     predator.update()
+            #     file.write(f"Predator target: {predator.target}\n")
 
             simulation.avg_hunger = float(simulation.avg_hunger / sim.NUM_AGENTS)
             display(fig, ax, simulation.agents, simulation.predators, sites_x, sites_y, sites_radius)
-            file.write(f"Agent states:\n{agent_states}\n")
+            # file.write(f"Agent states:\n{agent_states}\n")
             file.write(f"Agent 0 theta: {simulation.agents[0].theta} heading: {simulation.agents[0].heading()}" +
                        f" speed: {simulation.agents[0].speed} state: {simulation.agents[0].state}\n")
 
-        file.write(f"Ending Hunger: {simulation.avg_hunger}")
+        # file.write(f"Ending Hunger: {simulation.avg_hunger}")
     plt.show()
 
 def run_simulation_mult():

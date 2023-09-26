@@ -36,6 +36,40 @@ class State:
         if math.isclose(self.agent.pos[1], WORLD_SIZE - PADDING):
             self.agent.pos[1] = self.agent.pos[1] - self.agent.speed
 
+class RepulsionState(State):
+    def __init__(self, name, color, agent):
+        super().__init__(name, color, agent)
+
+    def update(self, neighbors, sites, predators):
+        super().update(neighbors, sites, predators)
+        self.move(neighbors, predators)
+
+    def move(self, neighbors, predators):
+        if neighbors:
+            repulsion = np.zeros_like(self.agent.pos)
+            attraction = np.zeros_like(self.agent.pos)
+            num_network_neighbors = 0
+
+            for neighbor in neighbors:
+                if neighbor in self.agent.network:
+                    attraction += self.agent.sim.get_agent_pos(neighbor)
+                    num_network_neighbors += 1
+                
+                else:
+                    c = self.agent.sim.get_agent_pos(neighbor) - self.agent.pos
+                    scaling_factor = c @ c
+                    if scaling_factor == 0:
+                        scaling_factor = 1
+                    repulsion += c / scaling_factor
+            
+            attraction -= (self.agent.pos * num_network_neighbors)
+            dx = attraction - repulsion
+            self.agent.pos += (dx * DT)
+
+        else:
+            self.agent.random_walk()
+        super().move(neighbors, predators)
+
 class RestState(State):
     def __init__(self, agent):
         super().__init__(REST_NAME, REST_COLOR, agent)
