@@ -8,7 +8,7 @@ NUM_TRIALS = 50
 # SIMULATION SET UP
 def setup_simulation():
     simulation = sim.Simulation()
-    simulation.build_neighbor_matrix()
+    # simulation.build_neighbor_matrix()
     sites_x = []
     sites_y = []
     sites_radius = []

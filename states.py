@@ -51,23 +51,25 @@ class RepulsionState(State):
             num_network_neighbors = 0
 
             for neighbor in neighbors:
-                if neighbor in self.agent.network:
+                # if neighbor in self.agent.network: # list representation
+                #     attraction += self.agent.sim.get_agent_pos(neighbor)
+                #     num_network_neighbors += 1
+                if np.array_equal(self.agent.sim.get_agent_group_id(neighbor), self.agent.group_id): # binary vector representation
                     attraction += self.agent.sim.get_agent_pos(neighbor)
                     num_network_neighbors += 1
-                
-                else:
-                    c = self.agent.sim.get_agent_pos(neighbor) - self.agent.pos
-                    scaling_factor = c @ c
-                    if scaling_factor == 0:
-                        scaling_factor = 1
-                    repulsion += c / scaling_factor
+
+                c = self.agent.sim.get_agent_pos(neighbor) - self.agent.pos
+                scaling_factor = c @ c
+                if scaling_factor == 0:
+                    scaling_factor = 1
+                repulsion += c / scaling_factor
             
             attraction -= (self.agent.pos * num_network_neighbors)
+            # repulsion *= 5.0
             dx = attraction - repulsion
             self.agent.pos += (dx * DT)
 
-        else:
-            self.agent.random_walk()
+        self.agent.random_walk(potency=0.5)
         super().move(neighbors, predators)
 
 class RestState(State):

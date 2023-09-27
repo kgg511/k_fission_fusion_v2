@@ -5,7 +5,7 @@ from config import *
 
 # note to self: future planning, factors will be floats from 0.5 to 1.0
 class Agent:
-    def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None, network=None):
+    def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None, network=None, group_id=None):
         self.id = id
         self.pos = pos
         self.state = RepulsionState("REPULSE", (0, 255, 0), self)
@@ -21,7 +21,8 @@ class Agent:
             self.last_known_site_pos = site.pos
         else:
             self.last_known_site_pos = None
-        self.network = network # change to be a binary vector
+        self.network = network # list representation
+        self.group_id = group_id # binary vector representation
 
     def update(self, neighbors, sites, predators):
         # get reading (neighbors, sites)
@@ -71,7 +72,7 @@ class Agent:
 
     # general random walk
     def random_walk(self, potency=1.0):
-        self.theta += np.random.uniform(-np.pi/6, np.pi/6) % (2*np.pi)
+        self.theta += np.random.uniform(-np.pi/12, np.pi/12) % (2*np.pi)
         self.pos += np.array([np.cos(self.theta), np.sin(self.theta)]) * DT * 10 * potency
 
     # def get_task_densities(self, neighbors):
