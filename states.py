@@ -36,7 +36,9 @@ class State:
         if math.isclose(self.agent.pos[1], WORLD_SIZE - PADDING):
             self.agent.pos[1] = self.agent.pos[1] - self.agent.speed
 
-class RepulsionState(State):
+class NetworkAttractState(State):
+    # not a true "repulsion-based" state since it doesn't actively repel from outsiders,
+    # rather it only attracts to those in their own group
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
 
@@ -54,6 +56,7 @@ class RepulsionState(State):
                 # if neighbor in self.agent.network: # list representation
                 #     attraction += self.agent.sim.get_agent_pos(neighbor)
                 #     num_network_neighbors += 1
+
                 if np.array_equal(self.agent.sim.get_agent_group_id(neighbor), self.agent.group_id): # binary vector representation
                     attraction += self.agent.sim.get_agent_pos(neighbor)
                     num_network_neighbors += 1
@@ -67,6 +70,47 @@ class RepulsionState(State):
             attraction -= (self.agent.pos * num_network_neighbors)
             # repulsion *= 5.0
             dx = attraction - repulsion
+            self.agent.pos += (dx * DT)
+
+        self.agent.random_walk(potency=0.5)
+        super().move(neighbors, predators)
+
+class NetworkRepulseState(State):
+    def __init__(self, name, color, agent):
+        super().__init__(name, color, agent)
+
+    def update(self, neighbors, sites, predators):
+        super().update(neighbors, sites, predators)
+
+    def move(self, neighbors, predators):
+        # use a repulsion equation to space (boids-like repulsion)
+        # use another repulsion equation to separate from other groups (original graph laplacian)
+        if neighbors:
+            repulsion = np.zeros_like(self.agent.pos)
+            diffuse = np.zeros_like(self.agent.pos)
+            attraction = np.zeros_like(self.agent.pos)
+            num_network_neighbors = 0
+            num_outsider_neighbors = 0
+
+            for neighbor in neighbors:
+                if np.array_equal(self.agent.sim.get_agent_group_id(neighbor), self.agent.group_id):
+                    attraction += self.agent.sim.get_agent_pos(neighbor)
+                    num_network_neighbors += 1
+                    pass
+
+                else:
+                    diffuse += self.agent.sim.get_agent_pos(neighbor)
+                    num_outsider_neighbors += 1
+
+                c = self.agent.sim.get_agent_pos(neighbor) - self.agent.pos
+                scaling_factor = c @ c
+                if scaling_factor == 0:
+                    scaling_factor = 1
+                repulsion += c / scaling_factor
+            
+            attraction -= (self.agent.pos * num_network_neighbors)
+            diffuse = (num_outsider_neighbors * self.agent.pos) - diffuse
+            dx = attraction + diffuse + repulsion
             self.agent.pos += (dx * DT)
 
         self.agent.random_walk(potency=0.5)

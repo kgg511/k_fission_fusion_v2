@@ -19,7 +19,7 @@ class Simulation:
     def build_agents(self):
         agents = []
         group_sizes = np.zeros(NUM_GROUPS)
-        for i in range(NUM_AGENTS):
+        for i in range(NUM_AGENTS): # TODO: generate agent colors based on group
             # generate group_id
             group_num = np.random.choice(list(range(NUM_GROUPS)))
             if group_sizes[group_num] > MAX_NETWORK_SIZE:
@@ -27,6 +27,8 @@ class Simulation:
             group_id = np.zeros(NUM_GROUPS)
             group_id[group_num] = 1
             group_sizes[group_num] += 1
+
+            self.agent_colors.append(COLORS.get(group_num))
 
             pos = np.array([np.random.uniform(0, WORLD_SIZE), np.random.uniform(0, WORLD_SIZE)])
             speed = np.random.uniform(1.0, MAX_SPEED)
@@ -61,7 +63,7 @@ class Simulation:
             # print(f"Predator {i} starting pos: {pos}")
         return predators
     
-    def build_neighbor_matrix(self): # randomize neighbors
+    def build_neighbor_matrix(self): # for list representation of network
         for i in range(0, NUM_AGENTS):
             for j in range(i, NUM_AGENTS):
                 if i != j:

@@ -8,7 +8,7 @@ class Agent:
     def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None, network=None, group_id=None):
         self.id = id
         self.pos = pos
-        self.state = RepulsionState("REPULSE", (0, 255, 0), self)
+        self.state = NetworkAttractState("NETWORK_EXP", (0, 255, 0), self)
         self.speed = speed
         self.theta = theta
         self.hunger = hunger

@@ -24,7 +24,7 @@ def setup_gui():
     ax = plt.gca()
     return fig, ax
 
-def display(fig, ax, agents, predators, sites_x, sites_y, sites_radius):
+def display(fig, ax, agents, predators, sites_x, sites_y, sites_radius, agent_colors):
     agent_x = []
     agent_y = []
     for agent in agents:
@@ -37,7 +37,7 @@ def display(fig, ax, agents, predators, sites_x, sites_y, sites_radius):
         pred_y.append(predator.pos[1])
     plt.cla()
     plt.scatter(sites_x, sites_y, s=sites_radius, c='#00FF00')
-    plt.scatter(agent_x, agent_y)
+    plt.scatter(agent_x, agent_y, c=agent_colors)
     plt.scatter(pred_x, pred_y, c="#FF0000")
     ax.set(xlim=(0, sim.WORLD_SIZE), ylim=(0, sim.WORLD_SIZE))
     ax.set_aspect('equal')
@@ -77,7 +77,7 @@ def run_simulation():
             #     file.write(f"Predator target: {predator.target}\n")
 
             simulation.avg_hunger = float(simulation.avg_hunger / sim.NUM_AGENTS)
-            display(fig, ax, simulation.agents, simulation.predators, sites_x, sites_y, sites_radius)
+            display(fig, ax, simulation.agents, simulation.predators, sites_x, sites_y, sites_radius, simulation.agent_colors)
             # file.write(f"Agent states:\n{agent_states}\n")
             file.write(f"Agent 0 theta: {simulation.agents[0].theta} heading: {simulation.agents[0].heading()}" +
                        f" speed: {simulation.agents[0].speed} state: {simulation.agents[0].state}\n")
