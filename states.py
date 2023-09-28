@@ -110,7 +110,7 @@ class NetworkRepulseState(State):
             
             attraction -= (self.agent.pos * num_network_neighbors)
             diffuse = (num_outsider_neighbors * self.agent.pos) - diffuse
-            dx = attraction + diffuse + repulsion
+            dx = attraction + diffuse - repulsion
             self.agent.pos += (dx * DT)
 
         self.agent.random_walk(potency=0.5)
