@@ -8,7 +8,7 @@ class Agent:
     def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None, network=None, group_id=None):
         self.id = id
         self.pos = pos
-        self.state = NetworkAttractState("NETWORK_EXP", (0, 255, 0), self)
+        self.state = NetworkRepulseState("NETWORK_EXP", (0, 255, 0), self)
         self.speed = speed
         self.theta = theta
         self.hunger = hunger
@@ -18,9 +18,9 @@ class Agent:
         self.rpls_factor = repulse_factor
         self.site = site
         if site != None:
-            self.last_known_site_pos = site.pos
+            self.last_known_site = site
         else:
-            self.last_known_site_pos = None
+            self.last_known_site = None
         self.network = network # list representation
         self.group_id = group_id # binary vector representation
 

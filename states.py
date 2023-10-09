@@ -75,12 +75,24 @@ class NetworkAttractState(State):
         self.agent.random_walk(potency=0.5)
         super().move(neighbors, predators)
 
+# FIXME: agents drifting to upper right-hand corner when self.agent.site != None is just an if statement rather than an elif
 class NetworkRepulseState(State):
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
+        self.agent.site = None
 
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
+        if sites:
+            if self.agent.site == None:
+                if self.agent.last_known_site in sites:
+                    sites.remove(self.agent.site)
+                self.agent.site = sites[np.random.randint(0, len(sites))]
+
+        if self.agent.site != None:
+            if math.dist(self.agent.site.pos, self.agent.pos) <= self.agent.site.radius:
+                # if np.random.default_rng().exponential(scale=MAX_HUNGER/4) < self.agent.hunger:
+                self.agent.state = NetworkRestState("NETWORK_REST", (0, 0, 255), self.agent)
 
     def move(self, neighbors, predators):
         # use a repulsion equation to space (boids-like repulsion)
@@ -112,9 +124,47 @@ class NetworkRepulseState(State):
             diffuse = (num_outsider_neighbors * self.agent.pos) - diffuse
             dx = attraction + diffuse - repulsion
             self.agent.pos += (dx * DT)
+        
+        if self.agent.site != None:
+            self.agent.pos += (self.agent.site.pos * DT)
 
         self.agent.random_walk(potency=0.5)
         super().move(neighbors, predators)
+
+class NetworkRestState(State):
+    def __init__(self, name, color, agent):
+        super().__init__(name, color, agent)
+        self.timer = 300
+        print(f"{self.agent.id} entered rest state")
+
+    def update(self, neighbors, sites, predators):
+        super().update(neighbors, sites, predators)
+        # calculate group-id densities to determine how much more time they'll stay on site
+        # have a base time to stay defined in __init__
+        num_group_neighbors = 0
+        if neighbors:
+            for neighbor in neighbors:
+                # decrement base time based on sub-group size
+                if np.array_equal(self.agent.sim.get_agent_group_id(neighbor), self.agent.group_id):
+                    self.timer -= 2
+                    num_group_neighbors += 1
+                # increment base time based on outsider sub-group size
+                else:
+                    self.timer += 1
+                # multipliers to show how much they prefer socializing with outsiders
+
+        # will eventually leave site if no group members are present OR if no neighbors present either
+        else:
+            self.timer = 0
+        
+        if self.timer == 0 or num_group_neighbors == 0:
+            self.agent.state = NetworkRepulseState("NETWORK_EXP", (0, 255, 0), self.agent)
+
+        # *potentially* change group membership???
+
+
+    def move(self, neighbors, predators):
+        pass
 
 class RestState(State):
     def __init__(self, agent):
@@ -126,10 +176,10 @@ class RestState(State):
         self.agent.hunger += 1
         if predators:
             self.agent.state = FleeingState(self.agent)
-            # we won't include the pos here to reflect having a negative experience
+            # we won't include the site here to reflect having a negative experience
             return
         if self.agent.site.resource_count <= 0 or self.agent.hunger >= MAX_HUNGER:
-            self.agent.last_known_site_pos = self.agent.site.pos
+            self.agent.last_known_site = self.agent.site
             if neighbors:
                 if len(neighbors) > AGENT_NEIGHBOR_THRESHOLD:
                     self.agent.state = HighDensityExplore(self.agent)
@@ -220,8 +270,8 @@ class LowDensityExplore(State):
         else:
             self.agent.random_walk(2.0)
         # prioritize moving toward a known site
-        if hasattr(self.agent.last_known_site_pos, 'shape'):
-            self.agent.pos += self.agent.last_known_site_pos * DT * 3.0
+        if self.agent.site == None:
+            self.agent.pos += self.agent.last_known_site.pos * DT * 3.0
         super().move(neighbors, predators)
 
 class HighDensityExplore(State):
