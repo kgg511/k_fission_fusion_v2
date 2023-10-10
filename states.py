@@ -197,9 +197,10 @@ class GoToSiteState(State):
             self.agent.state = NetworkRestState("NETWORK_REST", (0, 255, 255),self.agent)
         
     def move(self, neighbors, predators):
-        super().repulse_move(neighbors, predators)
+        super().repulse_move(neighbors, predators, attr_factor=2.0)
         self.agent.random_walk(potency=1.0)
-        # self.agent.pos += (self.agent.site.pos * DT * 0.5) # FIXME: trying to factor in site position makes the agents shoot off the screen
+        dx = self.agent.site.pos - self.agent.pos
+        self.agent.pos += (dx * DT * 2.0)
         super().move(neighbors, predators)
 
 ### BASE STATES ###
