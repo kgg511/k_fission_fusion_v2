@@ -75,6 +75,12 @@ class Agent:
         self.theta += np.random.uniform(-np.pi/12, np.pi/12) % (2*np.pi)
         self.pos += np.array([np.cos(self.theta), np.sin(self.theta)]) * DT * 10 * potency
 
+    def at_site(self):
+        if self.site != None:
+            if math.dist(self.site.pos, self.pos) <= self.site.radius:
+                return True
+        return False
+
     # def get_task_densities(self, neighbors):
     #     # get however many neighbors are doing which task
     #     # densities are num_neighbor_task/len(neighbors)

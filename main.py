@@ -15,7 +15,7 @@ def setup_simulation():
     for site in simulation.sites:
         sites_x.append(site.pos[0])
         sites_y.append(site.pos[1])
-        sites_radius.append(5*site.radius)
+        sites_radius.append(10*site.radius)
     return simulation, sites_x, sites_y, sites_radius
 
 # GUI SET UP
@@ -53,6 +53,7 @@ def run_simulation():
         file.write(f"Starting Hunger: {simulation.avg_hunger}\n")
         # RUN SIM
         for i in range(sim.NUM_ITERS):
+            print(f"Iter{i}\n")
             simulation.avg_hunger = 0
             # agent_states = {EXPLORE_NAME: 0,
             #             LOW_DENSE_NAME: 0,

@@ -10,12 +10,13 @@ class Site:
         self.timer = 0
 
     def update(self):
-        if self.resource_count <= 0:
-            if self.timer < self.REGEN_TIME:
-                self.timer += 1
-            else:
-                self.resource_count = self.MAX_RESOURCES
-                self.timer = 0
+        # if self.resource_count <= 0:
+        #     if self.timer < self.REGEN_TIME:
+        #         self.timer += 1
+        #     else:
+        #         self.resource_count = self.MAX_RESOURCES
+        #         self.timer = 0
+        pass
 
     def is_available(self):
         return self.resource_count != 0
