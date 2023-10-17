@@ -5,7 +5,8 @@ from config import *
 
 # note to self: future planning, factors will be floats from 0.5 to 1.0
 class Agent:
-    def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None, network=None, group_id=None):
+    def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0,
+                 site=None, network=None, group_id=None, following=None):
         self.id = id
         self.pos = pos
         self.state = NetworkRepulseState("NETWORK_EXP", (0, 255, 0), self)
@@ -17,12 +18,12 @@ class Agent:
         self.orient_factor = orient_factor
         self.rpls_factor = repulse_factor
         self.site = site
+        self.last_known_sites = []
         if site != None:
-            self.last_known_site = site
-        else:
-            self.last_known_site = None
+            self.last_known_sites.append(site)
         self.network = network # list representation
         self.group_id = group_id # binary vector representation
+        self.following = None
 
     def update(self, neighbors, sites, predators):
         # get reading (neighbors, sites)
@@ -81,6 +82,11 @@ class Agent:
                 return True
         return False
 
+    def add_site(self, site):
+        self.last_known_sites.append(site)
+        if len(self.last_known_sites) > MAX_SITE_MEMORY:
+            self.last_known_sites.pop(0)
+        
     # def get_task_densities(self, neighbors):
     #     # get however many neighbors are doing which task
     #     # densities are num_neighbor_task/len(neighbors)

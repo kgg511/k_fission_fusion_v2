@@ -15,7 +15,7 @@ def setup_simulation():
     for site in simulation.sites:
         sites_x.append(site.pos[0])
         sites_y.append(site.pos[1])
-        sites_radius.append(10*site.radius)
+        sites_radius.append(20*2**site.radius)
     return simulation, sites_x, sites_y, sites_radius
 
 # GUI SET UP
@@ -36,7 +36,7 @@ def display(fig, ax, agents, predators, sites_x, sites_y, sites_radius, agent_co
         pred_x.append(predator.pos[0])
         pred_y.append(predator.pos[1])
     plt.cla()
-    plt.scatter(sites_x, sites_y, s=sites_radius, c='#008888')
+    plt.scatter(sites_x, sites_y, s=sites_radius, c='#008888', alpha=0.5)
     plt.scatter(agent_x, agent_y, c=agent_colors)
     plt.scatter(pred_x, pred_y, c="#FF0000")
     ax.set(xlim=(0, sim.WORLD_SIZE), ylim=(0, sim.WORLD_SIZE))

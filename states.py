@@ -121,18 +121,22 @@ class NetworkRepulseState(State):
             # random chance to actually want to go to site (default set to 50%?)
             if np.random.random() > 0.5:
                 # make sure we don't go back to last_known_site so agents can wander away
-                if self.agent.last_known_site in sites:
-                    sites.remove(self.agent.site)
-                self.agent.site = sites[np.random.randint(0, len(sites))]
-                self.agent.state = GoToSiteState("NETWORK_LEAD", (0, 0, 255), self.agent)
-                print(f"Agent {self.agent.id} chose to go to site {self.agent.site}")
-                return
+                viable_sites = list(filter(lambda i: i not in self.agent.last_known_sites, sites))
+                if len(viable_sites) > 0:
+                    self.agent.site = viable_sites[np.random.randint(0, len(viable_sites))]
+                    self.agent.add_site(self.agent.site)
+                    self.agent.state = GoToSiteState("NETWORK_LEAD", (0, 0, 255), self.agent)
+                    print(f"Agent {self.agent.id} chose to go to site {self.agent.site}")
+                    return
 
         for neighbor in neighbors:
             if np.array_equal(self.agent.sim.get_agent_group_id(neighbor), self.agent.group_id):
                 if isinstance(self.agent.sim.agents[neighbor].state, GoToSiteState):
-                    if np.random.random() > 0.8:
+                    # random chance to listen to neighbor
+                    if np.random.random() > 0.2:
                         self.agent.site = self.agent.sim.agents[neighbor].site
+                        self.agent.add_site(self.agent.site)
+                        self.agent.following = neighbor
                         self.agent.state = GoToSiteState("NETWORK_LEAD", (0, 0, 255), self.agent)
                         print(f"Agent {self.agent.id} was persuaded to go to site {self.agent.site}")
                         break
@@ -150,7 +154,7 @@ class NetworkRepulseState(State):
 class NetworkRestState(State):
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
-        self.timer = 300
+        self.timer = 50
         print(f"{self.agent.id} entered rest state")
 
     # TODO: have a better way to transition out haha
@@ -165,7 +169,7 @@ class NetworkRestState(State):
                     self.timer -= 2
                     num_group_neighbors += 1
 
-                # increment base time based on outsider sub-group size
+                # increment base time based on outsider sub-group size, spend longer time at site if outsiders are there
                 else:
                     # self.timer += 1
                     pass
@@ -182,7 +186,8 @@ class NetworkRestState(State):
 
 
     def move(self, neighbors, predators):
-        pass
+        dx = self.agent.site.pos - self.agent.pos
+        self.agent.pos += dx * DT
 
 class GoToSiteState(State):
     def __init__(self, name, color, agent):
@@ -192,15 +197,23 @@ class GoToSiteState(State):
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
         if not neighbors:
+            self.agent.following = None
             self.agent.state = NetworkRepulseState("NETWORK_REP", (0, 255, 0), self.agent)
         if self.agent.at_site():
+            self.agent.following = None
             self.agent.state = NetworkRestState("NETWORK_REST", (0, 255, 255),self.agent)
         
     def move(self, neighbors, predators):
-        super().repulse_move(neighbors, predators, attr_factor=2.0)
+        super().repulse_move(neighbors, predators, attr_factor=0.0)
         self.agent.random_walk(potency=1.0)
+
+        dx = 0
+        if self.agent.following != None:
+            dx = self.agent.sim.get_agent_pos(self.agent.following) - self.agent.pos # essentially double counting the group leader
+        
         dx = self.agent.site.pos - self.agent.pos
-        self.agent.pos += (dx * DT * 2.0)
+
+        self.agent.pos += (dx * DT) # 2.0 to make them more attracted to the site or the agent they're following
         super().move(neighbors, predators)
 
 ### BASE STATES ###
@@ -239,7 +252,7 @@ class RestState(State):
     def move(self, neighbors, predators):
         pass
 
-# BASE EXPLORE STATE; TODO: split into low-density and high-density explore states
+# BASE EXPLORE STATE
 class ExploreState(State): # maybe consider two different
     def __init__(self, agent):
         super().__init__(EXPLORE_NAME, EXPLORE_COLOR, agent)
