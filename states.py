@@ -19,22 +19,20 @@ class State:
 
     def update(self, neighbors, sites, predators):
         # leave as abstract method
-        # transition to the state with the highest concentration of agents also performing the task
-        # UNLESS it goes over the threshold
         self.agent.sim.prev_state.update({self.agent.id: [self.agent.pos, self.agent.speed, self.agent.heading()]})
 
     def move(self, neighbors, predators):
-        if math.isclose(self.agent.pos[0], PADDING): # check if these conditions are ever being satisfied with agents at the various positions
-            self.agent.pos[0] = self.agent.pos[0] + self.agent.speed
+        if math.isclose(self.agent.pos[0], PADDING) or self.agent.pos[0] < PADDING:
+            self.agent.pos[0] = PADDING + DT
 
-        if math.isclose(self.agent.pos[1], PADDING):
-            self.agent.pos[1] = self.agent.pos[1] + self.agent.speed
+        if math.isclose(self.agent.pos[1], PADDING) or self.agent.pos[1] < PADDING:
+            self.agent.pos[1] = PADDING + DT
 
-        if math.isclose(self.agent.pos[0], WORLD_SIZE - PADDING):
-            self.agent.pos[0] = self.agent.pos[0] - self.agent.speed
+        if math.isclose(self.agent.pos[0], WORLD_SIZE - PADDING) or self.agent.pos[0] > WORLD_SIZE - PADDING:
+            self.agent.pos[0] = WORLD_SIZE - PADDING - DT
 
-        if math.isclose(self.agent.pos[1], WORLD_SIZE - PADDING):
-            self.agent.pos[1] = self.agent.pos[1] - self.agent.speed
+        if math.isclose(self.agent.pos[1], WORLD_SIZE - PADDING) or self.agent.pos[1] > WORLD_SIZE - PADDING:
+            self.agent.pos[1] = WORLD_SIZE - PADDING - DT
 
     def repulse_move(self, neighbors, predators, attr_factor=1.0, diff_factor=1.0):
         # use a repulsion equation to space (boids-like repulsion)
