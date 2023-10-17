@@ -1,0 +1,112 @@
+it looks like simulation.MAX_RESOURCES has a bigger effect on swarm performance than simulation.NUM_SITES...
+    - I think it's because of the tendency to be together and agents being generally adverse to going away from each other
+     (just enough to not run into each other)
+    - Therefore, not as many sites will be discovered, but when a site is discovered, the swarm puts a heavy demand on it
+        - this is also seen in how resources per iteration is generally high, sitting around 75% untapped
+    - that's just a hypothesis.
+    - potential adjustments to this problem: have two separate 'explore' states
+      which weighs attraction and repulsion differently (to see if we can get some agents to explore away from the herd more)
+    - another potential adjustment can be actually fixing the world border interactions...
+
+After bumping up the number of trials/experiment... (NUM_TRIALS = 50)
+  20 sites : 200 MAX_RESOURCES seems to be pretty robust (5:200 and 10:200 were pretty unreliable/low
+  and had around the same ratio of unused resources/iteration)
+  On another note, I should keep track of the highest and lowest scoring simulation runs...
+  and everything else needed for a box and whisker plot
+    - min, max, median, first and third quartile
+    - or just keep the data in an array........ pyplot handles the stuff automagically
+
+After using the boxplot and looking at the data real hard...
+  using a 10:1 ratio of site resources to num_sites seems to be pretty stable. Could experiment with bumping the ratio higher...
+  So far, increasing the resources and sites (while keeping the ratio) seems to have a linear relationship with avg hunger.
+  Will conduct more tests to see if linearity continues. (particularly after 200:20)
+
+After testing past 200:20...
+  There seems to be no notable increase in median avg hunger after 200:20.
+  It might be interesting to see the distribution of agents' hunger to see if its skewed one way or the other.
+  We could also experiment with the number of agents... see if there's a relationship between
+  NUM_AGENTS and MAX_RESOURCES. (The ratio rn is 50:200==1:4. Prolly have to keep NUM_AGENT:WORLD_SIZE same 5:1)
+
+on another note... things don't seem very sensitive to regen time... the results are the same even if you inc/dec regen time proportionally
+
+After testing NUM_AGENT:MAX_RESOURCES...
+  Keeping the ratio the same doesn't scale. As in the ratio seems to matter less than the actual amount of resources.
+  Having 50 agents : 200 max resource seems to be the way to go. I'm interested to see if this will change with increasing world size.
+  Maybe it also has to do with the ratio of the SENSING_RADIUS : WORLD_SIZE ? there's so many factors...
+
+After testing on WORLD_SIZE...
+  It's pretty much optimized at WORLD_SIZE=30. There is less of a range of values; while the medians stay the
+  same, the lowest bound actually increases and lowers the range of values we see.
+  After looking at the simulation run by itself, it looks like it's because there's enough
+  of a spread between agents themselves and the predators so then a lot of different site resources are used.
+  This suggests that the herding behavior for the agents isn't actually optimal, because the herd
+  performs the best when they are spread far apart.
+  Upon second observation, it looks like the herd performs best when there are small "sub-herds" that travel together.
+  The larger WORLD_SIZE can also be working because I don't have my agents properly handling bumping into the
+  world border yet. We'll probably have to rerun all the experiments again after fixing border handling and see
+  if that has an effect on herd performance. (Without proper border handling, agents will go off screen quickly.)
+
+Hey everyone! Since I'll be gone for when we talk about the FSM, I just wanted to report my findings on my own FSM.
+
+My FSM uses only 3 states: Explore, Rest, and Flee. Explore is the basic movement state that uses the rendezvous-problem physics to calculate attraction. This state also calculates repulsion (only to prevent collisions), orientation, and a mean speed among its neighbors. Rest state parks an agent at a site until the site runs out of resources, the agent is full, or the mean speed of its neighbors is high enough (which transitions it to Flee). Flee state has the same physics as Explore, except with a higher repulsion constant away from predators, a higher base speed, and a higher attraction constant. Predators also have a greater sensing radius than the agents, and random walk until they have a target (which they randomly select from their agent neighbors). My agents also didn't respond to world boundaries properly... which I made up for by increasing the world size in my experiments. (If anyone has found a way to do boundary handling properly, I'd be much obliged.)
+
+I ran the simulation 50 times in succession for each variable configuration, each simulation having 100 iterations.
+
+I found that the most sensitive variables were the FLAT amount sites and the FLAT amount of resources available at each site, with it maximizing at 20 sites with 200 maximum possible resources at each site (site resource maxes are calculated at random from [MAX_RESOURCE/2, MAX_RESOURCE)). The herd performs better with more agents, though I still need to test just how large the herd can get (I didn't test past 50 agents).
+
+When I ran the simulation with the optimized parameters for my FSM, the agents formed sub-herds that did not wander very far from their starting positions. The herd as a whole performed worse when they were all just one herd! I have a few ideas why this is, which I will explain with the solutions I'd like to implement.
+
+With a world size of 30 and site size varying from [1, WORLD_SIZE/2), the whole world is practically covered with feeding sites, meaning agents will pretty much stop anytime they are hungry, which is even easier without a probabilistic transition from Explore to Rest. Additionally, because of the way their movement is calculated in the Explore state, the agents are adverse to wandering away and potentially discovering new sites, which can explain why there need to be so many sites with so many resources in proportion to the world size. The mean untapped resources at any site at any iteration is around 75% regardless of world size, number of sites, or max resource per site limit.
+
+Because of these problems, I want to implement two Explore states: one that weighs attraction toward the herd more heavily, and another that weighs repulsion (or some other variable to get an agent away from the herd) more heavily. Furthermore, I'd like to implement the Brown-Kerman method of calculating attraction rather than use the rendezvous-based physics, since the rendezvous-based physics is incredibly weighted towards attraction. I'd also like to reimplement the probabilistic transition from Explore to Rest to see if that would prompt agents to explore the world more.
+
+tl;dr: the herd needed a lot of sites with a lot of resources. Probably should implement two explore states in order to get agents to explore the world more. Don't use rendezvous-problem based physics haha.
+
+9/1/23
+SO purely boids-based physics broke my simulation... as in they don't move correctly... and the avg ending hunger actually lowered!!!
+So back to rendezvous based physics I go...
+but also... why does rendezvous agents always default to wanting to crowd in the corner??? i don get it
+
+9/27/23
+So for why they move into the corner, I'm going to have to check my math for move and see if it tends to drift if no neighbors? But that should be fixed with random walk...
+Implementing the binary vector representation of groups changed behavior dramatically.
+- groups are very distinct
+- groups tend to form circles
+- formation of groups VERY dependent on WORLD_SIZE : SENSING_RADIUS ratio; closer ratio is to 1, faster the groups form and the bigger they are
+adding the random walk no matter what fixed the stationary groups problem as well. (thank you nick!!!)
+If we were to pull this out to general state physics...
+- all code in the RepulsionState would need to be pulled into Agent.move() instead
+
+9/28/23
+Implementing a true repulsion based state...
+Used the original graph laplacian equation to model repulsion from other groups while keeping the boids repulsion for spacing.
+Without factoring in attraction:
+- agents are good at self sorting (there's only like 1 or 2 agents that never make it out of the outsider groups)
+- they're still decent at grouping up with their own! there's just a lot of subgroups; like 3 or 4 go solo
+- actually perform better at grouping without random_walk()
+- with random_walk(), more agents go solo, but the subgroups are more mobile
+- once within groups, regardless of if random_walk() is on or not, the agents will "splash" out of their groups while still remaining cohesive... idk how else to describe
+- the splashing is even more pronounced with random_walk() enabled
+- also pronounced when attraction is enabled
+- when both random_walk() and attraction are enabled, splashing is about the same as if only one was enabled
+When attraction is factored in:
+- there aren't anymore soloists; number of subgroups significantly decreases (to ~2 per group)
+- groups aren't very mobile, but they are not stationary
+
+SCRATCH THOSE NOTES, I ADDED REPULSION INSTEAD OF SUBTRACTING LMAO
+now that the math is fixed...
+there's no splashing!!
+Without attraction:
+- agents are good at self sorting, but they'll sort in line-like formations.
+- with random_walk() enabled, they'll begin to form clumps
+- only a few soloists! for the most part, there's around 3 subgroups that form for each group
+With attraction:
+- a few soloists. they'll form 2-3 subgroups per group.
+- without random_walk(), they'll form lines that then kind of clump together? (like rows and columns but slightly offset haha)
+- with random_walk(), no soloists! (at least not as many.) reduces number of subgroups as well.
+- groups are still mobile
+However, both kinds of states aren't responsive to current world border handling.
+Ideas for border handling?
+- like in agent.py notes, having repulsion forces along world border?
+  - idk how to actually implement this...
+- add a hardcoded point of attraction when border is reached?

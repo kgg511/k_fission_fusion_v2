@@ -1,1102 +1,1102 @@
-Starting Hunger: 72.12
+Starting Hunger: 72.66
 
 Iter 0
 Site resources:
 200
 200
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 34, 'REST': 4, 'FLEE': 12}
-Agent 0 theta: -1.9748792993632938 heading: [-0.39317575 -0.91946334]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 17, 'REST': 6, 'FLEE': 3}
+Agent 0 theta: 6.3175017769968616 heading: [0.99941125 0.03430973] speed: 1.436082853978175 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 1
 Site resources:
 199
-197
+195
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 32, 'REST': 4, 'FLEE': 14}
-Agent 0 theta: -1.9688116013161452 heading: [-0.38758952 -0.92183207]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 16, 'REST': 5, 'FLEE': 5}
+Agent 0 theta: 6.354747465783711 heading: [0.99744052 0.07150109] speed: 2.372221489013777 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 2
 Site resources:
 198
-194
+191
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 30, 'REST': 4, 'FLEE': 16}
-Agent 0 theta: -1.962943936258743 heading: [-0.38217388 -0.92409043]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 15, 'REST': 7, 'FLEE': 4}
+Agent 0 theta: 12.157951508935405 heading: [ 0.91774984 -0.39715896] speed: 2.4044235830511327 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 3
 Site resources:
-197
-191
+198
+185
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 29, 'REST': 4, 'FLEE': 17}
-Agent 0 theta: -1.956931074401514 heading: [-0.37661058 -0.92637167]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 25, 'HIGH_DENSE_EXPLORE': 15, 'REST': 6, 'FLEE': 4}
+Agent 0 theta: 18.043380585136752 heading: [ 0.69226354 -0.72164478] speed: 2.5398122548221935 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 4
 Site resources:
-196
-188
+198
+179
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 29, 'REST': 4, 'FLEE': 17}
-Agent 0 theta: -1.9504654528458958 heading: [-0.37061318 -0.92878731]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 15, 'REST': 7, 'FLEE': 4}
+Agent 0 theta: 24.196229808423933 heading: [ 0.59260166 -0.80549567] speed: 2.5814013940514293 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 5
 Site resources:
-195
-185
+198
+173
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 28, 'REST': 4, 'FLEE': 18}
-Agent 0 theta: -1.9440348445649291 heading: [-0.36463289 -0.93115136]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 25, 'HIGH_DENSE_EXPLORE': 15, 'REST': 5, 'FLEE': 5}
+Agent 0 theta: 30.275365025732434 heading: [ 0.41708423 -0.90886784] speed: 2.5117088703643704 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 6
 Site resources:
-194
-182
+198
+168
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 28, 'REST': 4, 'FLEE': 18}
-Agent 0 theta: -1.9376478488375644 heading: [-0.35867823 -0.93346126]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 14, 'REST': 8, 'FLEE': 4}
+Agent 0 theta: 36.31478568895411 heading: [ 0.18539142 -0.98266476] speed: 2.505989663103077 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 7
 Site resources:
-193
-179
+198
+161
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 28, 'REST': 4, 'FLEE': 18}
-Agent 0 theta: -1.9309733513690637 heading: [-0.3524399  -0.93583445]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 25, 'HIGH_DENSE_EXPLORE': 14, 'REST': 7, 'FLEE': 4}
+Agent 0 theta: 36.722342218709954 heading: [ 0.55970245 -0.82869365] speed: 2.5223674192511245 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 8
 Site resources:
-192
-176
+198
+154
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 26, 'REST': 4, 'FLEE': 20}
-Agent 0 theta: -1.924355961236891 heading: [-0.34623945 -0.93814617]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 12, 'REST': 9, 'FLEE': 5}
+Agent 0 theta: 37.231335498981366 heading: [ 0.89257315 -0.45090263] speed: 2.517737189846355 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 9
 Site resources:
-191
-173
+198
+146
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 25, 'REST': 4, 'FLEE': 21}
-Agent 0 theta: -1.9173393167342039 heading: [-0.33964834 -0.9405525 ]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 25, 'HIGH_DENSE_EXPLORE': 12, 'REST': 8, 'FLEE': 5}
+Agent 0 theta: 43.41396807285183 heading: [ 0.84280148 -0.53822454] speed: 2.5139391325671276 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 10
 Site resources:
-190
-170
+198
+138
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 24, 'REST': 4, 'FLEE': 22}
-Agent 0 theta: -1.910398793081582 heading: [-0.33311229 -0.94288716]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 12, 'REST': 9, 'FLEE': 5}
+Agent 0 theta: 49.286592987052806 heading: [ 0.5579445  -0.82987827] speed: 2.5154639835043078 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 11
 Site resources:
-189
-167
+198
+130
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 22, 'REST': 5, 'FLEE': 23}
-Agent 0 theta: -1.903530904118801 heading: [-0.32662884 -0.94515269]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 25, 'HIGH_DENSE_EXPLORE': 12, 'REST': 8, 'FLEE': 5}
+Agent 0 theta: 49.67496229460716 heading: [ 0.83065117 -0.55679317] speed: 2.5149684453398446 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 12
 Site resources:
-188
-163
+198
+122
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 21, 'REST': 5, 'FLEE': 24}
-Agent 0 theta: -1.8967285382656798 heading: [-0.32019206 -0.94735265]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 12, 'REST': 9, 'FLEE': 5}
+Agent 0 theta: 49.91231941228141 heading: [ 0.93828341 -0.34586737] speed: 2.5132434702902984 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 13
 Site resources:
-187
-159
+198
+114
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 20, 'REST': 6, 'FLEE': 24}
-Agent 0 theta: -1.8899851978022375 heading: [-0.3137965  -0.94949026]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 25, 'HIGH_DENSE_EXPLORE': 10, 'REST': 10, 'FLEE': 5}
+Agent 0 theta: 56.06780582203146 heading: [ 0.88659657 -0.46254354] speed: 2.512897004508346 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 14
 Site resources:
-185
-155
+198
+104
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 21, 'REST': 6, 'FLEE': 23}
-Agent 0 theta: -1.8832957350547221 heading: [-0.30743795 -0.95156813]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 10, 'REST': 11, 'FLEE': 5}
+Agent 0 theta: 61.92908202672997 heading: [ 0.61943695 -0.78504641] speed: 2.512413154272295 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 15
 Site resources:
-183
-151
+198
+94
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 19, 'REST': 6, 'FLEE': 25}
-Agent 0 theta: -1.8762131082458446 heading: [-0.30069069 -0.95372171]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 11, 'REST': 10, 'FLEE': 5}
+Agent 0 theta: 62.100276270025475 heading: [ 0.74412196 -0.6680438 ] speed: 2.5113326198727224 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 16
 Site resources:
-181
-147
+198
+84
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 18, 'REST': 6, 'FLEE': 26}
-Agent 0 theta: -1.8691915639614434 heading: [-0.29398674 -0.9558095 ]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 10, 'REST': 12, 'FLEE': 4}
+Agent 0 theta: 62.46515227959209 heading: [ 0.93351531 -0.35853753] speed: 2.510706305345681 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 17
 Site resources:
-179
-143
+198
+73
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 17, 'REST': 6, 'FLEE': 27}
-Agent 0 theta: -1.8622255875992098 heading: [-0.28732151 -0.9578342 ]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 11, 'REST': 10, 'FLEE': 5}
+Agent 0 theta: 62.47511788678937 heading: [ 0.93704194 -0.34921683] speed: 2.4787914644142517 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 18
 Site resources:
-177
-139
+198
+64
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 15, 'REST': 6, 'FLEE': 29}
-Agent 0 theta: -1.8553101406337196 heading: [-0.28069084 -0.95979823]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 23, 'HIGH_DENSE_EXPLORE': 10, 'REST': 12, 'FLEE': 5}
+Agent 0 theta: 68.3259562273543 heading: [ 0.70449702 -0.70970695] speed: 2.501008896678372 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 19
 Site resources:
-175
-135
+198
+54
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 15, 'REST': 6, 'FLEE': 29}
-Agent 0 theta: -1.8484401908142163 heading: [-0.27409051 -0.9617039 ]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 23, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 5}
+Agent 0 theta: 74.4682838454271 heading: [ 0.59788221 -0.80158397] speed: 2.4923363561925256 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 20
 Site resources:
-173
-131
+198
+44
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 14, 'REST': 6, 'FLEE': 30}
-Agent 0 theta: -1.8416113736391058 heading: [-0.26751687 -0.96355318]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 23, 'HIGH_DENSE_EXPLORE': 10, 'REST': 12, 'FLEE': 5}
+Agent 0 theta: 74.74993454399564 heading: [ 0.79711802 -0.60382353] speed: 2.5011074527319948 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 21
 Site resources:
-171
-127
+198
+34
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 14, 'REST': 6, 'FLEE': 30}
-Agent 0 theta: -1.8348792299939614 heading: [-0.26102407 -0.96533229]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 23, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 5}
+Agent 0 theta: 74.89781128982084 heading: [ 0.87738477 -0.47978741] speed: 2.5458930224150604 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 22
 Site resources:
-169
-124
+198
+24
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 14, 'REST': 5, 'FLEE': 31}
-Agent 0 theta: -1.8281810307778787 heading: [-0.25455228 -0.96705901]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 22, 'HIGH_DENSE_EXPLORE': 11, 'REST': 12, 'FLEE': 5}
+Agent 0 theta: 80.85357452712255 heading: [ 0.67647219 -0.73646818] speed: 2.610567583758548 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 23
 Site resources:
-167
-121
+198
+14
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 14, 'REST': 5, 'FLEE': 31}
-Agent 0 theta: -1.8215062157649786 heading: [-0.24809172 -0.96873655]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 23, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 5}
+Agent 0 theta: 81.17090846057172 heading: [ 0.87250005 -0.48861402] speed: 2.5823314458219033 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 24
 Site resources:
-165
-119
+198
+4
 200
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 14, 'REST': 5, 'FLEE': 31}
-Agent 0 theta: -1.8146735707478736 heading: [-0.24146694 -0.97040905]
+{'EXPLORE': 0, 'LOW_DENSE_EXPLORE': 23, 'HIGH_DENSE_EXPLORE': 10, 'REST': 11, 'FLEE': 6}
+Agent 0 theta: 87.35749647314375 heading: [ 0.82130712 -0.57048629] speed: 2.597424623547594 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 25
 Site resources:
-163
-117
-199
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+198
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 13, 'REST': 5, 'FLEE': 32}
-Agent 0 theta: -1.8077653497216635 heading: [-0.23475744 -0.97205398]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 25, 'HIGH_DENSE_EXPLORE': 10, 'REST': 9, 'FLEE': 4}
+Agent 0 theta: 87.48120727341028 heading: [ 0.88542578 -0.4647808 ] speed: 2.6945298095583277 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 26
 Site resources:
-161
-117
-199
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+198
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 13, 'REST': 3, 'FLEE': 34}
-Agent 0 theta: -1.8008889221985842 heading: [-0.22806768 -0.97364528]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 23, 'HIGH_DENSE_EXPLORE': 12, 'REST': 9, 'FLEE': 4}
+Agent 0 theta: 93.24282215191255 heading: [ 0.53612413 -0.84413916] speed: 2.585985798912677 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 27
 Site resources:
-159
-117
 198
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 13, 'REST': 2, 'FLEE': 35}
-Agent 0 theta: -1.7938778730562668 heading: [-0.22123586 -0.97522033]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 26, 'HIGH_DENSE_EXPLORE': 10, 'REST': 8, 'FLEE': 4}
+Agent 0 theta: 99.04845380095891 heading: [ 0.08817057 -0.99610539] speed: 2.6269224368260953 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 28
 Site resources:
-157
-117
 198
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 12, 'REST': 3, 'FLEE': 35}
-Agent 0 theta: -1.7869494834908994 heading: [-0.21447389 -0.97672972]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 22, 'HIGH_DENSE_EXPLORE': 13, 'REST': 9, 'FLEE': 4}
+Agent 0 theta: 99.47021335348417 heading: [ 0.48821632 -0.87272265] speed: 2.654511955570102 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 29
 Site resources:
-155
-117
-197
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+198
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 11, 'REST': 3, 'FLEE': 36}
-Agent 0 theta: -1.7800960396573646 heading: [-0.20777495 -0.97817666]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 25, 'HIGH_DENSE_EXPLORE': 11, 'REST': 8, 'FLEE': 4}
+Agent 0 theta: 105.4431322808526 heading: [ 0.19845213 -0.98011058] speed: 2.64827385516094 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 30
 Site resources:
-152
-117
-197
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+198
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 11, 'REST': 4, 'FLEE': 35}
-Agent 0 theta: -1.7732379063814865 heading: [-0.20106165 -0.97957859]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 11, 'REST': 9, 'FLEE': 4}
+Agent 0 theta: 105.86550392740763 heading: [ 0.58278368 -0.81262733] speed: 2.6593658322643057 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 31
 Site resources:
-149
-117
-196
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+198
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 10, 'REST': 3, 'FLEE': 37}
-Agent 0 theta: -1.766453801602591 heading: [-0.19441151 -0.98092006]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 25, 'HIGH_DENSE_EXPLORE': 11, 'REST': 8, 'FLEE': 4}
+Agent 0 theta: 111.76482897150977 heading: [ 0.23604107 -0.97174308] speed: 2.674555279931859 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 32
 Site resources:
-146
-117
-196
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+198
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 9, 'REST': 5, 'FLEE': 36}
-Agent 0 theta: -1.7597588368040051 heading: [-0.18783997 -0.98219965]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 23, 'HIGH_DENSE_EXPLORE': 11, 'REST': 9, 'FLEE': 4}
+Agent 0 theta: 117.6139945953222 heading: [-0.19448256 -0.98090598] speed: 2.7126715978854405 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 33
 Site resources:
-143
-117
-194
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+198
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 9, 'REST': 4, 'FLEE': 37}
-Agent 0 theta: -1.7526980223940252 heading: [-0.18090022 -0.98350145]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 11, 'REST': 8, 'FLEE': 4}
+Agent 0 theta: 117.90863082506354 heading: [ 0.09874514 -0.99511276] speed: 2.7478214123641345 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 34
 Site resources:
-141
-117
-193
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+198
+0
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 9, 'REST': 3, 'FLEE': 38}
-Agent 0 theta: -1.7457333506311168 heading: [-0.17404612 -0.9847375 ]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 24, 'HIGH_DENSE_EXPLORE': 11, 'REST': 8, 'FLEE': 4}
+Agent 0 theta: 118.40875344249703 heading: [ 0.56384075 -0.82588353] speed: 2.7843384869364516 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 35
 Site resources:
-139
-117
-192
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+198
+200
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 8, 'REST': 4, 'FLEE': 38}
-Agent 0 theta: -1.7388722653368305 heading: [-0.16728571 -0.98590846]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 22, 'HIGH_DENSE_EXPLORE': 11, 'REST': 9, 'FLEE': 5}
+Agent 0 theta: 118.92536312504114 heading: [ 0.89819171 -0.43960397] speed: 2.809444220329286 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 36
 Site resources:
-137
-117
-190
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+197
+197
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 8, 'REST': 3, 'FLEE': 39}
-Agent 0 theta: -1.731960494673879 heading: [-0.1604674  -0.98704114]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 20, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 5}
+Agent 0 theta: 119.3256238650059 heading: [ 0.99849354 -0.0548694 ] speed: 2.794939866796531 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 37
 Site resources:
-135
-117
-189
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+196
+192
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 6, 'REST': 3, 'FLEE': 41}
-Agent 0 theta: -1.7246517647644442 heading: [-0.15324916 -0.98818758]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 20, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 5}
+Agent 0 theta: 119.6621780586714 heading: [0.96059614 0.27794795] speed: 2.815796199604117 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 38
 Site resources:
-134
-117
-188
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+195
+187
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 6, 'REST': 3, 'FLEE': 41}
-Agent 0 theta: -1.717192806800324 heading: [-0.14587411 -0.98930316]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 20, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 5}
+Agent 0 theta: 125.53467468549255 heading: [ 0.99168698 -0.12867371] speed: 2.8559962870002087 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 39
 Site resources:
-133
-117
-186
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+194
+182
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 5, 'REST': 2, 'FLEE': 43}
-Agent 0 theta: -1.709831168655198 heading: [-0.13858733 -0.99035022]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 20, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 5}
+Agent 0 theta: 125.65284300359522 heading: [ 0.999941   -0.01086293] speed: 2.7210710966695952 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 40
 Site resources:
-132
-117
-185
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+193
+177
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 5, 'REST': 2, 'FLEE': 43}
-Agent 0 theta: -1.7025803537455624 heading: [-0.13140291 -0.99132905]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 19, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 6}
+Agent 0 theta: 125.78009844506852 heading: [0.99323406 0.11612968] speed: 2.7129301138812334 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 41
 Site resources:
-132
-117
-184
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+192
+172
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 5, 'REST': 2, 'FLEE': 43}
-Agent 0 theta: -1.6954537866375952 heading: [-0.12433486 -0.99224032]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 19, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 6}
+Agent 0 theta: 131.61048448284183 heading: [ 0.94394681 -0.3300976 ] speed: 2.761089874640632 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 42
 Site resources:
-132
-117
-182
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+191
+167
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 4, 'REST': 1, 'FLEE': 45}
-Agent 0 theta: -1.688143774182943 heading: [-0.11707831 -0.99312269]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 19, 'HIGH_DENSE_EXPLORE': 10, 'REST': 11, 'FLEE': 7}
+Agent 0 theta: 137.49886392507216 heading: [ 0.74436505 -0.66777292] speed: 2.78572018249585 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 43
 Site resources:
-132
-117
-181
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+190
+162
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 1, 'FLEE': 46}
-Agent 0 theta: -1.6809403787522745 heading: [-0.10992148 -0.99394027]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 19, 'HIGH_DENSE_EXPLORE': 10, 'REST': 11, 'FLEE': 7}
+Agent 0 theta: 143.73790582269402 heading: [ 0.71417172 -0.69997054] speed: 2.8031804460715755 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 44
 Site resources:
-132
-117
-180
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+189
+157
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 2, 'FLEE': 45}
-Agent 0 theta: -1.6729560370678813 heading: [-0.1019821  -0.99478623]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 18, 'HIGH_DENSE_EXPLORE': 10, 'REST': 12, 'FLEE': 8}
+Agent 0 theta: 149.62658665238334 heading: [ 0.39027992 -0.92069625] speed: 2.815097849120783 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 45
 Site resources:
-132
-117
-178
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+188
+151
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 2, 'FLEE': 45}
-Agent 0 theta: -1.665058889439318 heading: [-0.09412303 -0.99556057]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 17, 'HIGH_DENSE_EXPLORE': 11, 'REST': 11, 'FLEE': 9}
+Agent 0 theta: 150.0460926720074 heading: [ 0.73144705 -0.68189825] speed: 2.91677613348228 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 46
 Site resources:
-132
-117
-176
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+187
+147
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 2, 'FLEE': 45}
-Agent 0 theta: -1.6572683592622761 heading: [-0.08636431 -0.99626362]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 18, 'HIGH_DENSE_EXPLORE': 10, 'REST': 12, 'FLEE': 8}
+Agent 0 theta: 150.31499159429467 heading: [ 0.88632174 -0.46306995] speed: 3.0189025155907885 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 47
 Site resources:
-132
-117
-174
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+186
+142
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 3, 'FLEE': 44}
-Agent 0 theta: -1.6493194676320169 heading: [-0.07844247 -0.99691864]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 17, 'HIGH_DENSE_EXPLORE': 11, 'REST': 12, 'FLEE': 8}
+Agent 0 theta: 150.57748062485052 heading: [ 0.97612241 -0.21722116] speed: 3.247465929701966 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 48
 Site resources:
-132
-117
-171
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+185
+137
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 3, 'FLEE': 44}
-Agent 0 theta: -1.6415026264810948 heading: [-0.0706474  -0.99750135]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 18, 'HIGH_DENSE_EXPLORE': 8, 'REST': 11, 'FLEE': 11}
+Agent 0 theta: 151.07001120219684 heading: [0.96281419 0.27016445] speed: 3.3981555279821345 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 49
 Site resources:
-132
-117
-168
-Predator target: <agent.Agent object at 0x000001A5CABD3820>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+184
+133
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
-Agent 0 theta: -1.6338275469432015 heading: [-0.06298949 -0.99801419]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 10, 'REST': 12, 'FLEE': 10}
+Agent 0 theta: 156.97510282416062 heading: [ 0.99454173 -0.1043396 ] speed: 3.559786411671317 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 50
 Site resources:
-132
-117
-164
-Predator target: None
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+183
+128
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
-Agent 0 theta: -1.6258233966410798 heading: [-0.0549993  -0.99848639]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 18, 'HIGH_DENSE_EXPLORE': 8, 'REST': 12, 'FLEE': 10}
+Agent 0 theta: 162.96013086326695 heading: [ 0.92001125 -0.39189194] speed: 3.6920520739663756 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 51
 Site resources:
-132
-117
-160
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+182
+124
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
-Agent 0 theta: -1.617996829673742 heading: [-0.04718298 -0.99888626]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 17, 'HIGH_DENSE_EXPLORE': 9, 'REST': 11, 'FLEE': 11}
+Agent 0 theta: 163.4250734352601 heading: [0.99806276 0.06221524] speed: 3.811865458947331 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 52
 Site resources:
-132
-117
-156
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+181
+121
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
-Agent 0 theta: -1.6103603117299077 heading: [-0.03955366 -0.99921745]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 17, 'HIGH_DENSE_EXPLORE': 9, 'REST': 12, 'FLEE': 10}
+Agent 0 theta: 163.64544492161474 heading: [0.96032615 0.27887932] speed: 3.9036421797609355 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 53
 Site resources:
-132
+180
 117
-152
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
-Agent 0 theta: -1.6025825974578976 heading: [-0.03178092 -0.99949486]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 17, 'HIGH_DENSE_EXPLORE': 9, 'REST': 12, 'FLEE': 10}
+Agent 0 theta: 169.56285328772285 heading: [ 0.99654503 -0.08305422] speed: 3.9590146347095714 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 54
 Site resources:
-132
-117
-148
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+179
+113
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
-Agent 0 theta: -1.5949975987243392 heading: [-0.02419891 -0.99970716]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 10, 'REST': 11, 'FLEE': 11}
+Agent 0 theta: 170.05372512160983 heading: [0.91802654 0.39651894] speed: 4.156993444398294 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 55
 Site resources:
-132
-117
-144
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+178
+110
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
-Agent 0 theta: -1.5876006449374023 heading: [-0.01680353 -0.99985881]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 17, 'HIGH_DENSE_EXPLORE': 9, 'REST': 12, 'FLEE': 10}
+Agent 0 theta: 175.94164473885596 heading: [0.99992242 0.01245582] speed: 4.216458693375877 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 56
 Site resources:
-132
-117
-140
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+177
+107
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 4, 'FLEE': 43}
-Agent 0 theta: -1.580381782041359 heading: [-0.00958531 -0.99995406]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 18, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 10}
+Agent 0 theta: 176.06404676810672 heading: [0.99092041 0.13444977] speed: 4.061317545718026 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 57
 Site resources:
-132
-117
-136
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+176
+103
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 5, 'FLEE': 42}
-Agent 0 theta: -1.5733272965925977 heading: [-0.00253097 -0.9999968 ]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 17, 'HIGH_DENSE_EXPLORE': 8, 'REST': 13, 'FLEE': 10}
+Agent 0 theta: 176.3070159705144 heading: [0.92946832 0.36890195] speed: 4.137384386432265 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 58
 Site resources:
-132
-117
-131
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+175
+99
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 5, 'FLEE': 42}
-Agent 0 theta: -1.5665047105656018 heading: [ 0.0042916  -0.99999079]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 17, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 182.14551753534212 heading: [ 0.99776595 -0.06680658] speed: 4.290493461448529 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 59
 Site resources:
-132
-117
-126
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+174
+95
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 5, 'FLEE': 42}
-Agent 0 theta: -1.5598145647727266 heading: [ 0.01098154 -0.9999397 ]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 9, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 182.39184820909261 heading: [0.98393767 0.17851234] speed: 4.378393856944475 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 60
 Site resources:
-132
-117
-121
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+173
+91
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 6, 'FLEE': 41}
-Agent 0 theta: -1.5532313821444574 heading: [ 0.01756404 -0.99984574]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 14, 'HIGH_DENSE_EXPLORE': 9, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 182.61170574690752 heading: [0.92132098 0.38880284] speed: 4.488071569299034 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 61
 Site resources:
-131
-117
-116
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+172
+87
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 6, 'FLEE': 41}
-Agent 0 theta: -1.5467344426103031 heading: [ 0.02405956 -0.99971053]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 188.63244313054898 heading: [0.99064602 0.13645685] speed: 4.577692154168747 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 62
 Site resources:
-130
-117
-111
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+171
+83
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
-Agent 0 theta: -1.5402930121042864 heading: [ 0.03049858 -0.99953481]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 14, 'HIGH_DENSE_EXPLORE': 9, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 194.7634477789984 heading: [ 0.99988301 -0.01529615] speed: 4.554124960922593 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 63
 Site resources:
-129
-117
-105
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+170
+80
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
-Agent 0 theta: -1.5337563283065052 heading: [ 0.03703153 -0.9993141 ]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 200.95760816830955 heading: [ 0.99456343 -0.10413254] speed: 4.56825366695402 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 64
 Site resources:
-128
-117
-99
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+169
+77
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
-Agent 0 theta: -1.5271984234051301 heading: [ 0.04358409 -0.99904976]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 14, 'HIGH_DENSE_EXPLORE': 9, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 206.78501654053204 heading: [ 0.84720273 -0.53126973] speed: 4.484644372938438 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 65
 Site resources:
-127
-117
-93
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+168
+74
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
-Agent 0 theta: -1.5203410940176045 heading: [ 0.05043383 -0.9987274 ]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 207.21320076993896 heading: [ 0.99131191 -0.13153212] speed: 4.564252286364709 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 66
 Site resources:
-126
-117
-87
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+167
+71
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 9, 'FLEE': 38}
-Agent 0 theta: -1.5132675289614677 heading: [ 0.05749707 -0.99834568]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 14, 'HIGH_DENSE_EXPLORE': 9, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 207.33904660006849 heading: [ 0.99998159 -0.0060685 ] speed: 4.630955314769424 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 67
 Site resources:
-123
-117
-81
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+166
+68
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 10, 'FLEE': 37}
-Agent 0 theta: -1.5058410815103869 heading: [ 0.06490958 -0.99789115]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 14, 'FLEE': 11}
+Agent 0 theta: 207.54889019082194 heading: [0.97930961 0.20236771] speed: 4.5743769888241435 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 68
 Site resources:
-120
-116
-75
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+165
+64
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 10, 'FLEE': 37}
-Agent 0 theta: -1.4984672128313623 heading: [ 0.07226607 -0.99738539]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 14, 'HIGH_DENSE_EXPLORE': 8, 'REST': 14, 'FLEE': 11}
+Agent 0 theta: 213.58424361558153 heading: [ 0.99902965 -0.04404258] speed: 4.701660621102818 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 69
 Site resources:
-117
-116
-69
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+164
+60
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 9, 'FLEE': 38}
-Agent 0 theta: -1.4965056290735024 heading: [ 0.07422238 -0.99724172]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 219.86398014598498 heading: [ 0.99887182 -0.04748774] speed: 4.693669101103734 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 70
 Site resources:
-115
-116
-63
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+164
+56
+200
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 8, 'FLEE': 39}
-Agent 0 theta: -1.495528559318838 heading: [ 0.07519672 -0.99716872]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 7, 'REST': 14, 'FLEE': 11}
+Agent 0 theta: 220.11641972067727 heading: [0.97907442 0.20350251] speed: 4.654752487737778 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 71
 Site resources:
-113
-116
-57
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+164
+52
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 8, 'FLEE': 39}
-Agent 0 theta: -1.4938124481594082 heading: [ 0.07690786 -0.9970382 ]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 225.98363670157374 heading: [ 0.97781477 -0.20947142] speed: 4.574121741684864 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 72
 Site resources:
-111
-116
-51
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+164
+48
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 8, 'FLEE': 39}
-Agent 0 theta: -1.49160703914583 heading: [ 0.07910655 -0.99686617]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 232.11526381193883 heading: [ 0.93498039 -0.35469941] speed: 4.593924144536083 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 73
 Site resources:
-109
-116
-45
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+163
+44
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 8, 'FLEE': 39}
-Agent 0 theta: -1.4891542070849928 heading: [ 0.08155145 -0.99666913]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 7, 'REST': 14, 'FLEE': 11}
+Agent 0 theta: 238.36856011091757 heading: [ 0.92396275 -0.38248246] speed: 4.456919020712387 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 74
 Site resources:
-108
-116
-39
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+162
+40
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
-Agent 0 theta: -1.4866097903564401 heading: [ 0.08408713 -0.99645841]
+{'EXPLORE': 2, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 13}
+Agent 0 theta: 238.75713934822036 heading: [ 0.99999239 -0.00390231] speed: 4.580058285076534 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 75
 Site resources:
-107
-116
-33
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+161
+36
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
-Agent 0 theta: -1.4840757574090713 heading: [ 0.08661191 -0.99624213]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 245.02291774234286 heading: [ 0.99977297 -0.02130763] speed: 4.606388101200056 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 76
 Site resources:
-106
-116
-27
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+160
+32
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 7, 'FLEE': 40}
-Agent 0 theta: -1.4819463303142606 heading: [ 0.08873314 -0.99605544]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 245.4252293525827 heading: [0.92829237 0.37185115] speed: 4.572659561306601 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 77
 Site resources:
-106
-116
-21
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+159
+28
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 6, 'FLEE': 41}
-Agent 0 theta: -1.4799271530498408 heading: [ 0.09074417 -0.99587424]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 245.94485147304596 heading: [0.62112066 0.78371495] speed: 4.7061338531612025 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 78
 Site resources:
-106
-116
-15
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+158
+24
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 3, 'REST': 6, 'FLEE': 41}
-Agent 0 theta: -1.4780489297588977 heading: [ 0.09261448 -0.99570204]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 246.3824089858923 heading: [0.23052222 0.97306706] speed: 4.771057732102046 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 79
 Site resources:
-106
-116
-9
-Predator target: None
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+157
+20
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 2, 'REST': 6, 'FLEE': 42}
-Agent 0 theta: -1.4770882367604936 heading: [ 0.09357101 -0.99561261]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 252.25940334317121 heading: [0.59623673 0.80280867] speed: 4.812165242450047 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 80
 Site resources:
-106
-116
-3
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+156
+16
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 2, 'REST': 7, 'FLEE': 41}
-Agent 0 theta: -1.4762623179271535 heading: [ 0.09439327 -0.99553499]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 14, 'HIGH_DENSE_EXPLORE': 8, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 258.30929197805233 heading: [0.76568264 0.64321855] speed: 4.855651869674372 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 81
 Site resources:
-106
-116
-0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+155
+12
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 16, 'REST': 3, 'FLEE': 31}
-Agent 0 theta: -1.476436704963951 heading: [ 0.09421966 -0.99555143]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 14, 'HIGH_DENSE_EXPLORE': 8, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 258.58541870219256 heading: [0.56131611 0.82760149] speed: 4.885728068896364 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 82
 Site resources:
-106
-116
-0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+154
+8
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
-Agent 0 theta: -1.477336644293687 heading: [ 0.09332368 -0.99563582]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 258.8924374968593 heading: [0.28495207 0.95854177] speed: 4.858946062103921 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 83
 Site resources:
-106
-116
-0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+153
+4
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
-Agent 0 theta: -1.4782599760357642 heading: [ 0.09240434 -0.99572157]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 264.8974607177449 heading: [0.53720388 0.84345242] speed: 4.587947754751933 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 84
 Site resources:
-106
-116
+152
 0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
-Agent 0 theta: -1.479181215775679 heading: [ 0.09148701 -0.99580627]
+{'EXPLORE': 3, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 265.2444264637551 heading: [0.2183787 0.9758641] speed: 4.6192729042801455 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 85
 Site resources:
-106
-116
+151
 0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
-Agent 0 theta: -1.4800790949519393 heading: [ 0.09059286 -0.99588801]
+{'EXPLORE': 4, 'LOW_DENSE_EXPLORE': 17, 'HIGH_DENSE_EXPLORE': 5, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 271.0563908164014 heading: [0.63759606 0.77037086] speed: 4.772705004629459 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 86
 Site resources:
-106
-116
+150
 0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
-Agent 0 theta: -1.4809265791501562 heading: [ 0.08974882 -0.99596443]
+{'EXPLORE': 4, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 271.2297491996441 heading: [0.49515683 0.86880361] speed: 4.6330082169189994 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 87
 Site resources:
-106
-116
+149
 0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
-Agent 0 theta: -1.4817031601666064 heading: [ 0.08897535 -0.99603383]
+{'EXPLORE': 4, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 271.6519894507741 heading: [0.09562873 0.99541707] speed: 4.609700503697824 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 88
 Site resources:
-106
-116
+148
 0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 21, 'REST': 0, 'FLEE': 29}
-Agent 0 theta: -1.4823881006604536 heading: [ 0.0882931  -0.99609454]
+{'EXPLORE': 5, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 10}
+Agent 0 theta: 277.69895929445573 heading: [0.32592553 0.94539545] speed: 4.591614917497125 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 89
 Site resources:
-106
-116
+147
 0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 20, 'REST': 0, 'FLEE': 30}
-Agent 0 theta: -1.4829616237012946 heading: [ 0.08772181 -0.99614501]
+{'EXPLORE': 4, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 5, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 283.51395336531857 heading: [0.71748273 0.69657629] speed: 4.712084634771486 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 90
 Site resources:
-106
-116
+146
 0
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 20, 'REST': 0, 'FLEE': 30}
-Agent 0 theta: -1.482919215913131 heading: [ 0.08776405 -0.99614129]
+{'EXPLORE': 6, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 10}
+Agent 0 theta: 289.4201916025183 heading: [0.92350851 0.38357793] speed: 4.632265567021814 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 91
 Site resources:
-106
-116
-200
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+145
+0
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 20, 'REST': 0, 'FLEE': 30}
-Agent 0 theta: -1.4828172558607435 heading: [ 0.08786562 -0.99613234]
+{'EXPLORE': 6, 'LOW_DENSE_EXPLORE': 16, 'HIGH_DENSE_EXPLORE': 5, 'REST': 13, 'FLEE': 10}
+Agent 0 theta: 289.61874721672683 heading: [0.82970179 0.5582069 ] speed: 4.7888925147607955 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 92
 Site resources:
-106
-116
-200
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+144
+0
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 13, 'REST': 7, 'FLEE': 30}
-Agent 0 theta: -1.4831803292641759 heading: [ 0.08750394 -0.99616417]
+{'EXPLORE': 5, 'LOW_DENSE_EXPLORE': 13, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 295.5194690763865 heading: [0.97808099 0.20822481] speed: 4.8983468723669255 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 93
 Site resources:
-106
-116
-193
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+143
+0
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 12, 'REST': 5, 'FLEE': 33}
-Agent 0 theta: -1.4838159244941216 heading: [ 0.08687077 -0.99621959]
+{'EXPLORE': 6, 'LOW_DENSE_EXPLORE': 15, 'HIGH_DENSE_EXPLORE': 5, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 295.9995546530838 heading: [0.77134453 0.6364178 ] speed: 4.898454749356466 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 94
 Site resources:
-106
-116
-188
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+142
+200
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
-Agent 0 theta: -1.4844994265791922 heading: [ 0.08618983 -0.99627873]
+{'EXPLORE': 8, 'LOW_DENSE_EXPLORE': 12, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 10}
+Agent 0 theta: 296.4274203963872 heading: [0.43774167 0.89910079] speed: 4.905769915232381 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 95
 Site resources:
-106
-116
-181
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+141
+196
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
-Agent 0 theta: -1.485053800186064 heading: [ 0.08563751 -0.99632636]
+{'EXPLORE': 6, 'LOW_DENSE_EXPLORE': 14, 'HIGH_DENSE_EXPLORE': 5, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 302.53086437677644 heading: [0.59142645 0.80635895] speed: 4.810445081409952 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 96
 Site resources:
-106
-116
-174
-Predator target: <agent.Agent object at 0x000001A5CABD2260>
-Predator target: <agent.Agent object at 0x000001A5CABD26E0>
+140
+192
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
-Agent 0 theta: -1.4857326275788216 heading: [ 0.08496115 -0.99638426]
+{'EXPLORE': 7, 'LOW_DENSE_EXPLORE': 12, 'HIGH_DENSE_EXPLORE': 7, 'REST': 13, 'FLEE': 11}
+Agent 0 theta: 303.02096169352524 heading: [0.14224527 0.98983144] speed: 4.908716532088965 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 97
 Site resources:
-106
-116
-167
-Predator target: None
-Predator target: None
+139
+188
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
-Agent 0 theta: -1.4866581141710908 heading: [ 0.08403898 -0.99646247]
+{'EXPLORE': 7, 'LOW_DENSE_EXPLORE': 13, 'HIGH_DENSE_EXPLORE': 5, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 303.4912392877484 heading: [-0.32172257  0.94683398] speed: 4.934082314401386 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 98
 Site resources:
-106
-116
-160
-Predator target: <agent.Agent object at 0x000001A5CABD3430>
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+138
+184
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
-Agent 0 theta: -1.4875113123899606 heading: [ 0.08318876 -0.99653381]
+{'EXPLORE': 7, 'LOW_DENSE_EXPLORE': 13, 'HIGH_DENSE_EXPLORE': 5, 'REST': 13, 'FLEE': 12}
+Agent 0 theta: 309.63212338754397 heading: [-0.18418932  0.98289078] speed: 4.957196466662344 state: <states.LowDensityExplore object at 0x000001D83574AB00>
 
 Iter 99
 Site resources:
-106
-116
-153
-Predator target: <agent.Agent object at 0x000001A5CABD3430>
-Predator target: <agent.Agent object at 0x000001A5CABD22F0>
+137
+180
+199
+Predator target: <agent.Agent object at 0x000001D833B0CC70>
+Predator target: <agent.Agent object at 0x000001D833B0CAC0>
 Agent states:
-{'EXPLORE': 12, 'REST': 7, 'FLEE': 31}
-Agent 0 theta: -1.4883107478557784 heading: [ 0.08239207 -0.99659999]
-Ending Hunger: 9.32
+{'EXPLORE': 7, 'LOW_DENSE_EXPLORE': 11, 'HIGH_DENSE_EXPLORE': 6, 'REST': 13, 'FLEE': 13}
+Agent 0 theta: 309.8911469777135 heading: [-0.4297994  0.9029244] speed: 4.944025391782964 state: <states.LowDensityExplore object at 0x000001D83574AB00>
+Ending Hunger: 36.12

@@ -103,7 +103,7 @@ class ExploreState(State): # maybe consider two different
             self.agent.random_walk()
         
         if self.agent.site:
-            self.agent.pos += self.agent.site.pos * DT
+            self.agent.pos += (self.agent.site.pos - self.agent.pos) * DT
         super().move(neighbors=None, predators=None)
 
 class LowDensityExplore(State):
@@ -141,7 +141,7 @@ class LowDensityExplore(State):
             self.agent.random_walk(2.0)
         # prioritize moving toward a known site
         if hasattr(self.agent.last_known_site_pos, 'shape'):
-            self.agent.pos += self.agent.last_known_site_pos * DT * 3.0
+            self.agent.pos += (self.agent.last_known_site_pos - self.agent.pos) * DT * 3.0
         super().move(neighbors, predators)
 
 class HighDensityExplore(State):

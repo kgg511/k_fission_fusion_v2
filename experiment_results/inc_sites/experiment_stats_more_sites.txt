@@ -1,0 +1,176 @@
+SIM CONFIG
+NUM AGENTS=50
+WORLD SIZE=10
+NUM SITES=10
+NUM PREDATORS=2
+SITE REGEN TIME=10
+SITE MAX RESOURCES=50
+
+Trial 0: Starting hunger=75.58
+Ending Hunger=21.18
+Avg State Nums
+EXPLORE=27.82
+REST=8.84
+FLEE=13.34
+Avg Resources per Iter=31.505
+
+Trial 1: Starting hunger=73.44
+Ending Hunger=17.64
+Avg State Nums
+EXPLORE=31.3
+REST=9.42
+FLEE=9.28
+Avg Resources per Iter=33.955
+
+Trial 2: Starting hunger=72.82
+Ending Hunger=17.06
+Avg State Nums
+EXPLORE=34.82
+REST=7.06
+FLEE=8.12
+Avg Resources per Iter=33.864
+
+Trial 3: Starting hunger=74.04
+Ending Hunger=17.2
+Avg State Nums
+EXPLORE=30.52
+REST=8.81
+FLEE=10.67
+Avg Resources per Iter=34.217
+
+Trial 4: Starting hunger=72.96
+Ending Hunger=24.56
+Avg State Nums
+EXPLORE=30.59
+REST=11.61
+FLEE=7.8
+Avg Resources per Iter=32.691
+
+Trial 5: Starting hunger=72.88
+Ending Hunger=5.82
+Avg State Nums
+EXPLORE=44.73
+REST=3.82
+FLEE=1.45
+Avg Resources per Iter=41.694
+
+Trial 6: Starting hunger=73.48
+Ending Hunger=32.44
+Avg State Nums
+EXPLORE=28.15
+REST=14.13
+FLEE=7.72
+Avg Resources per Iter=30.879
+
+Trial 7: Starting hunger=72.84
+Ending Hunger=15.22
+Avg State Nums
+EXPLORE=38.89
+REST=7.52
+FLEE=3.59
+Avg Resources per Iter=35.914
+
+Trial 8: Starting hunger=76.88
+Ending Hunger=13.64
+Avg State Nums
+EXPLORE=37.16
+REST=6.81
+FLEE=6.03
+Avg Resources per Iter=36.605
+
+Trial 9: Starting hunger=71.54
+Ending Hunger=13.04
+Avg State Nums
+EXPLORE=22.09
+REST=8.07
+FLEE=19.84
+Avg Resources per Iter=31.533
+
+Trial 10: Starting hunger=74.66
+Ending Hunger=9.68
+Avg State Nums
+EXPLORE=34.89
+REST=5.8
+FLEE=9.31
+Avg Resources per Iter=35.33
+
+Trial 11: Starting hunger=74.1
+Ending Hunger=15.98
+Avg State Nums
+EXPLORE=31.0
+REST=8.19
+FLEE=10.81
+Avg Resources per Iter=34.049
+
+Trial 12: Starting hunger=73.56
+Ending Hunger=17.52
+Avg State Nums
+EXPLORE=29.98
+REST=9.63
+FLEE=10.39
+Avg Resources per Iter=31.322
+
+Trial 13: Starting hunger=72.24
+Ending Hunger=16.04
+Avg State Nums
+EXPLORE=32.58
+REST=7.41
+FLEE=10.01
+Avg Resources per Iter=35.249
+
+Trial 14: Starting hunger=78.74
+Ending Hunger=20.02
+Avg State Nums
+EXPLORE=33.95
+REST=8.49
+FLEE=7.56
+Avg Resources per Iter=36.523
+
+Trial 15: Starting hunger=71.82
+Ending Hunger=11.7
+Avg State Nums
+EXPLORE=32.19
+REST=6.7
+FLEE=11.11
+Avg Resources per Iter=30.976
+
+Trial 16: Starting hunger=73.88
+Ending Hunger=3.78
+Avg State Nums
+EXPLORE=34.95
+REST=4.19
+FLEE=10.86
+Avg Resources per Iter=40.682
+
+Trial 17: Starting hunger=74.08
+Ending Hunger=14.98
+Avg State Nums
+EXPLORE=29.92
+REST=8.67
+FLEE=11.41
+Avg Resources per Iter=33.435
+
+Trial 18: Starting hunger=75.64
+Ending Hunger=2.38
+Avg State Nums
+EXPLORE=26.78
+REST=1.36
+FLEE=21.86
+Avg Resources per Iter=42.75
+
+Trial 19: Starting hunger=77.34
+Ending Hunger=19.0
+Avg State Nums
+EXPLORE=25.09
+REST=8.61
+FLEE=16.3
+Avg Resources per Iter=38.708
+
+OVERALL STATISTICS
+AVG STARTING HUNGER=74.126, AVG ENDING HUNGER=15.443999999999997
+AVG HUNGER DIFFERENCE=-597.7269999999999
+AVG SITE RESOURCES PER ITER=35.094049999999996
+AVG STATE NUMS
+EXPLORE=31.869999999999997
+REST=7.757
+FLEE=10.373000000000001
