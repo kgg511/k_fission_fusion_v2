@@ -1,14 +1,15 @@
 import numpy as np
 import math
-import states
+from states import *
 from config import *
 
 # note to self: future planning, factors will be floats from 0.5 to 1.0
 class Agent:
-    def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0, site=None):
+    def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0,
+                 site=None, network=None, group_id=None, following=None):
         self.id = id
         self.pos = pos
-        self.state = states.HighDensityExplore(self)
+        self.state = NetworkRepulseState("NETWORK_EXP", (0, 255, 0), self)
         self.speed = speed
         self.theta = theta
         self.hunger = hunger
@@ -17,10 +18,12 @@ class Agent:
         self.orient_factor = orient_factor
         self.rpls_factor = repulse_factor
         self.site = site
+        self.last_known_sites = []
         if site != None:
-            self.last_known_site_pos = site.pos
-        else:
-            self.last_known_site_pos = None
+            self.last_known_sites.append(site)
+        self.network = network # list representation
+        self.group_id = group_id # binary vector representation
+        self.following = None
 
     def update(self, neighbors, sites, predators):
         # get reading (neighbors, sites)
@@ -70,9 +73,20 @@ class Agent:
 
     # general random walk
     def random_walk(self, potency=1.0):
-        self.theta += np.random.uniform(-np.pi/6, np.pi/6) % (2*np.pi)
+        self.theta += np.random.uniform(-np.pi/12, np.pi/12) % (2*np.pi)
         self.pos += np.array([np.cos(self.theta), np.sin(self.theta)]) * DT * 10 * potency
 
+    def at_site(self):
+        if self.site != None:
+            if math.dist(self.site.pos, self.pos) <= self.site.radius:
+                return True
+        return False
+
+    def add_site(self, site):
+        self.last_known_sites.append(site)
+        if len(self.last_known_sites) > MAX_SITE_MEMORY:
+            self.last_known_sites.pop(0)
+        
     # def get_task_densities(self, neighbors):
     #     # get however many neighbors are doing which task
     #     # densities are num_neighbor_task/len(neighbors)

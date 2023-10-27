@@ -8,13 +8,14 @@ NUM_TRIALS = 50
 # SIMULATION SET UP
 def setup_simulation():
     simulation = sim.Simulation()
+    # simulation.build_neighbor_matrix()
     sites_x = []
     sites_y = []
     sites_radius = []
     for site in simulation.sites:
         sites_x.append(site.pos[0])
         sites_y.append(site.pos[1])
-        sites_radius.append(5*site.radius)
+        sites_radius.append(20*2**site.radius)
     return simulation, sites_x, sites_y, sites_radius
 
 # GUI SET UP
@@ -23,7 +24,7 @@ def setup_gui():
     ax = plt.gca()
     return fig, ax
 
-def display(fig, ax, agents, predators, sites_x, sites_y, sites_radius):
+def display(fig, ax, agents, predators, sites_x, sites_y, sites_radius, agent_colors):
     agent_x = []
     agent_y = []
     for agent in agents:
@@ -35,8 +36,8 @@ def display(fig, ax, agents, predators, sites_x, sites_y, sites_radius):
         pred_x.append(predator.pos[0])
         pred_y.append(predator.pos[1])
     plt.cla()
-    plt.scatter(sites_x, sites_y, s=sites_radius, c='#00FF00')
-    plt.scatter(agent_x, agent_y)
+    plt.scatter(sites_x, sites_y, s=sites_radius, c='#008888', alpha=0.5)
+    plt.scatter(agent_x, agent_y, c=agent_colors)
     plt.scatter(pred_x, pred_y, c="#FF0000")
     ax.set(xlim=(0, sim.WORLD_SIZE), ylim=(0, sim.WORLD_SIZE))
     ax.set_aspect('equal')
@@ -52,36 +53,37 @@ def run_simulation():
         file.write(f"Starting Hunger: {simulation.avg_hunger}\n")
         # RUN SIM
         for i in range(sim.NUM_ITERS):
+            print(f"Iter{i}\n")
             simulation.avg_hunger = 0
-            agent_states = {EXPLORE_NAME: 0,
-                        LOW_DENSE_NAME: 0,
-                        HIGH_DENSE_NAME: 0,
-                        REST_NAME: 0,
-                        FLEE_NAME: 0}
+            # agent_states = {EXPLORE_NAME: 0,
+            #             LOW_DENSE_NAME: 0,
+            #             HIGH_DENSE_NAME: 0,
+            #             REST_NAME: 0,
+            #             FLEE_NAME: 0}
             for agent in simulation.agents:
                 neighbors = simulation.get_neighbor_ids(agent)
                 nearby_predators = simulation.get_predators(agent)
                 sites = simulation.get_sites(agent)
                 agent.update(neighbors, sites, nearby_predators)
-                agent_states[agent.state.name] = agent_states.get(agent.state.name) + 1
+#                agent_states[agent.state.name] = agent_states.get(agent.state.name) + 1
                 simulation.avg_hunger += agent.hunger
 
-            file.write(f"\nIter {i}\nSite resources:\n")
-            for site in simulation.sites:
-                site.update()
-                file.write(f"{site.resource_count}\n")
+            # file.write(f"\nIter {i}\nSite resources:\n")
+            # for site in simulation.sites:
+            #     site.update()
+            #     file.write(f"{site.resource_count}\n")
 
-            for predator in simulation.predators:
-                predator.update()
-                file.write(f"Predator target: {predator.target}\n")
+            # for predator in simulation.predators:
+            #     predator.update()
+            #     file.write(f"Predator target: {predator.target}\n")
 
             simulation.avg_hunger = float(simulation.avg_hunger / sim.NUM_AGENTS)
-            display(fig, ax, simulation.agents, simulation.predators, sites_x, sites_y, sites_radius)
-            file.write(f"Agent states:\n{agent_states}\n")
+            display(fig, ax, simulation.agents, simulation.predators, sites_x, sites_y, sites_radius, simulation.agent_colors)
+            # file.write(f"Agent states:\n{agent_states}\n")
             file.write(f"Agent 0 theta: {simulation.agents[0].theta} heading: {simulation.agents[0].heading()}" +
                        f" speed: {simulation.agents[0].speed} state: {simulation.agents[0].state}\n")
 
-        file.write(f"Ending Hunger: {simulation.avg_hunger}")
+        # file.write(f"Ending Hunger: {simulation.avg_hunger}")
     plt.show()
 
 def run_simulation_mult():
