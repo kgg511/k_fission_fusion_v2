@@ -6,7 +6,7 @@ from config import *
 # note to self: future planning, factors will be floats from 0.5 to 1.0
 class Agent:
     def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0,
-                 site=None, network=None, group_id=None, following=None):
+                 site=None, network=None, group_id=None, following=None, neighbors=None, group_neighbors=None):
         self.id = id
         self.pos = pos
         self.state = NetworkRepulseState("NETWORK_EXP", (0, 255, 0), self)
@@ -23,7 +23,9 @@ class Agent:
             self.last_known_sites.append(site)
         self.network = network # list representation
         self.group_id = group_id # binary vector representation
-        self.following = None
+        self.following = following
+        self.neighbors = neighbors # temporary until blackboard implementation
+        self.group_neighbors = group_neighbors
 
     def update(self, neighbors, sites, predators):
         # get reading (neighbors, sites)
