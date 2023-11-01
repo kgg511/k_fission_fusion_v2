@@ -52,7 +52,7 @@ class GoToSite(AgentBehavior):
         if self.agent.following != None:
             dx = self.agent.sim.get_agent_pos(self.agent.following) - self.agent.pos # essentially double counting the group leader
         
-        dx = self.agent.site.pos - self.agent.pos
+        dx += self.agent.site.pos - self.agent.pos
 
         self.agent.pos += (dx * DT)
         return Status.SUCCESS
@@ -88,6 +88,21 @@ class QueryForSites(AgentBehavior):
                     self.agent.site = viable_sites[np.random.randint(0, len(viable_sites))]
                     self.agent.add_site(self.agent.site)
 
+        return Status.SUCCESS
+    
+class Rest(AgentBehavior):
+    def __init__(self, name, agent):
+        super().__init__(name, agent)
+
+    def initialise(self) -> None:
+        return super().initialise()
+    
+    def setup(self, **kwargs) -> None:
+        return super().setup(**kwargs)
+    
+    def update(self) -> Status:
+        dx = self.agent.site.pos - self.agent.pos
+        self.agent.pos += dx * DT
         return Status.SUCCESS
     
 ### CONDITIONS ###

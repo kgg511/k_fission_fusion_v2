@@ -11,7 +11,8 @@ site_selected_agent = Agent(2, [0, 0], 1.0, 0.0, 50, object(), site=demo_site)
 def build_bt(agent):
     # Rest subtree
     rest_subtree = py_trees.composites.Sequence("Rest_Root", False, children=[AtSite("AtSite", agent), 
-                                                                        HaveGroupNeighbors("Group", agent)])
+                                                                        HaveGroupNeighbors("Group", agent),
+                                                                        Rest("Rest", agent)])
     rest_root = py_trees.decorators.Repeat("Timer", rest_subtree, 10)
 
     # GoToSite subtree
