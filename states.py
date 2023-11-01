@@ -170,7 +170,7 @@ class NetworkRepulseState(State):
         #         self.agent.state = NetworkRestState("NETWORK_REST", (0, 0, 255), self.agent)
 
     def move(self, neighbors, predators):
-        super().repulse_move(neighbors, predators)
+        self.agent.repulse_move(neighbors, predators)
         self.agent.random_walk(potency=0.5)
         super().move(neighbors, predators)
 
@@ -229,7 +229,7 @@ class GoToSiteState(State):
             return
         
     def move(self, neighbors, predators):
-        super().repulse_move(neighbors, predators, attr_factor=0.0)
+        self.agent.repulse_move(neighbors, predators, attr_factor=0.0)
         self.agent.random_walk(potency=1.0)
 
         dx = 0

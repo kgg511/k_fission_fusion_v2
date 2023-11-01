@@ -61,11 +61,15 @@ def run_simulation():
             #             REST_NAME: 0,
             #             FLEE_NAME: 0}
             for agent in simulation.agents:
-                neighbors = simulation.get_neighbor_ids(agent)
-                nearby_predators = simulation.get_predators(agent)
-                sites = simulation.get_sites(agent)
-                agent.update(neighbors, sites, nearby_predators)
-#                agent_states[agent.state.name] = agent_states.get(agent.state.name) + 1
+                
+                # BT implementation
+                agent.neighbors, agent.group_neighbors = simulation.get_neighbor_ids(agent)
+                agent.potential_sites = simulation.get_sites(agent)
+                agent.bt.tick()
+
+                # nearby_predators = simulation.get_predators(agent)
+                # agent.update(neighbors, sites, nearby_predators)
+                # agent_states[agent.state.name] = agent_states.get(agent.state.name) + 1
                 simulation.avg_hunger += agent.hunger
 
             # file.write(f"\nIter {i}\nSite resources:\n")

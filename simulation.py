@@ -2,6 +2,7 @@ from agent import Agent
 from feeding_site import Site
 from predator import Predator
 from config import *
+from bt_construction import build_bt
 
 import numpy as np
 import math
@@ -36,7 +37,13 @@ class Simulation:
             hunger = np.random.randint(MAX_HUNGER/2, MAX_HUNGER)
             attraction = np.random.uniform(0.25, 1.0)
             repulsion = np.random.uniform(0.25, 1.0)
+
             agents.append(Agent(i, pos, speed, theta, hunger, self, attr_factor=attraction, repulse_factor=repulsion, network=[], group_id=group_id))
+            
+            # Behavior Tree
+            agents[i].set_bt(build_bt(agents[i]))
+
+            # simulation book-keeping
             self.prev_state.update({i: [pos, 1.0, np.array([np.cos(theta), np.sin(theta)])]})
             self.avg_hunger += hunger
             print(f"Agent {i} group id: {group_id}\n")
@@ -83,10 +90,13 @@ class Simulation:
 
     def get_neighbor_ids(self, agent):
         neighbors = []
+        group_neighbors = []
         for neighbor in self.agents:
             if neighbor.id != agent.id and math.dist(neighbor.pos, agent.pos) < AGENT_SENSING_RADIUS:
                 neighbors.append(neighbor.id)
-        return neighbors
+                if np.array_equal(self.get_agent_group_id(neighbor.id), self.get_agent_group_id(agent.id)):
+                    group_neighbors.append(neighbor.id)
+        return neighbors, group_neighbors
     
     def get_agent_pos(self, id):
         return self.prev_state.get(id)[0]

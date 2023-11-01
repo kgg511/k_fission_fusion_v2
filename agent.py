@@ -24,8 +24,11 @@ class Agent:
         self.network = network # list representation
         self.group_id = group_id # binary vector representation
         self.following = following
-        self.neighbors = neighbors # temporary until blackboard implementation
+        # FOR BEHAVIOR TREE IMPLEMENTATION temporary until blackboard is implemented
+        self.neighbors = neighbors
         self.group_neighbors = group_neighbors
+        self.potential_sites = None
+        self.bt = None
 
     def update(self, neighbors, sites, predators):
         # get reading (neighbors, sites)
@@ -72,6 +75,39 @@ class Agent:
             new_speed = 1.0
         self.speed = new_speed
         
+    def repulse_move(self, neighbors, predators, attr_factor=1.0, diff_factor=1.0):
+        # use a repulsion equation to space (boids-like repulsion)
+        # use another repulsion equation to separate from other groups (original graph laplacian)
+        if neighbors:
+            repulsion = np.zeros_like(self.pos) # avoid collisions
+            diffuse = np.zeros_like(self.pos) # separate from other groups
+            attraction = np.zeros_like(self.pos)
+            num_network_neighbors = 0
+            num_outsider_neighbors = 0
+
+            for neighbor in neighbors:
+                # attract toward neighbors in network
+                if np.array_equal(self.sim.get_agent_group_id(neighbor), self.group_id):
+                    attraction += self.sim.get_agent_pos(neighbor)
+                    num_network_neighbors += 1
+                    pass
+
+                # repel away from neighbors out of network
+                else:
+                    diffuse += self.sim.get_agent_pos(neighbor)
+                    num_outsider_neighbors += 1
+
+                # don't collide with other people
+                c = self.sim.get_agent_pos(neighbor) - self.pos
+                scaling_factor = c @ c
+                if scaling_factor == 0:
+                    scaling_factor = 1
+                repulsion += c / scaling_factor
+
+            attraction -= (self.pos * num_network_neighbors)
+            diffuse = (num_outsider_neighbors * self.pos) - diffuse
+            dx = (attraction * attr_factor) + (diffuse * diff_factor) - repulsion
+            self.pos += (dx * DT)
 
     # general random walk
     def random_walk(self, potency=1.0):
@@ -88,6 +124,9 @@ class Agent:
         self.last_known_sites.append(site)
         if len(self.last_known_sites) > MAX_SITE_MEMORY:
             self.last_known_sites.pop(0)
+
+    def set_bt(self, bt):
+        self.bt = bt
         
     # def get_task_densities(self, neighbors):
     #     # get however many neighbors are doing which task
