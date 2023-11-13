@@ -93,6 +93,7 @@ class QueryForSites(AgentBehavior):
 class Rest(AgentBehavior):
     def __init__(self, name, agent):
         super().__init__(name, agent)
+        self.agent.timer = AGENT_REST_TIMER
 
     def initialise(self) -> None:
         return super().initialise()
@@ -101,6 +102,7 @@ class Rest(AgentBehavior):
         return super().setup(**kwargs)
     
     def update(self) -> Status:
+        self.agent.timer -= 1
         dx = self.agent.site.pos - self.agent.pos
         self.agent.pos += dx * DT
         return Status.SUCCESS
@@ -171,4 +173,19 @@ class HaveGroupNeighbors(AgentBehavior):
         if self.agent.group_neighbors != None:
             if len(self.agent.group_neighbors) > 0:
                 return Status.SUCCESS
+        return Status.FAILURE
+
+class TimesUp(AgentBehavior):
+    def __init__(self, name, agent):
+        super().__init__(name, agent)
+
+    def initialise(self) -> None:
+        return super().initialise()
+    
+    def setup(self, **kwargs) -> None:
+        return super().setup(**kwargs)
+    
+    def update(self) -> Status:
+        if self.agent.timer > 0:
+            return Status.SUCCESS
         return Status.FAILURE

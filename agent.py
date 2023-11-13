@@ -29,6 +29,7 @@ class Agent:
         self.group_neighbors = group_neighbors
         self.potential_sites = None
         self.bt = None
+        self.timer = 0
 
     def update(self, neighbors, sites, predators):
         # get reading (neighbors, sites)

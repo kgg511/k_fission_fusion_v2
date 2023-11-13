@@ -55,11 +55,6 @@ def run_simulation():
         for i in range(sim.NUM_ITERS):
             print(f"Iter{i}\n")
             simulation.avg_hunger = 0
-            # agent_states = {EXPLORE_NAME: 0,
-            #             LOW_DENSE_NAME: 0,
-            #             HIGH_DENSE_NAME: 0,
-            #             REST_NAME: 0,
-            #             FLEE_NAME: 0}
             for agent in simulation.agents:
                 
                 # BT implementation
@@ -69,7 +64,6 @@ def run_simulation():
 
                 # nearby_predators = simulation.get_predators(agent)
                 # agent.update(neighbors, sites, nearby_predators)
-                # agent_states[agent.state.name] = agent_states.get(agent.state.name) + 1
                 simulation.avg_hunger += agent.hunger
 
             # file.write(f"\nIter {i}\nSite resources:\n")
