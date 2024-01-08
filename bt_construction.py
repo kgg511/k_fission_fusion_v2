@@ -27,7 +27,7 @@ def build_bt(agent):
     # Rest subtree
     rest_root = py_trees.composites.Sequence("Rest_Root", False, children=[AtSite("AtSite", agent), 
                                                                         HaveGroupNeighbors("Group", agent),
-                                                                        TimesUp("Timer", agent),
+                                                                        HaveTime("Timer", agent),
                                                                         Rest("Rest", agent)])
     # rest_root = py_trees.decorators.Repeat("Timer", rest_subtree, 10)
 
@@ -47,3 +47,25 @@ def build_bt(agent):
 
     return py_trees.trees.BehaviourTree(root=root)
     
+def build_ppa_bt(agent):
+    rest_pa = py_trees.composites.Sequence("Rest_PA", False, [HaveGroupNeighbors("Group", agent),
+                                                              AtSite("AtSite", agent),
+                                                              Rest("Rest", agent)])
+    rest_root = py_trees.composites.Selector("Rest_Root", False, [HaveTime("Timer", agent), rest_pa])
+
+    goToSite_pa = py_trees.composites.Sequence("GoToSite_PA", False, [HaveNeighbors("Neighbors", agent),
+                                                                      SiteSelected("SiteSelected_gts", agent),
+                                                                      GoToSite("GoToSite", agent),
+                                                                      Flock("Flock_ToSite", agent)])
+    goToSite_root = py_trees.composites.Selector("GoToSite", False, [AtSite("AtSite", agent), goToSite_pa])
+
+    explore_pa = py_trees.composites.Sequence("Explore_Actions", False, [QueryForSites("Query", agent),
+                                                                        Flock("Flock_Explore", agent)])
+    # explore_root = py_trees.composites.Selector("Explore", False, [SiteSelected("SiteSelected", agent), explore_pa])
+    
+    root = py_trees.composites.Selector("Root", False, [rest_root,
+                                                        goToSite_root,
+                                                        explore_pa,
+                                                        Flock("Failsafe", agent)])
+    
+    return py_trees.trees.BehaviourTree(root=root)

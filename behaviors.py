@@ -52,7 +52,7 @@ class GoToSite(AgentBehavior):
         if self.agent.following != None:
             dx = self.agent.sim.get_agent_pos(self.agent.following) - self.agent.pos # essentially double counting the group leader
         
-        dx += self.agent.site.pos - self.agent.pos
+        dx += (self.agent.site.pos - self.agent.pos) * 1
 
         self.agent.pos += (dx * DT)
         return Status.SUCCESS
@@ -175,7 +175,7 @@ class HaveGroupNeighbors(AgentBehavior):
                 return Status.SUCCESS
         return Status.FAILURE
 
-class TimesUp(AgentBehavior):
+class HaveTime(AgentBehavior):
     def __init__(self, name, agent):
         super().__init__(name, agent)
 

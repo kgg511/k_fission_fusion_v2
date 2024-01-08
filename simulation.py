@@ -2,7 +2,7 @@ from agent import Agent
 from feeding_site import Site
 from predator import Predator
 from config import *
-from bt_construction import build_bt
+from bt_construction import build_bt, build_ppa_bt
 
 import numpy as np
 import math
