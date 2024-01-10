@@ -55,7 +55,7 @@ class Simulation:
         sites = []
         for i in range(NUM_SITES):
             pos = np.array([np.random.uniform(0, WORLD_SIZE), np.random.uniform(0, WORLD_SIZE)])
-            radius = np.random.randint(1, WORLD_SIZE * 0.25)
+            radius = np.random.randint(1, SITE_MAX_RADIUS)
             # resources = np.random.randint(SITE_MAX_RESOURCE//2, SITE_MAX_RESOURCE + 1)
             sites.append(Site(pos, radius, SITE_REGEN_TIME, SITE_MAX_RESOURCE))
             # print(f"Site {i}: {pos}")
@@ -117,4 +117,10 @@ class Simulation:
                 if math.dist(site.pos, agent.pos) <= AGENT_SENSING_RADIUS + site.radius:
                     sites.append(site)
         return sites
+    
+    def bt_update(self):
+        for agent in self.agents:
+            agent.neighbors, agent.group_neighbors = self.get_neighbor_ids(agent)
+            agent.potential_sites = self.get_sites(agent)
+            agent.bt.tick()
     

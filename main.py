@@ -58,9 +58,7 @@ def run_simulation():
             for agent in simulation.agents:
                 
                 # BT implementation
-                agent.neighbors, agent.group_neighbors = simulation.get_neighbor_ids(agent)
-                agent.potential_sites = simulation.get_sites(agent)
-                agent.bt.tick()
+                simulation.bt_update()
 
                 # nearby_predators = simulation.get_predators(agent)
                 # agent.update(neighbors, sites, nearby_predators)

@@ -34,7 +34,7 @@ class Flock(AgentBehavior):
     
     def update(self) -> Status:
         self.agent.repulse_move(self.agent.neighbors, None)
-        self.agent.random_walk(potency=1.0)
+        self.agent.random_walk(potency=10.0)
         return Status.SUCCESS
     
 class GoToSite(AgentBehavior):
@@ -54,7 +54,7 @@ class GoToSite(AgentBehavior):
         
         dx += (self.agent.site.pos - self.agent.pos) * 1
 
-        self.agent.pos += (dx * DT)
+        self.agent.pos += (dx * DT * AGENT_SITE_ATTRACTION)
         return Status.SUCCESS
     
 class QueryForSites(AgentBehavior):
