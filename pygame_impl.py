@@ -1,6 +1,6 @@
 import pygame
-from config import WORLD_SIZE
-from simulation import Simulation
+from World.config import WORLD_SIZE
+from World.simulation import Simulation
 
 # Helper: Code from https://stackoverflow.com/questions/214359/converting-hex-color-to-rgb-and-vice-versa by Jeremy Cantrell
 def hex_to_rgb(value):
@@ -9,7 +9,7 @@ def hex_to_rgb(value):
     lv = len(value)
     return tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
 
-class PygameDisplay:
+class PygameSim:
     def __init__(self, simulation):
         # pygame display stuff
         pygame.init()
@@ -35,6 +35,8 @@ class PygameDisplay:
             
             self.clock.tick(60)
 
+    # TODO: refactor sensing radius to use pygame collisions instead
+    # basically, move get_neighbor_ids, get_predators, and get_sites to here
     def update(self):
         for site in self.simulation.sites:
              pygame.draw.circle(self.screen, (0, 255, 0, 100), site.pos, site.radius)
@@ -47,7 +49,20 @@ class PygameDisplay:
         for predator in self.simulation.predators:
             pygame.draw.circle(self.screen, "red", predator.pos, 5)
 
+    ### CLASS HELPERS ###
+    # NOTE: Dr. Goodrich used a group collide method native to pygame... how to do that for our agents?
+    #       Need to change build_agent structure in simulation to add sim components to a sprite group.
+    def get_neighbors(self, agent):
+        # get collisions
+        # append id of colliding neighbors to agent.neighbors and group_neighbors
+        pass
+
+    def get_sites(self, agent):
+        # get collisions
+        # set colliding site to agent.site
+        pass
+
 # Run Simulation
 sim = Simulation()
-display = PygameDisplay(sim)
+display = PygameSim(sim)
 display.run()

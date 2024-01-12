@@ -1,7 +1,7 @@
 import numpy as np
 import math
-from states import *
-from config import *
+from Controllers.states import *
+from World.config import *
 
 # note to self: future planning, factors will be floats from 0.5 to 1.0
 class Agent:

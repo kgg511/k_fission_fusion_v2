@@ -1,6 +1,6 @@
 from py_trees.common import Status
 from py_trees.behaviour import Behaviour
-from config import *
+from World.config import *
 import numpy as np
 
 class AgentBehavior(Behaviour):

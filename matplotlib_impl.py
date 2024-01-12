@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import simulation as sim
-from states import EXPLORE_NAME, LOW_DENSE_NAME, HIGH_DENSE_NAME, REST_NAME, FLEE_NAME
+import World.simulation as sim
+from Controllers.states import EXPLORE_NAME, LOW_DENSE_NAME, HIGH_DENSE_NAME, REST_NAME, FLEE_NAME
 
 NUM_TRIALS = 50
 

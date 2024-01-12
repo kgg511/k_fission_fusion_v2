@@ -1,7 +1,7 @@
 import py_trees
-from behaviors import *
-from agent import Agent
-from feeding_site import Site
+from Controllers.behaviors import *
+from Model.agent import Agent
+from Model.feeding_site import Site
 
 # USED FOR DEBUGGING
 demo_site = Site([5, 5], 1, 10, 10)

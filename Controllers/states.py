@@ -9,7 +9,7 @@ FLEE_NAME = "FLEE"
 
 import numpy as np
 import math
-from config import *
+from World.config import *
 
 class State:
     def __init__(self, name, color, agent):
