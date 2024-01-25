@@ -41,7 +41,7 @@ class Simulation:
             agents.append(Agent(i, pos, speed, theta, hunger, self, attr_factor=attraction, repulse_factor=repulsion, network=[], group_id=group_id))
             
             # Behavior Tree
-            agents[i].set_bt(build_bt(agents[i]))
+            agents[i].bt = build_bt(agents[i])
 
             # simulation book-keeping
             self.prev_state.update({i: [pos, 1.0, np.array([np.cos(theta), np.sin(theta)])]})

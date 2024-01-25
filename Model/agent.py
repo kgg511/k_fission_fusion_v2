@@ -91,7 +91,6 @@ class Agent:
                 if np.array_equal(self.sim.get_agent_group_id(neighbor), self.group_id):
                     attraction += self.sim.get_agent_pos(neighbor)
                     num_network_neighbors += 1
-                    pass
 
                 # repel away from neighbors out of network
                 else:
@@ -126,10 +125,3 @@ class Agent:
         if len(self.last_known_sites) > MAX_SITE_MEMORY:
             self.last_known_sites.pop(0)
 
-    def set_bt(self, bt):
-        self.bt = bt
-        
-    # def get_task_densities(self, neighbors):
-    #     # get however many neighbors are doing which task
-    #     # densities are num_neighbor_task/len(neighbors)
-    #     pass
