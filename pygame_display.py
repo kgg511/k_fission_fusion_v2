@@ -1,5 +1,6 @@
 import pygame
 from World.config import WORLD_SIZE
+from World.pygame_sim import PygameSim
 from World.simulation import Simulation
 
 # Helper: Code from https://stackoverflow.com/questions/214359/converting-hex-color-to-rgb-and-vice-versa by Jeremy Cantrell
@@ -9,7 +10,7 @@ def hex_to_rgb(value):
     lv = len(value)
     return tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
 
-class PygameSim:
+class PygameDisplay:
     def __init__(self, simulation):
         # pygame display stuff
         pygame.init()
@@ -20,6 +21,7 @@ class PygameSim:
         # the simulation to display
         self.simulation = simulation
 
+    # updates simulation state
     def run(self):
         while self.running:
             for event in pygame.event.get():
@@ -30,13 +32,14 @@ class PygameSim:
             self.screen.fill("white")
             self.simulation.bt_update()
             self.update()
+            print(self.simulation.agents[0].at_site())
+            print(self.simulation.agents[0].neighbors)
             
             pygame.display.flip()
             
             self.clock.tick(60)
 
-    # TODO: refactor sensing radius to use pygame collisions instead
-    # basically, move get_neighbor_ids, get_predators, and get_sites to here
+    # updates display
     def update(self):
         for site in self.simulation.sites:
              pygame.draw.circle(self.screen, (0, 255, 0, 100), site.pos, site.radius)
@@ -49,20 +52,8 @@ class PygameSim:
         for predator in self.simulation.predators:
             pygame.draw.circle(self.screen, "red", predator.pos, 5)
 
-    ### CLASS HELPERS ###
-    # NOTE: Dr. Goodrich used a group collide method native to pygame... how to do that for our agents?
-    #       Need to change build_agent structure in simulation to add sim components to a sprite group.
-    def get_neighbors(self, agent):
-        # get collisions
-        # append id of colliding neighbors to agent.neighbors and group_neighbors
-        pass
-
-    def get_sites(self, agent):
-        # get collisions
-        # set colliding site to agent.site
-        pass
 
 # Run Simulation
-sim = Simulation()
-display = PygameSim(sim)
+sim = PygameSim()
+display = PygameDisplay(sim)
 display.run()

@@ -29,7 +29,6 @@ def build_bt(agent):
                                                                         HaveGroupNeighbors("Group", agent),
                                                                         HaveTime("Timer", agent),
                                                                         Rest("Rest", agent)])
-    # rest_root = py_trees.decorators.Repeat("Timer", rest_subtree, 10)
 
     # GoToSite subtree
     goToSite_subtree = py_trees.composites.Sequence("GoToSite_Actions", False, [HaveNeighbors("Neighbors", agent),
@@ -51,6 +50,7 @@ def build_ppa_bt(agent):
     rest_pa = py_trees.composites.Sequence("Rest_PA", False, [HaveGroupNeighbors("Group", agent),
                                                               AtSite("AtSite", agent),
                                                               Rest("Rest", agent)])
+    # invert HaveTime?
     rest_root = py_trees.composites.Selector("Rest_Root", False, [HaveTime("Timer", agent), rest_pa])
 
     goToSite_pa = py_trees.composites.Sequence("GoToSite_PA", False, [HaveNeighbors("Neighbors", agent),

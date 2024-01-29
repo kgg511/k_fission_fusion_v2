@@ -71,7 +71,6 @@ def run_simulation():
 
             # for predator in simulation.predators:
             #     predator.update()
-            #     file.write(f"Predator target: {predator.target}\n")
 
             simulation.avg_hunger = float(simulation.avg_hunger / sim.NUM_AGENTS)
             display(fig, ax, simulation.agents, simulation.predators, sites_x, sites_y, sites_radius, simulation.agent_colors)

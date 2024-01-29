@@ -1,12 +1,13 @@
 import pygame
-from config import AGENT_SENSING_RADIUS, WORLD_SIZE
+from World.config import AGENT_SENSING_RADIUS, WORLD_SIZE
 
 class AgentSprite(pygame.sprite.Sprite):
     def __init__(self, agent, agent_color):
+        super().__init__()
         self.agent = agent
         # create surface to draw, set transparent color
         self.surface = pygame.Surface((10, 10))
-        self.surface.set_colorkey(0, 0, 0)
+        self.surface.set_colorkey((0, 0, 0))
         # set self.rect then inflate() by SENSING_RADIUS
         self.rect = self.surface.get_rect()
         self.rect = self.rect.inflate(AGENT_SENSING_RADIUS, AGENT_SENSING_RADIUS)
