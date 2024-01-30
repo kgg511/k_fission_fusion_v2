@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import simulation as sim
-from states import EXPLORE_NAME, LOW_DENSE_NAME, HIGH_DENSE_NAME, REST_NAME, FLEE_NAME
+from states import EXPLORE_NAME, REST_NAME, FLEE_NAME, NET_EXPLORE_NAME, NET_GOTOSITE_NAME, NET_REST_NAME
 
-NUM_TRIALS = 50
+NUM_TRIALS = 100
 
 # SIMULATION SET UP
 def setup_simulation():
@@ -86,8 +86,8 @@ def run_simulation():
         # file.write(f"Ending Hunger: {simulation.avg_hunger}")
     plt.show()
 
-def run_simulation_mult():
-    with open('experiment_results/world_size/experiment_stats_world_size_40.txt', 'w') as file:
+def run_simulation_mult(pathname):
+    with open(pathname, 'w') as file:
         file.write("SIM CONFIG\n" +
                    f"NUM AGENTS={sim.NUM_AGENTS}\n" +
                    f"WORLD SIZE={sim.WORLD_SIZE}\n" +
@@ -104,6 +104,7 @@ def run_simulation_mult():
         avg_flee_agents = 0.0
         avg_site_resources = 0.0
 
+        print("Running Experiment")
         for i in range(NUM_TRIALS):
             simulation, sites_x, sites_y, sites_radius = setup_simulation()
             trial_avg_explore_agents = 0
@@ -116,9 +117,9 @@ def run_simulation_mult():
 
             for j in range(sim.NUM_ITERS):
                 simulation.avg_hunger = 0
-                agent_states = {EXPLORE_NAME: 0,
-                        REST_NAME: 0,
-                        FLEE_NAME: 0}
+                agent_states = {NET_EXPLORE_NAME: 0,
+                        NET_REST_NAME: 0,
+                        NET_GOTOSITE_NAME: 0}
                 
                 for agent in simulation.agents:
                     neighbors = simulation.get_neighbor_ids(agent)
@@ -127,9 +128,9 @@ def run_simulation_mult():
                     agent.update(neighbors, sites, nearby_predators) # replace object with actual site readings later
                     agent_states[agent.state.name] = agent_states.get(agent.state.name) + 1
                     simulation.avg_hunger += agent.hunger
-                trial_avg_explore_agents += agent_states.get(EXPLORE_NAME)
-                trial_avg_rest_agents += agent_states.get(REST_NAME)
-                trial_avg_flee_agents += agent_states.get(FLEE_NAME)
+                trial_avg_explore_agents += agent_states.get(NET_EXPLORE_NAME)
+                trial_avg_rest_agents += agent_states.get(NET_REST_NAME)
+                trial_avg_flee_agents += agent_states.get(NET_GOTOSITE_NAME)
 
                 for site in simulation.sites:
                     site.update()
@@ -158,8 +159,9 @@ def run_simulation_mult():
 
             # Record simulation results
             file.write(f"Ending Hunger={simulation.avg_hunger}\n")
-            file.write(f"Avg State Nums\n{EXPLORE_NAME}={trial_avg_explore_agents}\n"
-                    + f"{REST_NAME}={trial_avg_rest_agents}\n{FLEE_NAME}={trial_avg_flee_agents}\n")
+            file.write(f"Avg State Nums\n{NET_EXPLORE_NAME}={trial_avg_explore_agents}\n"
+                    + f"{NET_REST_NAME}={trial_avg_rest_agents}\n"
+                    + f"{NET_GOTOSITE_NAME}={trial_avg_flee_agents}\n")
             file.write(f"Avg Resources per Iter={trial_avg_site_resources}\n")
         
         # Process data for experiment
@@ -176,24 +178,25 @@ def run_simulation_mult():
         file.write(f"Avg Starting Hunger={avg_starting_hunger}, Avg Ending Hunger={avg_ending_hunger}\n")
         file.write(f"Avg Hunger Difference={avg_hunger_diff}\n")
         file.write(f"Avg Site Resources per Iter={avg_site_resources}\n")
-        file.write(f"AVG STATE NUMS\n{EXPLORE_NAME}={avg_explore_agents}\n"
-                    + f"{REST_NAME}={avg_rest_agents}\n{FLEE_NAME}={avg_flee_agents}\n")
+        file.write(f"AVG STATE NUMS\n{NET_EXPLORE_NAME}={avg_explore_agents}\n"
+                    + f"{NET_REST_NAME}={avg_rest_agents}\n"
+                    + f"{NET_GOTOSITE_NAME}={avg_flee_agents}\n")
         
         return ending_hunger
 
 
-run_simulation()
-# experiment_ending_hunger = run_simulation_mult()
+# run_simulation()
+experiment_ending_hunger = run_simulation_mult('../experiment_results/experiment_stats_world_size_25.txt')
 
-# # save data to .npz
-# np.save(file='experiment_results/experiment_data/experiment_stats_world_size_40_data.npy', arr=experiment_ending_hunger, allow_pickle=False)
+# save data to .npz
+np.save(file='../experiment_results/experiment_data/experiment_stats_world_size_25_data.npy', arr=experiment_ending_hunger, allow_pickle=False)
 
-# # set up boxplot
-# fig = plt.figure(figsize=(10,7))
-# plt.boxplot(experiment_ending_hunger)
+# set up boxplot
+fig = plt.figure(figsize=(10,7))
+plt.boxplot(experiment_ending_hunger)
 
-# # save boxplot as .jpg
-# plt.savefig('experiment_results/graphs/experiment_stats_world_size_40_graph.jpg')
+# save boxplot as .jpg
+plt.savefig('../experiment_results/graphs/experiment_stats_world_size_25_graph.jpg')
 
-# # display
-# plt.show()
+# display
+plt.show()

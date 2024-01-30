@@ -6,6 +6,9 @@ LOW_DENSE_NAME = "LOW_DENSE_EXPLORE"
 HIGH_DENSE_NAME = "HIGH_DENSE_EXPLORE"
 REST_NAME = "REST"
 FLEE_NAME = "FLEE"
+NET_EXPLORE_NAME = "NETWORK_EXP"
+NET_REST_NAME = "NETWORK_REST"
+NET_GOTOSITE_NAME = "NETWORK_LEAD"
 
 import numpy as np
 import math
@@ -16,48 +19,31 @@ class State:
         self.name = name
         self.color = color
         self.agent = agent
-        self.timer = 0
-        self.x_bump = False
-        self.y_bump = False
 
     def update(self, neighbors, sites, predators):
         # leave as abstract method
         self.agent.sim.prev_state.update({self.agent.id: [self.agent.pos, self.agent.speed, self.agent.heading()]})
+        self.agent.hunger -= 1
 
     def move(self, neighbors, predators):
         # handle repulsion away from world borders
         # FIXME: current behavior just has agents crowding the edges
-        if self.timer > 0:
-            self.timer -= 1
-            # move toward center of whatever axis agent bumped into
-            # FIXME: goes out of bounds...
-            if self.x_bump:
-                self.agent.pos[1] += (WORLD_SIZE//2 - self.agent.pos[1]) * DT
-            if self.y_bump:
-                self.agent.pos[0] += (WORLD_SIZE//2 - self.agent.pos[0]) * DT
-        elif self.timer <= 0:
-            self.x_bump = False
-            self.y_bump = False
 
         if math.isclose(self.agent.pos[0], PADDING) or self.agent.pos[0] < PADDING:
-            # self.agent.pos[0] = PADDING + DT
-            self.y_bump = True
-            self.timer += 3
+            self.agent.pos[0] = PADDING + DT
+            self.agent.hunger += 1
 
         if math.isclose(self.agent.pos[1], PADDING) or self.agent.pos[1] < PADDING:
-            # self.agent.pos[1] = PADDING + DT
-            self.x_bump = True
-            self.timer += 3
+            self.agent.pos[1] = PADDING + DT
+            self.agent.hunger += 1
 
         if math.isclose(self.agent.pos[0], WORLD_SIZE - PADDING) or self.agent.pos[0] > WORLD_SIZE - PADDING:
-            # self.agent.pos[0] = WORLD_SIZE - PADDING - DT
-            self.y_bump = True
-            self.timer += 3
+            self.agent.pos[0] = WORLD_SIZE - PADDING - DT
+            self.agent.hunger += 1
 
         if math.isclose(self.agent.pos[1], WORLD_SIZE - PADDING) or self.agent.pos[1] > WORLD_SIZE - PADDING:
-            # self.agent.pos[1] = WORLD_SIZE - PADDING - DT
-            self.x_bump = True
-            self.timer += 3
+            self.agent.pos[1] = WORLD_SIZE - PADDING - DT
+            self.agent.hunger += 1 # this will make it so their hunger doesn't keep deprecating out of bounds to help with stats?
 
     def repulse_move(self, neighbors, predators, attr_factor=1.0, diff_factor=1.0):
         # use a repulsion equation to space (boids-like repulsion)
@@ -145,11 +131,12 @@ class NetworkRepulseState(State):
             if np.random.random() > 0.5:
                 # make sure we don't go back to last_known_site so agents can wander away
                 viable_sites = list(filter(lambda i: i not in self.agent.last_known_sites, sites))
+                viable_sites = list(filter(lambda i: i.is_available(), sites))
                 if len(viable_sites) > 0:
                     self.agent.site = viable_sites[np.random.randint(0, len(viable_sites))]
                     self.agent.add_site(self.agent.site)
-                    self.agent.state = GoToSiteState("NETWORK_LEAD", (0, 0, 255), self.agent)
-                    print(f"Agent {self.agent.id} chose to go to site {self.agent.site}")
+                    self.agent.state = GoToSiteState(NET_GOTOSITE_NAME, (0, 0, 255), self.agent)
+                    # print(f"Agent {self.agent.id} chose to go to site {self.agent.site}")
                     return
 
         for neighbor in neighbors:
@@ -160,8 +147,8 @@ class NetworkRepulseState(State):
                         self.agent.site = self.agent.sim.agents[neighbor].site
                         self.agent.add_site(self.agent.site)
                         self.agent.following = neighbor
-                        self.agent.state = GoToSiteState("NETWORK_LEAD", (0, 0, 255), self.agent)
-                        print(f"Agent {self.agent.id} was persuaded to go to site {self.agent.site}")
+                        self.agent.state = GoToSiteState(NET_GOTOSITE_NAME, (0, 0, 255), self.agent)
+                        # print(f"Agent {self.agent.id} was persuaded to go to site {self.agent.site}")
                         break
 
         # if self.agent.site != None:
@@ -178,11 +165,13 @@ class NetworkRestState(State):
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
         self.rest_timer = 50
-        print(f"{self.agent.id} entered rest state")
+        # print(f"{self.agent.id} entered rest state")
 
     # TODO: have a better way to transition out haha
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
+        self.agent.hunger += 2
+        self.agent.site.resource_count -= 1
         # calculate group-id densities to determine how much more time they'll stay on site
         num_group_neighbors = 0
         if neighbors:
@@ -203,7 +192,7 @@ class NetworkRestState(State):
             self.rest_timer = 0
         
         if self.rest_timer == 0 or num_group_neighbors == 0:
-            self.agent.state = NetworkRepulseState("NETWORK_EXP", (0, 255, 0), self.agent)
+            self.agent.state = NetworkRepulseState(NET_EXPLORE_NAME, (0, 255, 0), self.agent)
 
         # *potentially* change group membership???
 
@@ -221,11 +210,11 @@ class GoToSiteState(State):
         super().update(neighbors, sites, predators)
         if not neighbors:
             self.agent.following = None
-            self.agent.state = NetworkRepulseState("NETWORK_REP", (0, 255, 0), self.agent)
+            self.agent.state = NetworkRepulseState(NET_EXPLORE_NAME, (0, 255, 0), self.agent)
             return
         if self.agent.at_site():
             self.agent.following = None
-            self.agent.state = NetworkRestState("NETWORK_REST", (0, 255, 255),self.agent)
+            self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255),self.agent)
             return
         
     def move(self, neighbors, predators):

@@ -9,7 +9,7 @@ class Agent:
                  site=None, network=None, group_id=None, following=None):
         self.id = id
         self.pos = pos
-        self.state = NetworkRepulseState("NETWORK_EXP", (0, 255, 0), self)
+        self.state = NetworkRepulseState(NET_EXPLORE_NAME, (0, 255, 0), self)
         self.speed = speed
         self.theta = theta
         self.hunger = hunger

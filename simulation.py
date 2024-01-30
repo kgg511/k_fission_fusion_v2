@@ -39,9 +39,9 @@ class Simulation:
             agents.append(Agent(i, pos, speed, theta, hunger, self, attr_factor=attraction, repulse_factor=repulsion, network=[], group_id=group_id))
             self.prev_state.update({i: [pos, 1.0, np.array([np.cos(theta), np.sin(theta)])]})
             self.avg_hunger += hunger
-            print(f"Agent {i} group id: {group_id}\n")
+            # print(f"Agent {i} group id: {group_id}\n")
             # print(f"Agent {i}: attraction = {attraction}, repulsion = {repulsion}, speed = {speed}")
-        print(f"group sizes = {group_sizes}\n")
+        # print(f"group sizes = {group_sizes}\n")
         return agents
 
     def build_sites(self):
