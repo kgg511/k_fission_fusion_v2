@@ -14,7 +14,13 @@ class PygameDisplay:
     def __init__(self, simulation):
         # pygame display stuff
         pygame.init()
-        self.screen = pygame.display.set_mode((WORLD_SIZE, WORLD_SIZE))
+        self.should_scale = False
+        if WORLD_SIZE > 500:
+            self.screen = pygame.display.set_mode((WORLD_SIZE, WORLD_SIZE))
+        else:
+            self.screen = pygame.display.set_mode((500, 500))
+            self.should_scale = True
+            self.scale = 500 / WORLD_SIZE
         self.clock = pygame.time.Clock()
         self.running = True
 
@@ -42,12 +48,18 @@ class PygameDisplay:
     # updates display
     def update(self):
         for site in self.simulation.sites:
-             pygame.draw.circle(self.screen, (0, 255, 0, 100), site.pos, site.radius)
+            if self.should_scale:
+                pygame.draw.circle(self.screen, (0, 255, 0, 100), site.pos*self.scale, site.radius*self.scale)
+            else:
+                pygame.draw.circle(self.screen, (0, 255, 0, 100), site.pos, site.radius)
 
         for agent in self.simulation.agents:
             agent_color_name = self.simulation.agent_colors[agent.id]
             agent_color = hex_to_rgb(agent_color_name)
-            pygame.draw.circle(self.screen, agent_color, agent.pos, 5)
+            if self.should_scale:
+                pygame.draw.circle(self.screen, agent_color, agent.pos*self.scale, 5)
+            else:
+                pygame.draw.circle(self.screen, agent_color, agent.pos, 5)
              
         for predator in self.simulation.predators:
             pygame.draw.circle(self.screen, "red", predator.pos, 5)
