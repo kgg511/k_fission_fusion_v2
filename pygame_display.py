@@ -32,8 +32,8 @@ class PygameDisplay:
             self.screen.fill("white")
             self.simulation.bt_update()
             self.update()
-            print(self.simulation.agents[0].at_site())
-            print(self.simulation.agents[0].neighbors)
+            # print(self.simulation.agents[0].at_site())
+            # print(self.simulation.agents[0].neighbors)
             
             pygame.display.flip()
             
@@ -54,6 +54,6 @@ class PygameDisplay:
 
 
 # Run Simulation
-sim = PygameSim()
+sim = Simulation()
 display = PygameDisplay(sim)
 display.run()

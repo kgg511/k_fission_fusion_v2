@@ -73,11 +73,12 @@ class QueryForSites(AgentBehavior):
             for neighbor in self.agent.group_neighbors:
                 if self.agent.sim.agents[neighbor].site != None:
                     # accept or reject site
-                    if np.random.random() > 0.2:
-                        self.agent.site = self.agent.sim.agents[neighbor].site
-                        self.agent.add_site(self.agent.site)
-                        self.agent.following = neighbor
-                        return Status.SUCCESS
+                    if self.agent.sim.agents[neighbor].site.is_available():
+                        if np.random.random() > 0.2:
+                            self.agent.site = self.agent.sim.agents[neighbor].site
+                            self.agent.add_site(self.agent.site)
+                            self.agent.following = neighbor
+                            return Status.SUCCESS
 
         for site in self.agent.potential_sites:
             # random chance to actually want to go to site (default set to 50%?)
@@ -102,6 +103,8 @@ class Rest(AgentBehavior):
         return super().setup(**kwargs)
     
     def update(self) -> Status:
+        self.agent.hunger += 2
+        self.agent.site.resource_count -= 1
         self.agent.timer -= 1
         dx = self.agent.site.pos - self.agent.pos
         self.agent.pos += dx * DT
@@ -122,7 +125,8 @@ class AtSite(AgentBehavior):
     
     def update(self) -> Status:
         if self.agent.at_site():
-            return Status.SUCCESS
+            if self.agent.site.is_available():
+                return Status.SUCCESS
         return Status.FAILURE
 
 # check if site is selected

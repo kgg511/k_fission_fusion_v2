@@ -46,7 +46,7 @@ class Simulation:
             # simulation book-keeping
             self.prev_state.update({i: [pos, 1.0, np.array([np.cos(theta), np.sin(theta)])]})
             self.avg_hunger += hunger
-            print(f"Agent {i} group id: {group_id}\n")
+            # print(f"Agent {i} group id: {group_id}\n")
             # print(f"Agent {i}: attraction = {attraction}, repulsion = {repulsion}, speed = {speed}")
         print(f"group sizes = {group_sizes}\n")
         return agents
@@ -118,9 +118,36 @@ class Simulation:
                     sites.append(site)
         return sites
     
+    # TODO: technically works but is there a better way?
+    def handle_boundaries(self, agent):
+        out_of_bounds = False
+        if math.isclose(agent.pos[0], PADDING) or agent.pos[0] < PADDING:
+            agent.pos[0] = PADDING + DT
+            out_of_bounds = True
+
+        if math.isclose(agent.pos[1], PADDING) or agent.pos[1] < PADDING:
+            agent.pos[1] = PADDING + DT
+            out_of_bounds = True
+
+        if math.isclose(agent.pos[0], WORLD_SIZE - PADDING) or agent.pos[0] > WORLD_SIZE - PADDING:
+            agent.pos[0] = WORLD_SIZE - PADDING - DT
+            out_of_bounds = True
+
+        if math.isclose(agent.pos[1], WORLD_SIZE - PADDING) or agent.pos[1] > WORLD_SIZE - PADDING:
+            agent.pos[1] = WORLD_SIZE - PADDING - DT
+            out_of_bounds = True
+
+        if out_of_bounds:
+            agent.hunger += 1
+    
     def bt_update(self):
         for agent in self.agents:
             agent.neighbors, agent.group_neighbors = self.get_neighbor_ids(agent)
             agent.potential_sites = self.get_sites(agent)
+            agent.hunger -= 1
             agent.bt.tick()
+            self.avg_hunger += agent.hunger
+            self.handle_boundaries(agent)
+        for site in self.sites:
+            site.update()
     
