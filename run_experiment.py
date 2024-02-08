@@ -32,7 +32,9 @@ def run_simulation_mult(filename):
             trial_avg_site_resources = 0
 
             file.write(f"\nTrial {i}: Starting hunger={simulation.avg_hunger}\n")
+            print("Starting Trial\n")
             avg_starting_hunger += simulation.avg_hunger
+            start_hunger = simulation.avg_hunger
 
             for j in range(NUM_ITERS):
                 simulation.avg_hunger = 0
@@ -41,9 +43,12 @@ def run_simulation_mult(filename):
                     
                 simulation.avg_hunger = float(simulation.avg_hunger / NUM_AGENTS)
                 ending_hunger.append(simulation.avg_hunger)
+                for site in simulation.sites:
+                    trial_avg_site_resources += site.resource_count
                 
             avg_ending_hunger += simulation.avg_hunger
-            avg_hunger_diff += (avg_ending_hunger - avg_starting_hunger)
+            hunger_diff = simulation.avg_hunger - start_hunger
+            avg_hunger_diff += hunger_diff
 
             # Process stats for trial
             trial_avg_explore_agents = float(trial_avg_explore_agents / NUM_ITERS)
@@ -82,7 +87,7 @@ def run_simulation_mult(filename):
         
         return ending_hunger
 
-filename = 'bt_default_config_test'
+filename = 'bt_default_config_test2'
 
 experiment_ending_hunger = run_simulation_mult('../experiment_results/' + filename + '.txt')
 
