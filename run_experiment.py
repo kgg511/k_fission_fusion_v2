@@ -42,11 +42,11 @@ def run_simulation_mult(filename):
                 simulation.bt_update()
                     
                 simulation.avg_hunger = float(simulation.avg_hunger / NUM_AGENTS)
-                ending_hunger.append(simulation.avg_hunger)
                 for site in simulation.sites:
                     trial_avg_site_resources += site.resource_count
                 
             avg_ending_hunger += simulation.avg_hunger
+            ending_hunger.append(simulation.avg_hunger)
             hunger_diff = simulation.avg_hunger - start_hunger
             avg_hunger_diff += hunger_diff
 
