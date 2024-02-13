@@ -114,6 +114,7 @@ def run_simulation_mult(pathname):
 
             file.write(f"\nTrial {i}: Starting hunger={simulation.avg_hunger}\n")
             avg_starting_hunger += simulation.avg_hunger
+            start_hunger = simulation.avg_hunger
 
             for j in range(sim.NUM_ITERS):
                 simulation.avg_hunger = 0
@@ -140,10 +141,11 @@ def run_simulation_mult(pathname):
                     predator.update()
                     
                 simulation.avg_hunger = float(simulation.avg_hunger / sim.NUM_AGENTS)
-                ending_hunger.append(simulation.avg_hunger)
                 
             avg_ending_hunger += simulation.avg_hunger
-            avg_hunger_diff += (avg_ending_hunger - avg_starting_hunger)
+            ending_hunger.append(simulation.avg_hunger)
+            hunger_diff = simulation.avg_hunger - start_hunger
+            avg_hunger_diff += hunger_diff
 
             # Process stats for trial
             trial_avg_explore_agents = float(trial_avg_explore_agents / sim.NUM_ITERS)
