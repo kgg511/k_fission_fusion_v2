@@ -1,6 +1,7 @@
 from py_trees.common import Status
 from py_trees.behaviour import Behaviour
 from World.config import *
+from math import floor
 import numpy as np
 
 class AgentBehavior(Behaviour):
@@ -22,6 +23,7 @@ class AgentBehavior(Behaviour):
         self.agent = agent
     
 ### ACTUAL BEHAVIOR ###
+# TODO: merge Flock and Query for Sites?
 class Flock(AgentBehavior):
     def __init__(self, name, agent):
         super().__init__(name, agent)
@@ -91,10 +93,10 @@ class QueryForSites(AgentBehavior):
 
         return Status.SUCCESS
     
-class Rest(AgentBehavior):
+class Graze(AgentBehavior):
     def __init__(self, name, agent):
         super().__init__(name, agent)
-        self.agent.timer = AGENT_REST_TIMER
+        self.agent.timer = AGENT_REST_TIMER # FIXME: put the initialization for the timer somewhere else so it can reset when called again from another state
 
     def initialise(self) -> None:
         return super().initialise()
@@ -108,8 +110,37 @@ class Rest(AgentBehavior):
         self.agent.timer -= 1
         dx = self.agent.site.pos - self.agent.pos
         self.agent.pos += dx * DT
+        print(f"graze ticked by agent {self.agent.id}\n")
         return Status.SUCCESS
     
+class Explore(AgentBehavior):
+    def __init__(self, name, agent):
+        super().__init__(name, agent)
+
+    def initialise(self) -> None:
+        return super().initialise()
+    
+    def setup(self, **kwargs) -> None:
+        return super().setup(**kwargs)
+    
+    def update(self) -> Status:
+        self.agent.random_walk()
+        return Status.SUCCESS
+    
+class Rest(AgentBehavior):
+    def __init__(self, name, agent):
+        super().__init__(name, agent)
+    
+    def initialise(self) -> None:
+        return super().initialise()
+    
+    def setup(self, **kwargs) -> None:
+        return super().setup(**kwargs)
+    
+    def update(self) -> Status:
+        # stay in place until neighbors in range
+        return Status.SUCCESS
+
 ### CONDITIONS ###
 
 # check if at site
@@ -126,6 +157,7 @@ class AtSite(AgentBehavior):
     def update(self) -> Status:
         if self.agent.at_site():
             if self.agent.site.is_available():
+                print(f"{self.agent.id} is at site\n")
                 return Status.SUCCESS
         return Status.FAILURE
 
@@ -179,7 +211,7 @@ class HaveGroupNeighbors(AgentBehavior):
                 return Status.SUCCESS
         return Status.FAILURE
 
-class HaveTime(AgentBehavior):
+class IsBored(AgentBehavior):
     def __init__(self, name, agent):
         super().__init__(name, agent)
 
@@ -191,5 +223,36 @@ class HaveTime(AgentBehavior):
     
     def update(self) -> Status:
         if self.agent.timer > 0:
+            print(f"{self.agent.id} is bored\n")
+            return Status.SUCCESS
+        return Status.FAILURE
+
+class IsHungry(AgentBehavior):
+    def __init__(self, name, agent):
+        super().__init__(name, agent)
+
+    def initialise(self) -> None:
+        return super().initialise()
+    
+    def setup(self, **kwargs) -> None:
+        return super().setup(**kwargs)
+    
+    def update(self) -> Status:
+        if self.agent.hunger < MAX_HUNGER // 2:
+            return Status.SUCCESS
+        return Status.FAILURE
+    
+class IsSatisfied(AgentBehavior):
+    def __init__(self, name, agent):
+        super().__init__(name, agent)
+    
+    def initialise(self) -> None:
+        return super().initialise()
+    
+    def setup(self, **kwargs) -> None:
+        return super().setup(**kwargs)
+    
+    def update(self) -> Status:
+        if self.agent.hunger > floor(MAX_HUNGER * 0.75):
             return Status.SUCCESS
         return Status.FAILURE

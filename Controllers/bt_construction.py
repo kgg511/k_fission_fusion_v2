@@ -27,8 +27,8 @@ def build_bt(agent):
     # Rest subtree
     rest_root = py_trees.composites.Sequence("Rest_Root", False, children=[AtSite("AtSite", agent), 
                                                                         HaveGroupNeighbors("Group", agent),
-                                                                        HaveTime("Timer", agent),
-                                                                        Rest("Rest", agent)])
+                                                                        IsBored("Timer", agent),
+                                                                        Graze("Rest", agent)])
 
     # GoToSite subtree
     goToSite_subtree = py_trees.composites.Sequence("GoToSite_Actions", False, [HaveNeighbors("Neighbors", agent),
@@ -46,12 +46,30 @@ def build_bt(agent):
 
     return py_trees.trees.BehaviourTree(root=root)
     
+# FIXME: neither of the subtrees are working
+def build_bt_2(agent):
+    graze_pre = py_trees.composites.Sequence("Graze_Pre", False, [IsHungry("IsHungry", agent),
+                                                                 AtSite("AtSite", agent)])
+    graze_post = py_trees.composites.Selector("Graze_Post", False, [IsSatisfied("IsSatisfied", agent),
+                                                                    IsBored("IsBored_Graze", agent)])
+    graze_root = py_trees.composites.Selector("Graze", False, [py_trees.composites.Sequence("Graze_Sub", False, [graze_pre, Graze("Grazing", agent)])])
+    
+    flock_pre = py_trees.composites.Sequence("Flock_Pre", False, [HaveGroupNeighbors("GroupNeighbors_Flock", agent),
+                                                                  Flock("Flocking", agent)])
+    flock_post = py_trees.composites.Selector("Flock_Post", False, [SiteSelected("SiteSelected_Flock", agent),
+                                                                    IsBored("IsBored_Flock", agent)])
+    flock_root = py_trees.composites.Selector("Flock", False, [flock_post, flock_pre])
+    
+    root = py_trees.composites.Selector("Root", False, [graze_root, Explore("Explore", agent)])
+    
+    return py_trees.trees.BehaviourTree(root=root)
+
 def build_ppa_bt(agent):
     rest_pa = py_trees.composites.Sequence("Rest_PA", False, [HaveGroupNeighbors("Group", agent),
                                                               AtSite("AtSite", agent),
-                                                              Rest("Rest", agent)])
+                                                              Graze("Rest", agent)])
     # invert HaveTime?
-    rest_root = py_trees.composites.Selector("Rest_Root", False, [HaveTime("Timer", agent), rest_pa])
+    rest_root = py_trees.composites.Selector("Rest_Root", False, [IsBored("Timer", agent), rest_pa])
 
     goToSite_pa = py_trees.composites.Sequence("GoToSite_PA", False, [HaveNeighbors("Neighbors", agent),
                                                                       SiteSelected("SiteSelected_gts", agent),
