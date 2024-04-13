@@ -1,7 +1,7 @@
 import numpy as np
 import math
-from states import DT, PADDING
-from config import *
+from Controllers.states import DT, PADDING
+from World.config import *
 
 class Predator:
     def __init__(self, pos, theta, sim, speed=1.0, target=None):
@@ -33,7 +33,7 @@ class Predator:
         self.neighbors = []
 
     def move(self):
-        from simulation import WORLD_SIZE
+        from World.simulation import WORLD_SIZE
         if self.target:
             # orient towards target
             dx = self.target.pos - self.pos
