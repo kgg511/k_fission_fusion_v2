@@ -25,18 +25,30 @@ class AgentBehavior(Behaviour):
 ### ACTUAL BEHAVIOR ###
 # TODO: merge Flock and Query for Sites?
 class Flock(AgentBehavior):
-    def __init__(self, name, agent):
+    def __init__(self, name, agent, attr_factor=1.0, diff_factor=1.0):
         super().__init__(name, agent)
+        self.attr_factor = attr_factor
+        self.diff_factor = diff_factor
 
     def setup(self, **kwargs) -> None:
         return super().setup(**kwargs)
     
     def initialise(self) -> None:
+        if self.agent.timer == 0:
+            self.agent.timer = AGENT_REST_TIMER
+            print(f"Timer reset on agent{self.agent.id}")
         return super().initialise()
     
     def update(self) -> Status:
-        self.agent.repulse_move(self.agent.neighbors, None)
-        self.agent.random_walk(potency=10.0)
+        while self.agent.timer > 0: # essentially "IsBored"
+            if len(self.agent.neighbors) <= 0:
+                print(f"Agent {self.agent.id} has no neighbors, aborting {self.name}\n")
+                return Status.FAILURE
+            self.agent.repulse_move(self.agent.neighbors, None, attr_factor=self.attr_factor, diff_factor = self.diff_factor)
+            self.agent.random_walk(potency=10.0)
+            self.agent.timer -= 1
+            #print(f"{self.name} is running on Agent {self.agent.id}\n")
+            return Status.RUNNING
         return Status.SUCCESS
     
 class GoToSite(AgentBehavior):
@@ -96,7 +108,6 @@ class QueryForSites(AgentBehavior):
 class Graze(AgentBehavior):
     def __init__(self, name, agent):
         super().__init__(name, agent)
-        self.agent.timer = AGENT_REST_TIMER # FIXME: put the initialization for the timer somewhere else so it can reset when called again from another state
 
     def initialise(self) -> None:
         return super().initialise()
@@ -110,7 +121,7 @@ class Graze(AgentBehavior):
         self.agent.timer -= 1
         dx = self.agent.site.pos - self.agent.pos
         self.agent.pos += dx * DT
-        print(f"graze ticked by agent {self.agent.id}\n")
+        #print(f"graze ticked by agent {self.agent.id}\n")
         return Status.SUCCESS
     
 class Explore(AgentBehavior):
@@ -157,7 +168,7 @@ class AtSite(AgentBehavior):
     def update(self) -> Status:
         if self.agent.at_site():
             if self.agent.site.is_available():
-                print(f"{self.agent.id} is at site\n")
+                #print(f"{self.agent.id} is at site\n")
                 return Status.SUCCESS
         return Status.FAILURE
 
@@ -222,10 +233,11 @@ class IsBored(AgentBehavior):
         return super().setup(**kwargs)
     
     def update(self) -> Status:
+        #print(f"IsBored ticked on agent{self.agent.id}")
         if self.agent.timer > 0:
-            print(f"{self.agent.id} is bored\n")
-            return Status.SUCCESS
-        return Status.FAILURE
+            return Status.FAILURE
+        #print(f"Agent: {self.agent.id} is bored\n")
+        return Status.SUCCESS
 
 class IsHungry(AgentBehavior):
     def __init__(self, name, agent):
