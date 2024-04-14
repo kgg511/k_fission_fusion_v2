@@ -1,7 +1,7 @@
 import pygame
-from World.config import WORLD_SIZE
+from World.config import WORLD_SIZE, USE_BT
 from World.pygame_sim import PygameSim
-from World.simulation import Simulation
+from World.simulation import Simulation, BT_Simulation, FSM_Simulation
 
 # Helper: Code from https://stackoverflow.com/questions/214359/converting-hex-color-to-rgb-and-vice-versa by Jeremy Cantrell
 def hex_to_rgb(value):
@@ -36,7 +36,7 @@ class PygameDisplay:
                     pygame.quit()
 
             self.screen.fill("white")
-            self.simulation.bt_update()
+            self.simulation.update()
             self.update()
             # print(self.simulation.agents[0].at_site())
             # print(self.simulation.agents[0].neighbors)
@@ -66,6 +66,9 @@ class PygameDisplay:
 
 
 # Run Simulation
-sim = Simulation()
+if USE_BT:
+    sim = BT_Simulation()
+else:
+    sim = FSM_Simulation()
 display = PygameDisplay(sim)
 display.run()

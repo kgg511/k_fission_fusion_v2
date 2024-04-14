@@ -10,6 +10,7 @@ SITE_MAX_RADIUS = WORLD_SIZE * 0.25
 PADDING = 0.5
 DT = 0.01
 NUM_GROUPS = 3
+USE_BT = False
 
 # hard code some color constants for 3 groups. will randomize later
 PINK = "#FF00FF"

@@ -67,7 +67,7 @@ class Simulation:
             # print(f"Predator {i} starting pos: {pos}")
         return predators
     
-    def build_neighbor_matrix(self): # for list representation of network
+    def build_neighbor_matrix(self): # for list representation of network, UNUSED
         for i in range(0, NUM_AGENTS):
             for j in range(i, NUM_AGENTS):
                 if i != j:
@@ -76,6 +76,14 @@ class Simulation:
                             self.agents[i].network.append(j)
                             self.agents[j].network.append(i)
     
+    def get_sites(self, agent):
+        sites = []
+        for site in self.sites:
+            if site.is_available():
+                if math.dist(site.pos, agent.pos) <= AGENT_SENSING_RADIUS + site.radius:
+                    sites.append(site)
+        return sites
+
     def get_predators(self, agent):
         predators = []
         for predator in self.predators:
@@ -84,16 +92,6 @@ class Simulation:
                 if math.dist(agent.pos, predator.pos) <= AGENT_SENSING_RADIUS:
                     predators.append(predator)
         return predators
-
-    def get_neighbor_ids(self, agent):
-        neighbors = []
-        group_neighbors = []
-        for neighbor in self.agents:
-            if neighbor.id != agent.id and math.dist(neighbor.pos, agent.pos) < AGENT_SENSING_RADIUS:
-                neighbors.append(neighbor.id)
-                if np.array_equal(self.get_agent_group_id(neighbor.id), self.get_agent_group_id(agent.id)):
-                    group_neighbors.append(neighbor.id)
-        return neighbors, group_neighbors
     
     def get_agent_pos(self, id):
         return self.prev_state.get(id)[0]
@@ -106,14 +104,6 @@ class Simulation:
     
     def get_agent_group_id(self, agent_id):
         return self.agents[agent_id].group_id
-
-    def get_sites(self, agent):
-        sites = []
-        for site in self.sites:
-            if site.is_available():
-                if math.dist(site.pos, agent.pos) <= AGENT_SENSING_RADIUS + site.radius:
-                    sites.append(site)
-        return sites
     
     # TODO: technically works but is there a better way?
     def handle_boundaries(self, agent):
@@ -136,15 +126,56 @@ class Simulation:
 
         if out_of_bounds:
             agent.hunger += 1
-    
-    def bt_update(self):
+
+    def update(self):
         for agent in self.agents:
-            agent.neighbors, agent.group_neighbors = self.get_neighbor_ids(agent)
-            agent.potential_sites = self.get_sites(agent)
-            agent.hunger -= 1
-            agent.bt.tick()
-            self.avg_hunger += agent.hunger
-            self.handle_boundaries(agent)
+            self.update_agent(agent)
         for site in self.sites:
             site.update()
+
+    ### FUNCTIONS CHILD NEEDS TO OVERRIDE ###
+    def update_agent(self, agent):
+        agent.hunger -= 1
+        self.avg_hunger += agent.hunger
+        self.handle_boundaries(agent)
+
+    def get_neighbor_ids(self, agent):
+        return
+
+class BT_Simulation(Simulation):
+    def __init__(self):
+        super().__init__()
+
+    def get_neighbor_ids(self, agent):
+        neighbors = []
+        group_neighbors = []
+        for neighbor in self.agents:
+            if neighbor.id != agent.id and math.dist(neighbor.pos, agent.pos) < AGENT_SENSING_RADIUS:
+                neighbors.append(neighbor.id)
+                if np.array_equal(self.get_agent_group_id(neighbor.id), self.get_agent_group_id(agent.id)):
+                    group_neighbors.append(neighbor.id)
+        return neighbors, group_neighbors
     
+    def update_agent(self, agent):
+        agent.neighbors, agent.group_neighbors = self.get_neighbor_ids(agent)
+        agent.potential_sites = self.get_sites(agent)
+        agent.bt.tick()
+        super().update_agent(agent)
+    
+class FSM_Simulation(Simulation):
+    def __init__(self):
+        super().__init__()
+
+    def get_neighbor_ids(self, agent):
+        neighbors = []
+        for neighbor in self.agents:
+            if neighbor.id != agent.id and math.dist(neighbor.pos, agent.pos) < AGENT_SENSING_RADIUS:
+                neighbors.append(neighbor.id)
+        return neighbors
+
+    def update_agent(self, agent):
+        neighbors = self.get_neighbor_ids(agent)
+        sites = self.get_sites(agent)
+        predators = self.get_predators(agent)
+        agent.update(neighbors, sites, predators)
+        super().update_agent(agent)

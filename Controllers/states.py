@@ -164,7 +164,7 @@ class NetworkRepulseState(State):
 class NetworkRestState(State):
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
-        self.rest_timer = 50
+        self.rest_timer = AGENT_REST_TIMER
         # print(f"{self.agent.id} entered rest state")
 
     # TODO: have a better way to transition out haha
