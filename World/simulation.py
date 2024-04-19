@@ -67,7 +67,7 @@ class Simulation:
             # print(f"Predator {i} starting pos: {pos}")
         return predators
     
-    def build_neighbor_matrix(self): # for list representation of network, UNUSED
+    def build_neighbor_matrix(self): # for list representation of network, TODO: repurpose for sorting groups
         for i in range(0, NUM_AGENTS):
             for j in range(i, NUM_AGENTS):
                 if i != j:
@@ -129,6 +129,7 @@ class Simulation:
 
     def update(self):
         for agent in self.agents:
+            self.prev_state.update({agent.id: [agent.pos, agent.speed, agent.heading()]})
             self.update_agent(agent)
         for site in self.sites:
             site.update()

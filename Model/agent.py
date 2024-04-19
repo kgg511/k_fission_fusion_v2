@@ -12,6 +12,7 @@ class Agent:
         self.state = NetworkRepulseState(NET_EXPLORE_NAME, (0, 255, 0), self)
         self.speed = speed
         self.theta = theta
+        self.angular_velocity = 0.0
         self.hunger = hunger
         self.sim = sim
         self.attr_factor = attr_factor
@@ -24,7 +25,7 @@ class Agent:
         self.network = network # list representation
         self.group_id = group_id # binary vector representation
         self.following = following
-        # FOR BEHAVIOR TREE IMPLEMENTATION temporary until blackboard is implemented
+        # FOR BEHAVIOR TREE IMPLEMENTATION
         self.neighbors = neighbors
         self.group_neighbors = group_neighbors
         self.potential_sites = None
@@ -41,41 +42,57 @@ class Agent:
     def heading(self):
         return np.array([np.cos(self.theta), np.sin(self.theta)])
     
-    # add random perturbations to theta DID NOT WORK AS WELL AS I THOUGHT
-    # calculate repulsion + attraction + orientation towards neighbors
-    # calculate speed as an observable stat rather than a settable property of the agent?
-    # FIXME: fix world border handling
-    # maybe using a repelling force based on distance to world border similar to how repulsion is calculated for neighbors?
+    # move like Boids
     def move(self, neighbors, predators, attr_factor=1.0, rpls_factor=1.0):
-        attraction = -len(neighbors) * self.pos
-        repulsion = np.zeros(2)
-        new_speed = self.speed
+        if neighbors:
+            repulsion = np.zeros_like(self.pos)
+            attraction = np.zeros_like(self.pos)
+            orientation = self.heading()
 
-        for neighbor in neighbors:
-            attraction += (self.pos - self.sim.get_agent_pos(neighbor))
-            new_speed += self.sim.get_agent_speed(neighbor)
-            c = self.sim.get_agent_pos(neighbor) - self.pos
-            scaling_factor = c @ c
-            if scaling_factor == 0:
-                repulsion += c
-            else:
-                repulsion += c / scaling_factor
+            # calculate repulsion, attraction, and orientation
+            for neighbor in neighbors:
+                neighbor_pos = self.sim.get_agent_pos(neighbor)
+                # repulsion
+                if math.dist(neighbor_pos, self.pos) <= AGENT_REPL_RADIUS:
+                    dist_vect = neighbor_pos - self.pos
+                    if dist_vect @ dist_vect > 0:
+                        repulsion += dist_vect / (dist_vect @ dist_vect)
+                    else:
+                        repulsion += dist_vect
+                # orientation
+                if math.dist(neighbor_pos, self.pos) <= AGENT_ORIENT_RADIUS:
+                    orientation += self.sim.get_agent_heading(neighbor)
 
-        attraction = attraction / len(neighbors)
+                # attraction
+                attraction += neighbor_pos - self.pos
 
-        attraction *= self.attr_factor * attr_factor
-        repulsion *= self.rpls_factor * rpls_factor
-        self.theta += np.random.uniform(-np.pi/6, np.pi/6) % (2*np.pi)
-        dx = attraction - repulsion + np.array([np.cos(self.theta), np.sin(self.theta)])
-        self.pos = self.pos + dx * DT
+            repulsion = -repulsion
+            norm_u_o = np.linalg.norm(orientation)
+            orientation = orientation / norm_u_o if norm_u_o > 0 else np.array([np.cos(self.theta + np.pi/2),
+                                                                                np.sin(self.theta + np.pi/2)])
+            if (np.linalg.norm(attraction) > 0):
+                attraction = attraction / np.linalg.norm(attraction)
 
-        new_speed = new_speed / (len(neighbors) + 1)
-        if new_speed > MAX_SPEED:
-            new_speed = MAX_SPEED
-        elif math.isclose(new_speed, 0.0):
-            new_speed = 1.0
-        self.speed = new_speed
-        
+            # get desired direction
+            desired_dir = repulsion + orientation + attraction
+            x, y = desired_dir
+
+            # get desired heading
+            desired_heading = np.arctan2(y, x)
+            difference_in_heading = (((desired_heading - self.theta) + np.pi) % (2*np.pi)) - np.pi
+
+            # calculate new heading and update
+            angular_vel = K * difference_in_heading
+            new_pos = self.pos + self.speed * self.heading() * DT
+            new_theta = (((self.theta + (angular_vel * DT)) + np.pi) % (2*np.pi)) + np.pi
+            new_heading = np.array([np.cos(new_theta), np.sin(new_theta)])
+
+            self.pos = new_pos
+            self.theta = new_theta
+
+        return
+    
+
     def repulse_move(self, neighbors, predators, attr_factor=1.0, diff_factor=1.0):
         # use a repulsion equation to space (boids-like repulsion)
         # use another repulsion equation to separate from other groups (original graph laplacian)

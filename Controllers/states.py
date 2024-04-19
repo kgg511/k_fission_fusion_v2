@@ -22,7 +22,6 @@ class State:
 
     def update(self, neighbors, sites, predators):
         # leave as abstract method
-        self.agent.sim.prev_state.update({self.agent.id: [self.agent.pos, self.agent.speed, self.agent.heading()]})
         self.agent.hunger -= 1
 
     def move(self, neighbors, predators):
@@ -80,44 +79,6 @@ class State:
             self.agent.pos += (dx * DT)
 
 ### NETWORK-BASED STATES ###
-class NetworkAttractState(State):
-    # not a true "repulsion-based" state since it doesn't actively repel from outsiders,
-    # rather it only attracts to those in their own group
-    def __init__(self, name, color, agent):
-        super().__init__(name, color, agent)
-
-    def update(self, neighbors, sites, predators):
-        super().update(neighbors, sites, predators)
-        self.move(neighbors, predators)
-
-    def move(self, neighbors, predators):
-        if neighbors:
-            repulsion = np.zeros_like(self.agent.pos)
-            attraction = np.zeros_like(self.agent.pos)
-            num_network_neighbors = 0
-
-            for neighbor in neighbors:
-                # if neighbor in self.agent.network: # list representation
-                #     attraction += self.agent.sim.get_agent_pos(neighbor)
-                #     num_network_neighbors += 1
-
-                if np.array_equal(self.agent.sim.get_agent_group_id(neighbor), self.agent.group_id): # binary vector representation
-                    attraction += self.agent.sim.get_agent_pos(neighbor)
-                    num_network_neighbors += 1
-
-                c = self.agent.sim.get_agent_pos(neighbor) - self.agent.pos
-                scaling_factor = c @ c
-                if scaling_factor == 0:
-                    scaling_factor = 1
-                repulsion += c / scaling_factor
-            
-            attraction -= (self.agent.pos * num_network_neighbors)
-            # repulsion *= 5.0
-            dx = attraction - repulsion
-            self.agent.pos += (dx * DT)
-
-        self.agent.random_walk(potency=0.5)
-        super().move(neighbors, predators)
 
 class NetworkRepulseState(State):
     def __init__(self, name, color, agent):
@@ -151,13 +112,9 @@ class NetworkRepulseState(State):
                         # print(f"Agent {self.agent.id} was persuaded to go to site {self.agent.site}")
                         break
 
-        # if self.agent.site != None:
-        #     if math.dist(self.agent.site.pos, self.agent.pos) <= self.agent.site.radius:
-        #         # if np.random.default_rng().exponential(scale=MAX_HUNGER/4) < self.agent.hunger:
-        #         self.agent.state = NetworkRestState("NETWORK_REST", (0, 0, 255), self.agent)
-
     def move(self, neighbors, predators):
-        self.agent.repulse_move(neighbors, predators)
+        # self.agent.repulse_move(neighbors, predators)
+        self.agent.move(neighbors, predators)
         self.agent.random_walk(potency=0.5)
         super().move(neighbors, predators)
 
@@ -192,6 +149,8 @@ class NetworkRestState(State):
             self.rest_timer = 0
         
         if self.rest_timer == 0 or num_group_neighbors == 0:
+            self.agent.speed = np.random.uniform(1.0, MAX_SPEED) # reset speed
+            self.agent.theta = np.random.uniform(-np.pi, np.pi)
             self.agent.state = NetworkRepulseState(NET_EXPLORE_NAME, (0, 255, 0), self.agent)
 
         # *potentially* change group membership???
@@ -200,6 +159,7 @@ class NetworkRestState(State):
     def move(self, neighbors, predators):
         dx = self.agent.site.pos - self.agent.pos
         self.agent.pos += dx * DT
+        super().move(neighbors, predators)
 
 class GoToSiteState(State):
     def __init__(self, name, color, agent):
