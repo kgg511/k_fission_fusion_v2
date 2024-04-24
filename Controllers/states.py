@@ -59,7 +59,7 @@ class NetworkFlockState(State):
             # random chance to actually want to go to site (default set to 50%?)
             if np.random.random() > 0.5:
                 # make sure we don't go back to last_known_site so agents can wander away
-                viable_sites = list(filter(lambda i: i not in self.agent.last_known_sites, sites)) # this works...
+                viable_sites = list(filter(lambda i: i not in self.agent.last_known_sites, sites))
                 if len(viable_sites) > 0:
                     self.agent.site = viable_sites[np.random.randint(0, len(viable_sites))]
                     self.agent.add_site(self.agent.site)
@@ -83,7 +83,7 @@ class NetworkFlockState(State):
 
     def move(self, neighbors, predators):
         # self.agent.repulse_move(neighbors, predators)
-        self.agent.move(neighbors, predators)
+        self.agent.move(neighbors, predators) # FIXME: agent.move() has too drastic of a change
         self.agent.random_walk(potency=0.5) # turning on random walk causes some jitter, but also prevents stagnation when no neighbors
         super().move(neighbors, predators)
 
@@ -155,7 +155,7 @@ class GoToSiteState(State):
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
         if not neighbors:
-            self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent) # TODO: change to explore state
+            self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent)
             return
         if self.agent.at_site(self.agent.site):
             self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255), self.agent)
@@ -167,7 +167,7 @@ class GoToSiteState(State):
         
         dx = self.agent.site.pos - self.agent.pos
 
-        self.agent.pos += (dx * DT) # 2.0 to make them more attracted to the site or the agent they're following
+        self.agent.pos += (dx * DT)
         super().move(neighbors, predators)
 
 class FollowState(State):
@@ -176,16 +176,32 @@ class FollowState(State):
 
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
+        
+        if sites:
+            if np.random.random() > 0.5:
+                viable_sites = list(filter(lambda i: i not in self.agent.last_known_sites, sites))
+                if len(viable_sites) > 0:
+                    self.agent.following = None
+                    self.agent.site = viable_sites[np.random.randint(0, len(viable_sites))]
+                    self.agent.add_site(self.agent.site)
+                    self.agent.state = GoToSiteState(NET_GOTOSITE_NAME, (0, 0, 255), self.agent)
+                    # print(f"Agent {self.agent.id} chose to go to site {self.agent.site}")
+                    return
+
         if not neighbors:
             self.agent.following = None
-            self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent) # TODO: change to explore state
+            self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent) # TODO: change to explore state
             return
-        if self.agent.at_site(self.agent.sim.get_agent_site(self.agent.following)):
-            self.agent.site = self.agent.sim.get_agent_site(self.agent.following)
-            self.agent.add_site(self.agent.site)
-            self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255), self.agent)
-            print(f"Agent {self.agent.id} entering Rest from Follow")
-            return
+        
+        if isinstance(self.agent.sim.agents[self.agent.following].state, GoToSiteState):
+            if self.agent.at_site(self.agent.sim.get_agent_site(self.agent.following)):
+                self.agent.site = self.agent.sim.get_agent_site(self.agent.following)
+                self.agent.add_site(self.agent.site)
+                self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255), self.agent)
+                print(f"Agent {self.agent.id} entering Rest from Follow")
+                return
+        else:
+            self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent)
     
     def move(self, neighbors, predators):
         dx = self.agent.sim.get_agent_pos(self.agent.following) - self.agent.pos
