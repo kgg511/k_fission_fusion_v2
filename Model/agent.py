@@ -9,7 +9,7 @@ class Agent:
                  site=None, network=None, group_id=None, following=None, neighbors=None, group_neighbors=None):
         self.id = id
         self.pos = pos
-        self.state = NetworkRepulseState(NET_EXPLORE_NAME, (0, 255, 0), self)
+        self.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self)
         self.speed = speed
         self.theta = theta
         self.angular_velocity = 0.0
@@ -42,7 +42,7 @@ class Agent:
     def heading(self):
         return np.array([np.cos(self.theta), np.sin(self.theta)])
     
-    # move like Boids
+    # move like Boids with group detection
     def move(self, neighbors, predators, attr_factor=1.0, rpls_factor=1.0):
         if neighbors:
             repulsion = np.zeros_like(self.pos)
@@ -59,12 +59,14 @@ class Agent:
                         repulsion += dist_vect / (dist_vect @ dist_vect)
                     else:
                         repulsion += dist_vect
-                # orientation
-                if math.dist(neighbor_pos, self.pos) <= AGENT_ORIENT_RADIUS:
-                    orientation += self.sim.get_agent_heading(neighbor)
+                # orient and attract only with neighbors within group
+                if np.array_equal(self.sim.get_agent_group_id(neighbor), self.group_id):
+                    # orientation
+                    if math.dist(neighbor_pos, self.pos) <= AGENT_ORIENT_RADIUS:
+                        orientation += self.sim.get_agent_heading(neighbor)
 
-                # attraction
-                attraction += neighbor_pos - self.pos
+                    # attraction
+                    attraction += neighbor_pos - self.pos
 
             repulsion = -repulsion
             norm_u_o = np.linalg.norm(orientation)
@@ -85,17 +87,14 @@ class Agent:
             angular_vel = K * difference_in_heading
             new_pos = self.pos + self.speed * self.heading() * DT
             new_theta = (((self.theta + (angular_vel * DT)) + np.pi) % (2*np.pi)) + np.pi
-            new_heading = np.array([np.cos(new_theta), np.sin(new_theta)])
 
             self.pos = new_pos
             self.theta = new_theta
-
-        return
     
-
+    # movement modeled more like particle diffusion via graph laplacian
     def repulse_move(self, neighbors, predators, attr_factor=1.0, diff_factor=1.0):
         # use a repulsion equation to space (boids-like repulsion)
-        # use another repulsion equation to separate from other groups (original graph laplacian)
+        # use another repulsion equation to separate from other groups (diffusion)
         if neighbors:
             repulsion = np.zeros_like(self.pos) # avoid collisions
             diffuse = np.zeros_like(self.pos) # separate from other groups
@@ -131,9 +130,9 @@ class Agent:
         self.theta += np.random.uniform(-np.pi/12, np.pi/12) % (2*np.pi)
         self.pos += np.array([np.cos(self.theta), np.sin(self.theta)]) * DT * 10 * potency
 
-    def at_site(self):
-        if self.site != None:
-            if math.dist(self.site.pos, self.pos) <= self.site.radius:
+    def at_site(self, site=None):
+        if site != None:
+            if math.dist(site.pos, self.pos) <= site.radius:
                 return True
         return False
 

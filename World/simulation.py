@@ -105,6 +105,9 @@ class Simulation:
     def get_agent_group_id(self, agent_id):
         return self.agents[agent_id].group_id
     
+    def get_agent_site(self, agent_id):
+        return self.agents[agent_id].site
+    
     # TODO: technically works but is there a better way?
     def handle_boundaries(self, agent):
         out_of_bounds = False

@@ -35,7 +35,7 @@ class Flock(AgentBehavior):
     
     def initialise(self) -> None:
         if self.agent.timer == 0:
-            self.agent.timer = AGENT_REST_TIMER
+            self.agent.timer = AGENT_BORED_THRESHOLD
             print(f"Timer reset on agent{self.agent.id}")
         return super().initialise()
     

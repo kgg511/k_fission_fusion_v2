@@ -9,7 +9,7 @@ def build_bt(agent):
                                            py_trees.composites.Sequence("Graze", False, children=[AtSite("AtSite", agent), 
                                                                         HaveGroupNeighbors("Group", agent),
                                                                         #py_trees.decorators.Inverter("Inverter", IsBored("Timer", agent)),
-                                                                        Graze("Rest", agent)]), AGENT_REST_TIMER)
+                                                                        Graze("Rest", agent)]), AGENT_BORED_THRESHOLD)
 
     # GoToSite subtree
     goToSite_subtree = py_trees.composites.Sequence("GoToSite_Actions", False, [HaveNeighbors("Neighbors", agent),

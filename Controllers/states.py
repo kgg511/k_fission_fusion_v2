@@ -6,9 +6,11 @@ LOW_DENSE_NAME = "LOW_DENSE_EXPLORE"
 HIGH_DENSE_NAME = "HIGH_DENSE_EXPLORE"
 REST_NAME = "REST"
 FLEE_NAME = "FLEE"
+NET_FLOCK_NAME = "NETWORK_FLOCK"
 NET_EXPLORE_NAME = "NETWORK_EXP"
 NET_REST_NAME = "NETWORK_REST"
 NET_GOTOSITE_NAME = "NETWORK_LEAD"
+NET_FOLLOW_NAME = "NETWORK_FOLLOW"
 
 import numpy as np
 import math
@@ -21,7 +23,6 @@ class State:
         self.agent = agent
 
     def update(self, neighbors, sites, predators):
-        # leave as abstract method
         self.agent.hunger -= 1
 
     def move(self, neighbors, predators):
@@ -44,46 +45,13 @@ class State:
             self.agent.pos[1] = WORLD_SIZE - PADDING - DT
             self.agent.hunger += 1 # this will make it so their hunger doesn't keep deprecating out of bounds to help with stats?
 
-    def repulse_move(self, neighbors, predators, attr_factor=1.0, diff_factor=1.0):
-        # use a repulsion equation to space (boids-like repulsion)
-        # use another repulsion equation to separate from other groups (original graph laplacian)
-        if neighbors:
-            repulsion = np.zeros_like(self.agent.pos) # avoid collisions
-            diffuse = np.zeros_like(self.agent.pos) # separate from other groups
-            attraction = np.zeros_like(self.agent.pos)
-            num_network_neighbors = 0
-            num_outsider_neighbors = 0
-
-            for neighbor in neighbors:
-                # attract toward neighbors in network
-                if np.array_equal(self.agent.sim.get_agent_group_id(neighbor), self.agent.group_id):
-                    attraction += self.agent.sim.get_agent_pos(neighbor)
-                    num_network_neighbors += 1
-                    pass
-
-                # repel away from neighbors out of network
-                else:
-                    diffuse += self.agent.sim.get_agent_pos(neighbor)
-                    num_outsider_neighbors += 1
-
-                # don't collide with other people
-                c = self.agent.sim.get_agent_pos(neighbor) - self.agent.pos
-                scaling_factor = c @ c
-                if scaling_factor == 0:
-                    scaling_factor = 1
-                repulsion += c / scaling_factor
-
-            attraction -= (self.agent.pos * num_network_neighbors)
-            diffuse = (num_outsider_neighbors * self.agent.pos) - diffuse
-            dx = (attraction * attr_factor) + (diffuse * diff_factor) - repulsion
-            self.agent.pos += (dx * DT)
-
 ### NETWORK-BASED STATES ###
 
-class NetworkRepulseState(State):
+class NetworkFlockState(State):
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
         self.agent.site = None
+        self.timer = AGENT_BORED_THRESHOLD
 
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
@@ -106,22 +74,43 @@ class NetworkRepulseState(State):
                     # random chance to listen to neighbor
                     if np.random.random() > 0.2:
                         self.agent.site = self.agent.sim.agents[neighbor].site
-                        self.agent.add_site(self.agent.site)
+                        # self.agent.add_site(self.agent.site)
                         self.agent.following = neighbor
-                        self.agent.state = GoToSiteState(NET_GOTOSITE_NAME, (0, 0, 255), self.agent)
-                        # print(f"Agent {self.agent.id} was persuaded to go to site {self.agent.site}")
-                        break
+                        self.agent.state = FollowState(NET_FOLLOW_NAME, (0, 100, 255), self.agent)
+                        print(f"Agent {self.agent.id} is now following agent {neighbor}")
+                        return
+        
+        if self.timer == 0:
+            self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent)
+            print(f"Agent {self.agent.id} is now exploring")
 
     def move(self, neighbors, predators):
         # self.agent.repulse_move(neighbors, predators)
         self.agent.move(neighbors, predators)
-        self.agent.random_walk(potency=0.5)
+        self.agent.random_walk(potency=0.5) # turning on random walk causes some jitter, but also prevents stagnation when no neighbors
+        super().move(neighbors, predators)
+
+class NetworkExploreState(State):
+    def __init__(self, name, color, agent):
+        super().__init__(name, color, agent)
+        self.timer = AGENT_BORED_THRESHOLD
+
+    def update(self, neighbors, sites, predators):
+        super().update(neighbors, sites, predators)
+        if self.timer == 0:
+            self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent)
+            print(f"Agent {self.agent.id} is done exploring")
+            return
+        self.timer -= 1
+    
+    def move(self, neighbors, predators):
+        self.agent.random_walk(potency=5.0)
         super().move(neighbors, predators)
 
 class NetworkRestState(State):
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
-        self.rest_timer = AGENT_REST_TIMER
+        self.rest_timer = AGENT_BORED_THRESHOLD
         # print(f"{self.agent.id} entered rest state")
 
     # TODO: have a better way to transition out haha
@@ -151,14 +140,22 @@ class NetworkRestState(State):
         if self.rest_timer == 0 or num_group_neighbors == 0:
             self.agent.speed = np.random.uniform(1.0, MAX_SPEED) # reset speed
             self.agent.theta = np.random.uniform(-np.pi, np.pi)
-            self.agent.state = NetworkRepulseState(NET_EXPLORE_NAME, (0, 255, 0), self.agent)
+            self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent)
+            print(f"Agent {self.agent.id} exiting rest state")
 
         # *potentially* change group membership???
 
 
     def move(self, neighbors, predators):
         dx = self.agent.site.pos - self.agent.pos
-        self.agent.pos += dx * DT
+        repulsion = np.zeros_like(self.agent.pos)
+        for neighbor in neighbors:
+            c = self.agent.sim.get_agent_pos(neighbor) - self.agent.pos
+            scaling_factor = c @ c
+            if scaling_factor == 0:
+                scaling_factor = 1
+            repulsion += c / scaling_factor
+        self.agent.pos += (dx - repulsion) * DT
         super().move(neighbors, predators)
 
 class GoToSiteState(State):
@@ -169,25 +166,49 @@ class GoToSiteState(State):
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
         if not neighbors:
-            self.agent.following = None
-            self.agent.state = NetworkRepulseState(NET_EXPLORE_NAME, (0, 255, 0), self.agent)
+            self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent) # TODO: change to explore state
             return
-        if self.agent.at_site():
-            self.agent.following = None
-            self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255),self.agent)
+        if self.agent.at_site(self.agent.site):
+            self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255), self.agent)
             return
         
     def move(self, neighbors, predators):
-        self.agent.repulse_move(neighbors, predators, attr_factor=0.0)
+        # self.agent.repulse_move(neighbors, predators, attr_factor=0.0)
         self.agent.random_walk(potency=1.0)
-
-        dx = 0
-        if self.agent.following != None:
-            dx = self.agent.sim.get_agent_pos(self.agent.following) - self.agent.pos # essentially double counting the group leader
         
         dx = self.agent.site.pos - self.agent.pos
 
         self.agent.pos += (dx * DT) # 2.0 to make them more attracted to the site or the agent they're following
+        super().move(neighbors, predators)
+
+class FollowState(State):
+    def __init__(self, name, color, agent):
+        super().__init__(name, color, agent)
+
+    def update(self, neighbors, sites, predators):
+        super().update(neighbors, sites, predators)
+        if not neighbors:
+            self.agent.following = None
+            self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent) # TODO: change to explore state
+            return
+        if self.agent.at_site(self.agent.sim.get_agent_site(self.agent.following)):
+            self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255), self.agent)
+            print(f"Agent {self.agent.id} entering Rest from Follow")
+            return
+    
+    def move(self, neighbors, predators):
+        dx = self.agent.sim.get_agent_pos(self.agent.following) - self.agent.pos
+
+        # to prevent colliding
+        repulsion = np.zeros_like(self.agent.pos)
+        for neighbor in neighbors:
+            c = self.agent.sim.get_agent_pos(neighbor) - self.agent.pos
+            scaling_factor = c @ c
+            if scaling_factor == 0:
+                scaling_factor = 1
+            repulsion += c / scaling_factor
+
+        self.agent.pos += ((dx - repulsion) * DT)
         super().move(neighbors, predators)
 
 ### BASE STATES ###
