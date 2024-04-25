@@ -7,6 +7,13 @@ from Controllers.bt_construction import build_bt, build_ppa_bt
 import numpy as np
 import math
 
+"""
+Simulation() is the base simulation class, and it manages the simulation by retrieving
+information about all agents for other agents, and updating the agents and the environment.
+There are two methods that should be overridden: update_agent() and get_neighbor_ids().
+If information about an agent that is not the agent's self is needed, call
+agent.sim.get_agent_x() (x being the info you need).
+"""
 class Simulation:
     def __init__(self):
         self.avg_hunger = 0 # a metric for statistical purposes only haha
@@ -93,14 +100,14 @@ class Simulation:
                     predators.append(predator)
         return predators
     
-    def get_agent_pos(self, id):
-        return self.prev_state.get(id)[0]
+    def get_agent_pos(self, agent_id):
+        return self.prev_state.get(agent_id)[0]
     
-    def get_agent_speed(self, id):
-        return self.prev_state.get(id)[1]
+    def get_agent_speed(self, agent_id):
+        return self.prev_state.get(agent_id)[1]
     
-    def get_agent_heading(self, id):
-        return self.prev_state.get(id)[2]
+    def get_agent_heading(self, agent_id):
+        return self.prev_state.get(agent_id)[2]
     
     def get_agent_group_id(self, agent_id):
         return self.agents[agent_id].group_id
@@ -138,13 +145,20 @@ class Simulation:
             site.update()
 
     ### FUNCTIONS CHILD NEEDS TO OVERRIDE ###
+    """
+    Pass in the information needed for the agent to update.
+    """
     def update_agent(self, agent):
         agent.hunger -= 1
         self.avg_hunger += agent.hunger
         self.handle_boundaries(agent)
 
+    """
+    Returns a list of integers representing the IDs of the agent's neighbors.
+    NOTE: get_neighbor_ids assumes the IDs correspond to the index of the agent in self.agents.
+    """
     def get_neighbor_ids(self, agent):
-        return
+        pass
 
 class BT_Simulation(Simulation):
     def __init__(self):

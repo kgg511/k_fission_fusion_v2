@@ -4,6 +4,10 @@ from World.simulation import Simulation
 from World.Sprites.agent_sprite import AgentSprite
 from World.Sprites.site_sprite import SiteSprite
 
+
+"""
+HUGE WORK IN PROGRESS and it doesn't work so don't use it.
+"""
 # subclass of Simulation that relies on pygame collision detection instead to do agent sensing
 
 class PygameSim(Simulation):

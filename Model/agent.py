@@ -3,6 +3,15 @@ import math
 from Controllers.states import *
 from World.config import *
 
+"""
+The Agent class provides most of the utility you need to manipulate the agent.
+There are three movement options: move(), repulse_move(), and random_walk().
+Currently, the agent can use either FSM or BT implementations, as the data
+needed for both are initialized in its constructor.
+NOTE: agent.neighbors is a list of int, each int corresponding to a neighbor's ID.
+To query for a neighbor's info, call agent.sim.get_agent_x() (x being the info you want).
+See simulation.py for what information can be retrieved.
+"""
 # note to self: future planning, factors will be floats from 0.5 to 1.0
 class Agent:
     def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0,

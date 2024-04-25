@@ -16,15 +16,28 @@ import numpy as np
 import math
 from World.config import *
 
+"""
+The base class for all the states. When making a new state:
+1. override all three base methods
+2. call super().method() within the overridden methods
+"""
 class State:
     def __init__(self, name, color, agent):
         self.name = name
         self.color = color
         self.agent = agent
 
+    """
+    update() should contain all the logic to transition to and from the state.
+    """
     def update(self, neighbors, sites, predators):
-        self.agent.hunger -= 1
+        pass
 
+    """
+    move() should contain all the logic for the agent to move. Agent has two built-in methods for movement, depending
+    on whether USE_BOIDS_MOVEMENT is true or false. Use self.agent.move() if True, and self.agent.repulse_move() if False.
+    You can directly modify self.agent's properties.
+    """
     def move(self, neighbors, predators):
         # handle repulsion away from world borders
         # FIXME: current behavior just has agents crowding the edges
@@ -220,6 +233,12 @@ class FollowState(State):
         self.agent.pos += ((dx - repulsion) * DT)
         super().move(neighbors, predators)
 
+
+"""
+These states were used in the preliminary stages of developing the simulation. These can be safely ignored or deleted.
+The only state you may want to keep is FleeingState, but since predators aren't implemented in the group-based simulation,
+you can ignore it for now.
+"""
 ### BASE STATES ###
 class RestState(State):
     def __init__(self, agent):
