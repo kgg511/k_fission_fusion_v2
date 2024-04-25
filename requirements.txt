@@ -1,0 +1,4 @@
+pygame == 2.4.0
+numpy >= 1.23
+
+py_trees == 2.2.3

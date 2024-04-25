@@ -82,8 +82,10 @@ class NetworkFlockState(State):
             print(f"Agent {self.agent.id} is now exploring")
 
     def move(self, neighbors, predators):
-        # self.agent.repulse_move(neighbors, predators)
-        self.agent.move(neighbors, predators) # FIXME: agent.move() has too drastic of a change
+        if USE_BOID_MOVE:
+            self.agent.move(neighbors, predators)
+        else:
+            self.agent.repulse_move(neighbors, predators)
         self.agent.random_walk(potency=0.5) # turning on random walk causes some jitter, but also prevents stagnation when no neighbors
         super().move(neighbors, predators)
 

@@ -12,13 +12,14 @@ DT = 0.01
 NUM_GROUPS = 3
 USE_BT = False
 
-# hard code some color constants for 3 groups. will randomize later
+# hard code some color constants for 3 groups
 PINK = "#FF00FF"
 CYAN = "#00FFFF"
 GREEN = "#B0FF00"
 COLORS = {0: PINK, 1: CYAN, 2: GREEN}
 
 # AGENT PROPERTIES
+USE_BOID_MOVE = True
 AGENT_SENSING_RADIUS = 5
 MAX_HUNGER = 100
 MAX_SPEED = 5.0
