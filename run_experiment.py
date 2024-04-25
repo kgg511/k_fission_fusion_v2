@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from World.simulation import Simulation
+from World.simulation import *
 from World.config import *
 
 NUM_TRIALS = 100
+filename = 'bt_default_config_test2'
 
 def run_simulation_mult(filename):
     with open(filename, 'w') as file:
@@ -25,7 +26,10 @@ def run_simulation_mult(filename):
         print("Starting Experiment\n")
 
         for i in range(NUM_TRIALS):
-            simulation = Simulation()
+            if USE_BT:
+                simulation = BT_Simulation()
+            else:
+                simulation = FSM_Simulation()
             trial_avg_explore_agents = 0
             trial_avg_rest_agents = 0
             trial_avg_flee_agents = 0
@@ -86,8 +90,6 @@ def run_simulation_mult(filename):
         #             + f"{REST_NAME}={avg_rest_agents}\n{FLEE_NAME}={avg_flee_agents}\n")
         
         return ending_hunger
-
-filename = 'bt_default_config_test2'
 
 experiment_ending_hunger = run_simulation_mult('../experiment_results/' + filename + '.txt')
 
