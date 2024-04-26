@@ -6,7 +6,10 @@
 - References
 
 ## Introduction
-This is an attempt to model the behavior of a herd looking for food (think buffalo finding grazing sites). Agents are sorted into different groups (currently hardcoded to 3 groups) and will herd with members of their own group. These groups are represented by three colors: cyan, yellow, and magenta. They then explore a world with a configurable number of grazing sites, represented by large green dots, of different sizes and resource amount. Agent behavior was originally modeled using a finite state machine; a behavior tree implementation is currently a work in progress. Done as part of a research project with Dr. Michael A. Goodrich at Brigham Young University, 2023.
+This is an attempt to model the behavior of a herd looking for food (think buffalo finding grazing sites). Agents are sorted into different groups (currently hardcoded to 3 groups) and will herd with members of their own group. These groups are represented by three colors: cyan, yellow, and magenta. They then explore a world with a configurable number of grazing sites, represented by large green dots, of different sizes and resource amount. Agent behavior was originally modeled using a finite state machine; a behavior tree implementation is currently a work in progress. Done as part of a research project with Dr. Michael A. Goodrich at Brigham Young University, 2023-2024.
+
+### The FSM Model
+![FSM Model Image](fission_fusion_fsm.png)
 
 ## Running the Program
 1. Using the terminal, navigate to the <code>fission_fusion_v2</code> directory on your computer. It should be the same directory that this <code>README.md</code> is in.
