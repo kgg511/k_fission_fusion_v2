@@ -19,9 +19,6 @@ class AgentBehavior(Behaviour):
     def update(self) -> Status:
         return super().update()
     
-    def set_agent(self, agent):
-        self.agent = agent
-    
 ### ACTUAL BEHAVIOR ###
 # TODO: merge Flock and Query for Sites?
 class Flock(AgentBehavior):
@@ -36,18 +33,18 @@ class Flock(AgentBehavior):
     def initialise(self) -> None:
         if self.agent.timer == 0:
             self.agent.timer = AGENT_BORED_THRESHOLD
-            print(f"Timer reset on agent{self.agent.id}")
         return super().initialise()
     
     def update(self) -> Status:
         while self.agent.timer > 0: # essentially "IsBored"
             if len(self.agent.neighbors) <= 0:
-                print(f"Agent {self.agent.id} has no neighbors, aborting {self.name}\n")
                 return Status.FAILURE
-            self.agent.repulse_move(self.agent.neighbors, None, attr_factor=self.attr_factor, diff_factor = self.diff_factor)
+            if USE_BOID_MOVE:
+                self.agent.move(self.agent.neighbors, None)
+            else:
+                self.agent.repulse_move(self.agent.neighbors, None, attr_factor=self.attr_factor, diff_factor = self.diff_factor)
             self.agent.random_walk(potency=10.0)
             self.agent.timer -= 1
-            #print(f"{self.name} is running on Agent {self.agent.id}\n")
             return Status.RUNNING
         return Status.SUCCESS
     
@@ -121,7 +118,6 @@ class Graze(AgentBehavior):
         self.agent.timer -= 1
         dx = self.agent.site.pos - self.agent.pos
         self.agent.pos += dx * DT
-        #print(f"graze ticked by agent {self.agent.id}\n")
         return Status.SUCCESS
     
 class Explore(AgentBehavior):
@@ -168,7 +164,6 @@ class AtSite(AgentBehavior):
     def update(self) -> Status:
         if self.agent.at_site():
             if self.agent.site.is_available():
-                #print(f"{self.agent.id} is at site\n")
                 return Status.SUCCESS
         return Status.FAILURE
 
@@ -233,10 +228,8 @@ class IsBored(AgentBehavior):
         return super().setup(**kwargs)
     
     def update(self) -> Status:
-        #print(f"IsBored ticked on agent{self.agent.id}")
         if self.agent.timer > 0:
             return Status.FAILURE
-        #print(f"Agent: {self.agent.id} is bored\n")
         return Status.SUCCESS
 
 class IsHungry(AgentBehavior):
