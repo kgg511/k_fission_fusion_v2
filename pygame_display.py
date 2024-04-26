@@ -38,8 +38,6 @@ class PygameDisplay:
             self.screen.fill("white")
             self.simulation.update()
             self.update()
-            # print(self.simulation.agents[0].at_site())
-            # print(self.simulation.agents[0].neighbors)
             
             pygame.display.flip()
             
@@ -62,7 +60,10 @@ class PygameDisplay:
                 pygame.draw.circle(self.screen, agent_color, agent.pos, 5)
              
         for predator in self.simulation.predators:
-            pygame.draw.circle(self.screen, "red", predator.pos, 5)
+            if self.should_scale:
+                pygame.draw.circle(self.screen, "red", predator.pos*self.scale, 5)
+            else:
+                pygame.draw.circle(self.screen, "red", predator.pos, 5)
 
 
 # Run Simulation
