@@ -30,5 +30,13 @@ To run experiments:
 ### <code>config.py</code>
 Simulation settings can be changed by changing the constants in <code>config.py</code>. Of particular note are <code>USE_BT</code> and <code>USE_BOID_MOVE</code>. <code>USE_BT</code> will create a simulation using the Behavior Tree implementation of agent models. <code>USE_BT</code> is defaulted to <code>False</code>. <code>USE_BOID_MOVE</code> determines how the agents will move (in the FSM version only as of 4/25/2024). Agents will either move in a true Boids-like fashion, or fuse/diffuse using the graph laplacian, which exhibits greater self-sorting at the cost of range of movement. <code>USE_BOID_MOVE</code> is defaulted to <code>True</code>.
 
+## Work in Progress
+### Non-functional
+Currently, the following files are not functional, and should not be used:
+- pygame_sim.py
+- ./World/Sprites
+### <code>behaviors.py</code> and <code>bt_construction.py</code>
+The behavior tree implementation is functional, but it is still a major work in progress. Expect most changes to be in these two files.
+
 ## References
 Brown, D. S., Kerman, S. C., & Goodrich, M. A. (2014). (2014). Human-swarm interactions based on managing attractors. Paper presented at the Proceedings of the 2014 ACM/IEEE International Conference on Human-Robot Interaction, Bielefeld, Germany. 90–97. https://doi.org/10.1145/2559636.2559661 - The agents' "boids" movement was based on the math in this paper

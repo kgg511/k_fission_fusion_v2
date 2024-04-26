@@ -12,46 +12,49 @@ NOTE: agent.neighbors is a list of int, each int corresponding to a neighbor's I
 To query for a neighbor's info, call agent.sim.get_agent_x() (x being the info you want).
 See simulation.py for what information can be retrieved.
 """
-# note to self: future planning, factors will be floats from 0.5 to 1.0
 class Agent:
     def __init__(self, id, pos, speed, theta, hunger, sim, attr_factor=1.0, orient_factor=1.0, repulse_factor=1.0,
                  site=None, network=None, group_id=None, following=None, neighbors=None, group_neighbors=None):
-        self.id = id
-        self.pos = pos
-        self.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self)
-        self.speed = speed
-        self.theta = theta
-        self.angular_velocity = 0.0
-        self.hunger = hunger
-        self.sim = sim
-        self.attr_factor = attr_factor
-        self.orient_factor = orient_factor
-        self.rpls_factor = repulse_factor
-        self.site = site
-        self.last_known_sites = []
+        self.id = id # an int representing the agent's unique ID
+        self.pos = pos # where the agent is in the world
+        self.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self) # the state the agent is currently in; change here to determine starting state
+        self.speed = speed # how fast the agent moves
+        self.theta = theta # the angle the agent is facing
+        self.angular_velocity = 0.0 # how fast the agent's theta can change
+        self.hunger = hunger # represents how hungry the agent is (lower hunger = more hungry)
+        self.sim = sim # the simulation the agent is in; used so the agent can query for simulation information
+        self.attr_factor = attr_factor # determines how much the agent will attract toward its neighbors, range(0.5, 1]
+        self.orient_factor = orient_factor # determines how much the agent will orient to be like its neighbors, range(0.5, 1]
+        self.rpls_factor = repulse_factor # determines how much the agent will space itself from its neighbors, range(0.5, 1]
+        self.site = site # the site the agent is currently trying to get to
+        self.last_known_sites = [] # the sites the agent remembers
         if site != None:
             self.last_known_sites.append(site)
-        self.network = network # list representation
-        self.group_id = group_id # binary vector representation
-        self.following = following
+        self.network = network # the matrix representation of the agent's group network; currently unused
+        self.group_id = group_id # a binary vector determining which group an agent belongs to
+        self.following = following # the neighbor that the agent is currently following
         # FOR BEHAVIOR TREE IMPLEMENTATION
-        self.neighbors = neighbors
-        self.group_neighbors = group_neighbors
-        self.potential_sites = None
-        self.bt = None
-        self.timer = 0
+        self.neighbors = neighbors # an agent's neighbors
+        self.group_neighbors = group_neighbors # the agent's neighbors that also belong to the agent's group
+        self.potential_sites = None # a list of sites the agent can choose from to go to, updated every tick()
+        self.bt = None # the behavior tree that controls the agent
+        self.timer = 0 # a timer used for several behaviors
 
+    """
+    Performs state actions
+    """
     def update(self, neighbors, sites, predators):
         # get reading (neighbors, sites)
         # calculate neighbor task densities
         # do state actions
         self.state.update(neighbors, sites, predators)
         self.state.move(neighbors, predators)
-
-    def heading(self):
-        return np.array([np.cos(self.theta), np.sin(self.theta)])
     
-    # move like Boids with group detection
+    """
+    Move like Boids with group detection.
+    If toggled, agents will have greater range of movement, but not group as well.
+    See Brown et. al in References.
+    """
     def move(self, neighbors, predators, attr_factor=1.0, rpls_factor=1.0):
         if neighbors:
             repulsion = np.zeros_like(self.pos)
@@ -100,7 +103,10 @@ class Agent:
             self.pos = new_pos
             self.theta = new_theta
     
-    # movement modeled more like particle diffusion via graph laplacian
+    """
+    Move agent using graph laplacian.
+    If toggled, agents will self sort into groups better, but not spread out as much
+    """
     def repulse_move(self, neighbors, predators, attr_factor=1.0, diff_factor=1.0):
         # use a repulsion equation to space (boids-like repulsion)
         # use another repulsion equation to separate from other groups (diffusion)
@@ -134,17 +140,34 @@ class Agent:
             dx = (attraction * attr_factor) + (diffuse * diff_factor) - repulsion
             self.pos += (dx * DT)
 
-    # general random walk
+    """
+    Randomly walk in a direction
+    """
     def random_walk(self, potency=1.0):
         self.theta += np.random.uniform(-np.pi/12, np.pi/12) % (2*np.pi)
         self.pos += np.array([np.cos(self.theta), np.sin(self.theta)]) * DT * 10 * potency
 
+    ### UTILS ###
+
+    """
+    Returns a direction vector toward where the agent is facing
+    """
+    def heading(self):
+        return np.array([np.cos(self.theta), np.sin(self.theta)])
+
+    """
+    Returns a bool stating whether or not an agent reached a site
+    """
     def at_site(self, site=None):
         if site != None:
             if math.dist(site.pos, self.pos) <= site.radius:
                 return True
         return False
 
+    """
+    Adds a site to memory; handles removing previous sites from memory
+    SHOULD BE CALLED WHENEVER A NEW SITE IS DISCOVERED i.e. when agent.site is set
+    """
     def add_site(self, site):
         self.last_known_sites.append(site)
         if len(self.last_known_sites) > MAX_SITE_MEMORY:

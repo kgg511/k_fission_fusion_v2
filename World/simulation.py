@@ -16,18 +16,18 @@ agent.sim.get_agent_x() (x being the info you need).
 """
 class Simulation:
     def __init__(self):
-        self.avg_hunger = 0 # a metric for statistical purposes only haha
-        self.prev_state = dict()
-        self.agent_colors = []
-        self.agents = self.build_agents()
-        self.sites = self.build_sites()
-        self.predators = self.build_predators()
+        self.avg_hunger = 0 # Measures the mean hunger of all the agents at any given point
+        self.prev_state = dict() # Keeps track of agent information prior to the current' iteration's update; key: agent_id, value: [pos, speed, heading]
+        self.agent_colors = [] # Tracks the agents' group's color for use for the display; assumes self.agents and self.agent_colors refer to the same agent at the same index
+        self.agents = self.build_agents() # A list of the agents in the simulation
+        self.sites = self.build_sites() # A list of the sites in the simulation
+        self.predators = self.build_predators() # A list of the predators in the simulation
         self.avg_hunger = float(self.avg_hunger / NUM_AGENTS)
 
     def build_agents(self):
         agents = []
         group_sizes = np.zeros(NUM_GROUPS)
-        for i in range(NUM_AGENTS): # TODO: generate agent colors based on group
+        for i in range(NUM_AGENTS): # TODO: generate agent colors based on group so as to not rely on hardcoding
             # generate group_id
             group_num = np.random.choice(list(range(NUM_GROUPS)))
             if group_sizes[group_num] > MAX_NETWORK_SIZE:
@@ -51,7 +51,7 @@ class Simulation:
             agents[i].bt = build_bt(agents[i])
 
             # simulation book-keeping
-            self.prev_state.update({i: [pos, 1.0, np.array([np.cos(theta), np.sin(theta)])]})
+            self.prev_state.update({i: [pos, speed, np.array([np.cos(theta), np.sin(theta)])]})
             self.avg_hunger += hunger
         return agents
 
@@ -74,7 +74,10 @@ class Simulation:
             # print(f"Predator {i} starting pos: {pos}")
         return predators
     
-    def build_neighbor_matrix(self): # for list representation of network, TODO: repurpose for sorting groups
+    """
+    Creates a matrix representation of the group networks 
+    """
+    def build_neighbor_matrix(self): # TODO: repurpose for sorting groups
         for i in range(0, NUM_AGENTS):
             for j in range(i, NUM_AGENTS):
                 if i != j:
@@ -83,6 +86,9 @@ class Simulation:
                             self.agents[i].network.append(j)
                             self.agents[j].network.append(i)
     
+    """
+    Returns a list of sites that are within the agent's detection radius
+    """
     def get_sites(self, agent):
         sites = []
         for site in self.sites:
@@ -91,6 +97,9 @@ class Simulation:
                     sites.append(site)
         return sites
 
+    """
+    Returns a list of predators that are within an agent's detection radius
+    """
     def get_predators(self, agent):
         predators = []
         for predator in self.predators:
@@ -100,6 +109,11 @@ class Simulation:
                     predators.append(predator)
         return predators
     
+    """
+    Each method in the get_agent_x() section:
+    takes the agent's id and returns some information regarding the agent.
+    These assume that the agent_id correlates with the agent's index is simulation.agents.
+    """
     def get_agent_pos(self, agent_id):
         return self.prev_state.get(agent_id)[0]
     
@@ -115,7 +129,9 @@ class Simulation:
     def get_agent_site(self, agent_id):
         return self.agents[agent_id].site
     
-    # TODO: technically works but is there a better way?
+    """
+    Ensures agents don't go out of bounds
+    """
     def handle_boundaries(self, agent):
         out_of_bounds = False
         if math.isclose(agent.pos[0], PADDING) or agent.pos[0] < PADDING:
@@ -137,6 +153,9 @@ class Simulation:
         if out_of_bounds:
             agent.hunger += 1
 
+    """
+    Updates the world conditions (agent positions, predator positions, site conditions, etc.)
+    """
     def update(self):
         for agent in self.agents:
             self.prev_state.update({agent.id: [agent.pos, agent.speed, agent.heading()]})
@@ -174,6 +193,9 @@ class BT_Simulation(Simulation):
                     group_neighbors.append(neighbor.id)
         return neighbors, group_neighbors
     
+    """
+    Updates what the agent can see then tick() the agent's behavior tree
+    """
     def update_agent(self, agent):
         agent.neighbors, agent.group_neighbors = self.get_neighbor_ids(agent)
         agent.potential_sites = self.get_sites(agent)

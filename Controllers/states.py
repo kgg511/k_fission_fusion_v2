@@ -58,6 +58,10 @@ class State:
             self.agent.pos[1] = WORLD_SIZE - PADDING - DT
             self.agent.hunger += 1 # this will make it so their hunger doesn't keep deprecating out of bounds to help with stats?
 
+"""
+The Network-based States take into account neighbors that are part of self.agent's group in
+either movement, transitioning, or both. These states are all part of the same state machine.
+"""
 ### NETWORK-BASED STATES ###
 
 class NetworkFlockState(State):
@@ -87,12 +91,10 @@ class NetworkFlockState(State):
                     if np.random.random() > 0.2:
                         self.agent.following = neighbor
                         self.agent.state = FollowState(NET_FOLLOW_NAME, (0, 100, 255), self.agent)
-                        print(f"Agent {self.agent.id} is now following agent {neighbor}")
                         return
         
         if self.timer == 0:
             self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent)
-            print(f"Agent {self.agent.id} is now exploring")
 
     def move(self, neighbors, predators):
         if USE_BOID_MOVE:
@@ -112,7 +114,6 @@ class NetworkExploreState(State):
         super().update(neighbors, sites, predators)
         if self.timer == 0:
             self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent)
-            print(f"Agent {self.agent.id} is done exploring")
             return
         self.timer -= 1
     
@@ -146,7 +147,6 @@ class NetworkRestState(State):
             self.agent.speed = np.random.uniform(1.0, MAX_SPEED) # reset speed
             self.agent.theta = np.random.uniform(-np.pi, np.pi)
             self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent)
-            print(f"Agent {self.agent.id} exiting rest state")
 
         # *potentially* change group membership???
 
@@ -208,14 +208,12 @@ class FollowState(State):
             self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent) # TODO: change to explore state
             return
         
-        if isinstance(self.agent.sim.agents[self.agent.following].state, GoToSiteState):
-            if self.agent.at_site(self.agent.sim.get_agent_site(self.agent.following)):
+        if self.agent.at_site(self.agent.sim.get_agent_site(self.agent.following)):
                 self.agent.site = self.agent.sim.get_agent_site(self.agent.following)
                 self.agent.add_site(self.agent.site)
                 self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255), self.agent)
-                print(f"Agent {self.agent.id} entering Rest from Follow")
                 return
-        else:
+        if not isinstance(self.agent.sim.agents[self.agent.following].state, GoToSiteState):
             self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent)
     
     def move(self, neighbors, predators):
@@ -239,7 +237,7 @@ These states were used in the preliminary stages of developing the simulation. T
 The only state you may want to keep is FleeingState, but since predators aren't implemented in the group-based simulation,
 you can ignore it for now.
 """
-### BASE STATES ###
+### PROTOTYPE STATES ###
 class RestState(State):
     def __init__(self, agent):
         super().__init__(REST_NAME, REST_COLOR, agent)
