@@ -81,7 +81,6 @@ class NetworkFlockState(State):
                     self.agent.site = viable_sites[np.random.randint(0, len(viable_sites))]
                     self.agent.add_site(self.agent.site)
                     self.agent.state = GoToSiteState(NET_GOTOSITE_NAME, (0, 0, 255), self.agent)
-                    # print(f"Agent {self.agent.id} chose to go to site {self.agent.site}")
                     return
 
         for neighbor in neighbors:
@@ -124,8 +123,7 @@ class NetworkExploreState(State):
 class NetworkRestState(State):
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
-        self.rest_timer = AGENT_BORED_THRESHOLD
-        # print(f"{self.agent.id} entered rest state")
+        self.timer = AGENT_BORED_THRESHOLD
 
     # TODO: have a better way to transition out haha
     def update(self, neighbors, sites, predators):
@@ -141,9 +139,9 @@ class NetworkRestState(State):
 
         # will eventually leave site if no group members are present OR if no neighbors present either
         else:
-            self.rest_timer = 0
+            self.timer = 0
         
-        if self.rest_timer == 0 or num_group_neighbors == 0 or self.agent.hunger >= MAX_HUNGER or not self.agent.site.is_available():
+        if self.timer == 0 or num_group_neighbors == 0 or self.agent.hunger >= MAX_HUNGER or not self.agent.site.is_available():
             self.agent.speed = np.random.uniform(1.0, MAX_SPEED) # reset speed
             self.agent.theta = np.random.uniform(-np.pi, np.pi)
             self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent)
@@ -200,7 +198,6 @@ class FollowState(State):
                     self.agent.site = viable_sites[np.random.randint(0, len(viable_sites))]
                     self.agent.add_site(self.agent.site)
                     self.agent.state = GoToSiteState(NET_GOTOSITE_NAME, (0, 0, 255), self.agent)
-                    # print(f"Agent {self.agent.id} chose to go to site {self.agent.site}")
                     return
 
         if not neighbors:
