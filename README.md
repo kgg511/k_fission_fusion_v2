@@ -12,7 +12,7 @@ This is an attempt to model the behavior of a herd looking for food (think buffa
 1. Using the terminal, navigate to the <code>fission_fusion_v2</code> directory on your computer. It should be the same directory that this <code>README.md</code> is in.
 2. If this is the first time running the program on your machine, enter <code>pip install -r requirements.txt</code>. This should install the basic dependencies you need to run the FSM version. Follow the directions at https://github.com/splintered-reality/py_trees?tab=readme-ov-file#getting-started to install the py_trees package. (This codebase uses py_trees version 2.2.3)
 3. (Optional) Change the simulation configuration in <code>config.py</code>.
-4. Enter <code>python pygame_display.py. NOTE: the <code>matplotlib_display.py</code> is obsolete. It has significant performance issues compared to the <code>pygame</code> implementation of the display. It is highly recommended you do not use it.
+4. Enter <code>python pygame_display.py.</code> NOTE: the <code>matplotlib_display.py</code> is obsolete. It has significant performance issues compared to the <code>pygame</code> implementation of the display. It is highly recommended you do not use it.
 5. Enjoy watching the simulation! You can quit the simulation by either closing the <code>pygame</code> window, or typing <code>ctrl_c</code> in the terminal.
 
 ### Gathering Data
