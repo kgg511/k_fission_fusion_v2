@@ -115,6 +115,16 @@ class NetworkExploreState(State):
             self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent)
             return
         self.timer -= 1
+
+        if sites:
+            # random chance to go to a new site (not recently visited)
+            if np.random.random() > 0.3:
+                viable_sites = list(filter(lambda i: i not in self.agent.last_known_sites, sites))
+                if len(viable_sites) > 0:
+                    self.agent.site = viable_sites[np.random.randint(0, len(viable_sites))]
+                    self.agent.add_site(self.agent.site)
+                    self.agent.state = GoToSiteState(NET_GOTOSITE_NAME, (0, 0, 255), self.agent)
+                    return
     
     def move(self, neighbors, predators):
         self.agent.random_walk(potency=1.0)
