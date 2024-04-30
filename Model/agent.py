@@ -33,6 +33,7 @@ class Agent:
         self.network = network # the matrix representation of the agent's group network; currently unused
         self.group_id = group_id # a binary vector determining which group an agent belongs to
         self.following = following # the neighbor that the agent is currently following
+        self.hub = None # the agent's hub
         # FOR BEHAVIOR TREE IMPLEMENTATION
         self.neighbors = neighbors # an agent's neighbors
         self.group_neighbors = group_neighbors # the agent's neighbors that also belong to the agent's group
@@ -164,6 +165,15 @@ class Agent:
                 return True
         return False
 
+    """
+    Returns a bool stating whether or not an agent is at their current hub (just a site)
+    """
+    def at_hub(self, site=None):
+        if self.hub != None:
+            if math.dist(self.hub.pos, self.pos) <= site.radius:
+                return True
+        return False
+    
     """
     Adds a site to memory; handles removing previous sites from memory
     SHOULD BE CALLED WHENEVER A NEW SITE IS DISCOVERED i.e. when agent.site is set

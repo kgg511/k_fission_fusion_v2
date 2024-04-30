@@ -151,6 +151,11 @@ class NetworkRestState(State):
         else:
             self.timer = 0
         
+        # assess if it is a good site
+        if self.agent.hub == None or self.agent.site.resource_count > self.agent.hub.resource_count:
+            # this is the new hub site??
+            self.agent.hub = self.agent.site
+
         if self.timer == 0 or num_group_neighbors == 0 or self.agent.hunger >= MAX_HUNGER or not self.agent.site.is_available():
             self.agent.speed = np.random.uniform(1.0, MAX_SPEED) # reset speed
             self.agent.theta = np.random.uniform(-np.pi, np.pi)
@@ -171,15 +176,35 @@ class NetworkRestState(State):
         self.agent.pos += (dx - repulsion) * DT
         super().move(neighbors, predators)
 
+class GoToHubState(State): # move towards their hub
+    def __init__(self, name, color, agent):
+        super().__init__(name, color, agent)
+
+    def update(self, neighbors, sites, predators):
+        super().update(neighbors, sites, predators)
+        if self.agent.at_hub(self.agent.site):
+            self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255), self.agent)
+            return
+        
+    def move(self, neighbors, predators):
+        # self.agent.repulse_move(neighbors, predators, attr_factor=0.0)
+        self.agent.random_walk(potency=1.0)
+        
+        dx = self.agent.site.pos - self.agent.pos
+
+        self.agent.pos += (dx * DT)
+        super().move(neighbors, predators)
+    # 
 class GoToSiteState(State):
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
 
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
-        if not neighbors:
-            self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent)
-            return
+        # changed so that agents can go to sites alone explore->gotosite->rest
+        # if not neighbors: 
+        #     self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent)
+        #     return
         if self.agent.at_site(self.agent.site):
             self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255), self.agent)
             return
@@ -253,6 +278,7 @@ class RestState(State):
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
         self.agent.hunger += 1
+
         if predators:
             self.agent.state = FleeingState(self.agent)
             # we won't include the site here to reflect having a negative experience
