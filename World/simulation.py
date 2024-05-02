@@ -153,10 +153,21 @@ class Simulation:
         if out_of_bounds:
             agent.hunger += 1
 
+    def print_states(self):
+        # print out in a list the current state of each agent
+        info = []
+        for agent in self.agents:
+            if agent.state.name.startswith("NETWORK_"):
+                info.append(agent.state.name[len("NETWORK_"):])
+            else:
+                info.append(agent.state.name)
+        print(info)
+        
     """
     Updates the world conditions (agent positions, predator positions, site conditions, etc.)
     """
     def update(self):
+        self.print_states()
         for agent in self.agents:
             self.prev_state.update({agent.id: [agent.pos, agent.speed, agent.heading()]})
             self.update_agent(agent)

@@ -168,9 +168,9 @@ class Agent:
     """
     Returns a bool stating whether or not an agent is at their current hub (just a site)
     """
-    def at_hub(self, site=None):
+    def at_hub(self):
         if self.hub != None:
-            if math.dist(self.hub.pos, self.pos) <= site.radius:
+            if math.dist(self.hub.pos, self.pos) <= self.hub.radius:
                 return True
         return False
     

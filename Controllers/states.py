@@ -10,6 +10,7 @@ NET_FLOCK_NAME = "NETWORK_FLOCK"
 NET_EXPLORE_NAME = "NETWORK_EXP"
 NET_REST_NAME = "NETWORK_REST"
 NET_GOTOSITE_NAME = "NETWORK_LEAD"
+NET_GOTOHUB_NAME = "NETWORK_HUB"
 NET_FOLLOW_NAME = "NETWORK_FOLLOW"
 
 import numpy as np
@@ -111,24 +112,34 @@ class NetworkExploreState(State):
 
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
-        if self.timer == 0:
-            self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent)
-            return
+        if self.timer == 0: #if timer runs out choose to flock or go to the hub
+            if self.agent.hub != None and np.random.random() > 0.5:
+                self.agent.site = self.agent.hub
+                self.agent.state = GoToHubState(NET_GOTOHUB_NAME, (0, 0, 255), self.agent)
+                return
+            
+            else:
+                self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent)
+                return
+
         self.timer -= 1
 
         if sites:
             # random chance to go to a new site (not recently visited)
-            if np.random.random() > 0.3:
+            if  np.random.random() > 0.7: # go to site
                 viable_sites = list(filter(lambda i: i not in self.agent.last_known_sites, sites))
                 if len(viable_sites) > 0:
                     self.agent.site = viable_sites[np.random.randint(0, len(viable_sites))]
                     self.agent.add_site(self.agent.site)
                     self.agent.state = GoToSiteState(NET_GOTOSITE_NAME, (0, 0, 255), self.agent)
                     return
+            
     
     def move(self, neighbors, predators):
         self.agent.random_walk(potency=1.0)
-        super().move(neighbors, predators)
+
+        self.agent.move(neighbors, predators)
+        
 
 class NetworkRestState(State):
     def __init__(self, name, color, agent):
@@ -182,7 +193,7 @@ class GoToHubState(State): # move towards their hub
 
     def update(self, neighbors, sites, predators):
         super().update(neighbors, sites, predators)
-        if self.agent.at_hub(self.agent.site):
+        if self.agent.at_hub():
             self.agent.state = NetworkRestState(NET_REST_NAME, (0, 255, 255), self.agent)
             return
         
@@ -190,7 +201,7 @@ class GoToHubState(State): # move towards their hub
         # self.agent.repulse_move(neighbors, predators, attr_factor=0.0)
         self.agent.random_walk(potency=1.0)
         
-        dx = self.agent.site.pos - self.agent.pos
+        dx = self.agent.hub.pos - self.agent.pos
 
         self.agent.pos += (dx * DT)
         super().move(neighbors, predators)

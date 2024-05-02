@@ -1,5 +1,5 @@
 # WORLD SET UP
-NUM_AGENTS = 50 # determines how many agents will be in the simulation
+NUM_AGENTS = 10 # determines how many agents will be in the simulation
 WORLD_SIZE = 30 # determines how large the (square) world will be
 NUM_ITERS = 150 # determines how many iterations each simulation trial should be run in run_experiment.py
 NUM_SITES = 3 # determines how many sites will be in the world
