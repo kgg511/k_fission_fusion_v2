@@ -68,7 +68,7 @@ class Agent:
                 # repulsion
                 if math.dist(neighbor_pos, self.pos) <= AGENT_REPL_RADIUS:
                     dist_vect = neighbor_pos - self.pos
-                    if dist_vect @ dist_vect > 0:
+                    if dist_vect @ dist_vect > 0: # the farther they are, the less they repel
                         repulsion += dist_vect / (dist_vect @ dist_vect)
                     else:
                         repulsion += dist_vect

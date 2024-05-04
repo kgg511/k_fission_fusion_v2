@@ -54,16 +54,79 @@ class PygameDisplay:
         for agent in self.simulation.agents:
             agent_color_name = self.simulation.agent_colors[agent.id]
             agent_color = hex_to_rgb(agent_color_name)
-            if self.should_scale:
-                pygame.draw.circle(self.screen, agent_color, agent.pos*self.scale, 5)
-            else:
-                pygame.draw.circle(self.screen, agent_color, agent.pos, 5)
+            self.draw_shape(agent, "circle", agent_color)
+
+            # if self.should_scale:
+            #     pygame.draw.circle(self.screen, agent_color, agent.pos*self.scale, 5)
+            # else:
+            #     pygame.draw.circle(self.screen, agent_color, agent.pos, 5)
              
         for predator in self.simulation.predators:
             if self.should_scale:
                 pygame.draw.circle(self.screen, "red", predator.pos*self.scale, 5)
             else:
                 pygame.draw.circle(self.screen, "red", predator.pos, 5)
+
+    def draw_shape(self, agent, new_shape, color):
+        """Update the shape of the visual representation with the given color."""
+        new_pos = agent.pos*self.scale if self.should_scale else agent.pos
+        stateName = agent.state.name[len("NETWORK_"):] if agent.state.name.startswith("NETWORK_") else agent.state.name
+        if stateName == "REST": # replace with a state
+            pygame.draw.circle(self.screen, color, new_pos, 5)
+        elif stateName == "EXP": # Triangle
+            triangle_vertices = [
+            (new_pos[0], new_pos[1] - 5),  # Top vertex
+            (new_pos[0] - 5, new_pos[1] + 5),  # Bottom-left vertex
+            (new_pos[0] + 5, new_pos[1] + 5)   # Bottom-right vertex
+            ]
+            pygame.draw.polygon(self.screen, color, triangle_vertices)
+
+        elif stateName == "FLOCK": # diamond
+            diamond_vertices = [
+            (new_pos[0], new_pos[1] - 5),  # Top vertex
+            (new_pos[0] - 5, new_pos[1]),  # Left vertex
+            (new_pos[0], new_pos[1] + 5),  # Bottom vertex
+            (new_pos[0] + 5, new_pos[1])   # Right vertex
+                ]
+            pygame.draw.polygon(self.screen, color, diamond_vertices)
+        
+        elif stateName == "HUB": # star
+            star_vertices = [
+            (new_pos[0], new_pos[1] - 5),              # Top vertex
+            (new_pos[0] - 2, new_pos[1] + 1),          # Top-left vertex
+            (new_pos[0] - 5, new_pos[1] + 3),          # Left vertex
+            (new_pos[0] - 2, new_pos[1] + 5),          # Bottom-left vertex
+            (new_pos[0], new_pos[1] + 7),              # Bottom vertex
+            (new_pos[0] + 2, new_pos[1] + 5),          # Bottom-right vertex
+            (new_pos[0] + 5, new_pos[1] + 3),          # Right vertex
+            (new_pos[0] + 2, new_pos[1] + 1)           # Top-right vertex
+        ]
+            pygame.draw.polygon(self.screen, color, star_vertices)
+            
+        elif stateName == "FOLLOW":
+            hexagon_vertices = [
+            (new_pos[0] - 4, new_pos[1] - 5),  # Top-left vertex
+            (new_pos[0] - 4, new_pos[1] + 5),  # Bottom-left vertex
+            (new_pos[0], new_pos[1] + 9),      # Bottom vertex
+            (new_pos[0] + 4, new_pos[1] + 5),  # Bottom-right vertex
+            (new_pos[0] + 4, new_pos[1] - 5),  # Top-right vertex
+            (new_pos[0], new_pos[1] - 9)       # Top vertex
+            ]
+            pygame.draw.polygon(self.screen, color, hexagon_vertices)
+            
+        elif stateName == "LEAD":
+            square_rect = pygame.Rect(new_pos[0] - 5, new_pos[1] - 5, 10, 10)  # Create a rectangle for the square
+            pygame.draw.rect(self.screen, color, square_rect)
+            
+# REST_NAME = "REST"
+# NET_FLOCK_NAME = "NETWORK_FLOCK"
+# NET_EXPLORE_NAME = "NETWORK_EXP"
+# NET_REST_NAME = "NETWORK_REST"
+# NET_GOTOSITE_NAME = "NETWORK_LEAD"
+# NET_GOTOHUB_NAME = "NETWORK_HUB"
+# NET_FOLLOW_NAME = "NETWORK_FOLLOW"
+# # agent.state.name.startswith("NETWORK_"):
+#             #     info.append(agent.state.name[len("NETWORK_"):])
 
 
 # Run Simulation
