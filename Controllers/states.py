@@ -117,7 +117,6 @@ class NetworkExploreState(State):
                 self.agent.site = self.agent.hub
                 self.agent.state = GoToHubState(NET_GOTOHUB_NAME, (0, 0, 255), self.agent)
                 return
-            
             else:
                 self.agent.state = NetworkFlockState(NET_FLOCK_NAME, (0, 255, 0), self.agent)
                 return
@@ -134,13 +133,10 @@ class NetworkExploreState(State):
                     self.agent.state = GoToSiteState(NET_GOTOSITE_NAME, (0, 0, 255), self.agent)
                     return
             
-    
     def move(self, neighbors, predators):
         self.agent.random_walk(potency=1.0)
-
         self.agent.move(neighbors, predators)
         
-
 class NetworkRestState(State):
     def __init__(self, name, color, agent):
         super().__init__(name, color, agent)
@@ -164,16 +160,13 @@ class NetworkRestState(State):
         
         # assess if it is a good site
         if self.agent.hub == None or self.agent.site.resource_count > self.agent.hub.resource_count:
-            # this is the new hub site??
             self.agent.hub = self.agent.site
 
         if self.timer == 0 or num_group_neighbors == 0 or self.agent.hunger >= MAX_HUNGER or not self.agent.site.is_available():
             self.agent.speed = np.random.uniform(1.0, MAX_SPEED) # reset speed
             self.agent.theta = np.random.uniform(-np.pi, np.pi)
             self.agent.state = NetworkExploreState(NET_EXPLORE_NAME, (100, 255, 0), self.agent)
-
         # *potentially* change group membership???
-
 
     def move(self, neighbors, predators):
         dx = self.agent.site.pos - self.agent.pos
@@ -200,9 +193,7 @@ class GoToHubState(State): # move towards their hub
     def move(self, neighbors, predators):
         # self.agent.repulse_move(neighbors, predators, attr_factor=0.0)
         self.agent.random_walk(potency=1.0)
-        
         dx = self.agent.hub.pos - self.agent.pos
-
         self.agent.pos += (dx * DT)
         super().move(neighbors, predators)
     # 

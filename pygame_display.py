@@ -54,20 +54,15 @@ class PygameDisplay:
         for agent in self.simulation.agents:
             agent_color_name = self.simulation.agent_colors[agent.id]
             agent_color = hex_to_rgb(agent_color_name)
-            self.draw_shape(agent, "circle", agent_color)
+            self.draw_shape(agent, agent_color)
 
-            # if self.should_scale:
-            #     pygame.draw.circle(self.screen, agent_color, agent.pos*self.scale, 5)
-            # else:
-            #     pygame.draw.circle(self.screen, agent_color, agent.pos, 5)
-             
         for predator in self.simulation.predators:
             if self.should_scale:
                 pygame.draw.circle(self.screen, "red", predator.pos*self.scale, 5)
             else:
                 pygame.draw.circle(self.screen, "red", predator.pos, 5)
 
-    def draw_shape(self, agent, new_shape, color):
+    def draw_shape(self, agent, color):
         """Update the shape of the visual representation with the given color."""
         new_pos = agent.pos*self.scale if self.should_scale else agent.pos
         stateName = agent.state.name[len("NETWORK_"):] if agent.state.name.startswith("NETWORK_") else agent.state.name
@@ -118,17 +113,6 @@ class PygameDisplay:
             square_rect = pygame.Rect(new_pos[0] - 5, new_pos[1] - 5, 10, 10)  # Create a rectangle for the square
             pygame.draw.rect(self.screen, color, square_rect)
             
-# REST_NAME = "REST"
-# NET_FLOCK_NAME = "NETWORK_FLOCK"
-# NET_EXPLORE_NAME = "NETWORK_EXP"
-# NET_REST_NAME = "NETWORK_REST"
-# NET_GOTOSITE_NAME = "NETWORK_LEAD"
-# NET_GOTOHUB_NAME = "NETWORK_HUB"
-# NET_FOLLOW_NAME = "NETWORK_FOLLOW"
-# # agent.state.name.startswith("NETWORK_"):
-#             #     info.append(agent.state.name[len("NETWORK_"):])
-
-
 # Run Simulation
 if USE_BT:
     sim = BT_Simulation()

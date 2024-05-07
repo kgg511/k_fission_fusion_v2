@@ -167,7 +167,7 @@ class Simulation:
     Updates the world conditions (agent positions, predator positions, site conditions, etc.)
     """
     def update(self):
-        self.print_states()
+        #self.print_states() # print out the list of states
         for agent in self.agents:
             self.prev_state.update({agent.id: [agent.pos, agent.speed, agent.heading()]})
             self.update_agent(agent)
